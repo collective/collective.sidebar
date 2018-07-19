@@ -1,5 +1,13 @@
 <?xml version="1.0"?>
 <registry>
-<!-- -*- extra stuff goes here -*- -->
+
+  <records prefix="plone.bundles/sidebar" interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="enabled">True</value>
+    <value key="jscompilation">++plone++collective.sidebar/sidebar.js</value>
+    <value key="csscompilation">++plone++collective.sidebar/sidebar.css</value>
+    <value key="last_compilation">2018-07-01 00:00:00</value>
+    <value key="compile">False</value>
+    <value key="depends">jquery</value>
+  </records>
 
 </registry>

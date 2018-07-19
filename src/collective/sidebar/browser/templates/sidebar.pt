@@ -1,0 +1,128 @@
+<tal:define tal:define="portal_url view/get_portal_url;
+                        navigation_root_url view/get_navigation_root_url;
+                        context_url context/absolute_url">
+
+  <nav id="portal-navigation-handle">
+    <i class="menu-item-icon glyphicon glyphicon-menu-hamburger" />
+  </nav>
+
+  <nav id="portal-navigation"
+       tal:define="items view/get_items;
+                   root_items python:view.get_items(root=True)"
+       i18n:domain="collective.sidebar">
+
+    <div class="menu">
+
+      <!-- Main Menu -->
+
+      <div class="menu-section" tal:condition="view/can_manage_portal">
+
+        <div class="menu-section-title" i18n:translate="navigation_heading_site">Site</div>
+
+        <tal:item>
+          <a href="#" tal:attributes="href python:portal_url + '/plone_control_panel'">
+            <span class="menu-item-icon glyphicon glyphicon-cog"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
+          </a>
+        </tal:item>
+
+      </div>
+
+      <div class="menu-section">
+
+        <div class="menu-section-title" i18n:translate="navigation_heading_links">Links</div>
+
+        <tal:item>
+          <a href="#" tal:attributes="href navigation_root_url">
+            <span class="menu-item-icon glyphicon glyphicon-home"></span> <span class="menu-item-title" i18n:translate="navigation_link_home">Home</span>
+          </a>
+        </tal:item>
+
+        <tal:item tal:condition="view/is_anonymous">
+          <a href="#" tal:attributes="href python:portal_url + '/login'">
+            <span class="menu-item-icon glyphicon glyphicon-login"></span> <span class="menu-item-title" i18n:translate="navigation_link_login">Login</span>
+          </a>
+        </tal:item>
+
+        <tal:item tal:condition="not:view/is_anonymous">
+          <a href="#" tal:attributes="href python:portal_url + '/logout'">
+            <span class="menu-item-icon glyphicon glyphicon-log-out"></span> <span class="menu-item-title" i18n:translate="navigation_link_logout">Logout</span>
+          </a>
+        </tal:item>
+
+      </div>
+
+      <!-- Editing -->
+
+      <div class="menu-section" tal:condition="view/can_edit">
+
+        <div class="menu-section-title" i18n:translate="navigation_heading_edit">Edit</div>
+
+        <a href="#" tal:attributes="href python:context.absolute_url() + '/view'">
+          <span class="menu-item-icon glyphicon glyphicon-eye-open"></span> <span class="menu-item-title" i18n:translate="view">View</span>
+        </a>
+
+        <a href="#" tal:attributes="href python:context.absolute_url() + '/edit'">
+          <span class="menu-item-icon glyphicon glyphicon-edit"></span> <span class="menu-item-title" i18n:translate="edit">Edit</span>
+        </a>
+
+        <a href="#" tal:attributes="href python:view.get_folder_contents_url()">
+          <span class="menu-item-icon glyphicon glyphicon-folder-open"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
+        </a>
+
+      </div>
+
+      <!-- Display Management -->
+
+      <div class="menu-section" tal:condition="view/can_edit">
+
+        <div class="menu-section-title" i18n:translate="navigation_heading_display">Display</div>
+
+        <a href="#" tal:attributes="href python:context.absolute_url() + '/@@select_default_page'">
+          <span class="menu-item-icon glyphicon glyphicon-blackboard"></span> <span class="menu-item-title" i18n:translate="select_default_page">Select Default Page</span>
+        </a>
+
+      </div>
+
+      <!-- Document Management -->
+
+      <div class="menu-section" tal:condition="view/can_edit">
+
+        <div class="menu-section-title" i18n:translate="navigation_heading_add">Add</div>
+
+        <tal:repeat tal:repeat="item python:view.get_addable_types()">
+          <a href="#" tal:attributes="href item/url">
+            <span class="menu-item-icon glyphicon glyphicon-plus"></span> <span class="menu-item-title" tal:content="item/title"></span>
+          </a>
+        </tal:repeat>
+
+      </div>
+
+      <tal:condition>
+
+        <!-- Navigation Controls -->
+
+        <div class="menu-section" tal:condition="items">
+
+          <div class="menu-section-title" i18n:translate="navigation_heading_navigation">Navigation</div>
+
+          <tal:item tal:condition="view/get_back">
+            <a href="#" tal:attributes="href view/get_back">
+              <span class="menu-item-icon glyphicon glyphicon-menu-left"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
+            </a>
+          </tal:item>
+
+          <tal:items tal:repeat="item items">
+            <a href="#" tal:attributes="title item/title; href item/url;">
+              <span class="menu-item-icon glyphicon glyphicon-menu-right"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
+            </a>
+          </tal:items>
+
+        </div>
+
+      </tal:condition>
+
+    </div>
+
+  </nav>
+
+</tal:define>

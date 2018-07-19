@@ -18,4 +18,13 @@
       directory="static"
       />
 
+  <!-- Viewlets -->
+  <browser:viewlet
+      name="sidebar"
+      manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+      layer="zope.interface.Interface"
+      class=".sidebar.SidebarViewlet"
+      permission="zope2.View"
+      />
+
 </configure>

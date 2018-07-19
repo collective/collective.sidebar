@@ -1,0 +1,111 @@
+// "out": "sidebar.css", "sourcemap": false, "compress": true, "autoprefixer": false
+
+.plone-toolbar-left {
+  padding-left: 0;
+}
+
+#edit-zone {
+  display: none;
+}
+
+#portal-navigation-handle {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 24px;
+}
+
+#portal-navigation {
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: invisible;
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border: 0;
+    display: none;
+  }
+
+  ::-webkit-scrollbar {
+    background-color: transparent;
+    display: none;
+    width: auto;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    display: none;
+  }
+
+  .menu {
+    background-color: #fff;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 30px;
+    position: relative;
+    transform: translate3d(-250px, 0, 0);
+    width: 250px;
+    will-change: transform;
+    z-index: 90;
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      color: #333;
+      display: block;
+      font-weight: 400;
+      margin-bottom: 15px;
+      min-height: 30px;
+      text-decoration: none;
+    }
+
+    .menu-section {
+      margin-bottom: 30px;
+
+      .menu-section-title {
+        color: #000;
+        font-size: 20px;
+        font-weight: 200;
+        margin-bottom: 30px;
+        position: relative;
+        text-transform: uppercase;
+      }
+
+      .menu-item-title {
+        display: block;
+        margin-left: 30px;
+        position: relative;
+        top: -2px;
+        width: 180px;
+      }
+
+      .menu-item-icon {
+        background-position: left;
+        display: block;
+        float: left;
+        height: 100%;
+        text-align: left;
+        width: 30px;
+      }
+    }
+  }
+}
+
+.with-sidebar {
+  #portal-navigation {
+    visibility: visible;
+
+    .menu {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
