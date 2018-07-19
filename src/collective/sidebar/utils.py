@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from Acquisition import aq_inner
-from datetime import datetime
-from datetime import timedelta
 from collective.sidebar import _
 from plone import api
 from zope.i18n import translate
@@ -24,6 +21,7 @@ def get_translated(text, context, domain='plone', multi_domain=False):
             return translated
     return text
 
+
 def crop(text, count):
     """Crop given text to given count"""
     cropped_text = ' '.join((text[0:count].strip()).split(' ')[:-1])
@@ -33,6 +31,7 @@ def crop(text, count):
     if len(text) > count:
         return cropped_text + u'...'
     return text
+
 
 def get_user():
     """Return MemberData, ID and profile directory for the current user"""
