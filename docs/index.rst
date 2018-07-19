@@ -1,0 +1,3 @@
+==================collective.sidebar
+==================
+User documentation
