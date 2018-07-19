@@ -6,19 +6,18 @@
 collective.sidebar
 ==================
 
-Tell me what your product does
+A sidebar for Plone to consolidate toolbar and navigation.
 
 Features
 --------
 
-- Can be bullet points
+- Adds sidebar to Plone
 
 
 Examples
 --------
 
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
+- TBD
 
 
 Documentation
@@ -32,7 +31,7 @@ Translations
 
 This product has been translated into
 
-- Klingon (thanks, K'Plai)
+- German (thanks, santonelli)
 
 
 Installation
@@ -56,14 +55,12 @@ Contribute
 
 - Issue Tracker: https://github.com/collective/collective.sidebar/issues
 - Source Code: https://github.com/collective/collective.sidebar
-- Documentation: https://docs.plone.org/foo/bar
 
 
 Support
 -------
 
-If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
+If you are having issues, please let us know. We have a issue tracker located at: https://github.com/collective/collective.sidebar/issues
 
 
 License
