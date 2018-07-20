@@ -22,7 +22,7 @@
   <browser:viewlet
       name="sidebar"
       manager="plone.app.layout.viewlets.interfaces.IPortalTop"
-      layer="zope.interface.Interface"
+      layer="collective.sidebar.interfaces.ICollectiveSidebarLayer"
       class=".sidebar.SidebarViewlet"
       permission="zope2.View"
       />
