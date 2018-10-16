@@ -1,32 +1,52 @@
+# Defaults
+
+.*.cfg
 .coverage
+*.egg
+*.EGG
 *.egg-info
+*.EGG-INFO
 *.log
+*.map
 *.mo
 *.py?
+*.pyc
+*.pyo
 *.swp
-# dirs
+*.tmp*
+
+# Dirs
+
 bin/
+build/
 buildout-cache/
 develop-eggs/
+dist/
+downloads/
 eggs/
+fake-eggs/
 htmlcov/
 include/
 lib/
 local/
 parts/
-src/*
 test.plone_addon/
 var/
-# files
+share/
+
+# Files
+
 .installed.cfg
 .mr.developer.cfg
 lib64
 log.html
 output.xml
 pip-selfcheck.json
+package-lock.json
 report.html
-.vscode/
-# excludes
+
+# Excludes
+
 !.coveragerc
 !.editorconfig
 !.gitattributes
@@ -34,3 +54,10 @@ report.html
 !.gitkeep
 !.travis.yml
 !src/collective
+
+# Node & Grunt
+
+Gruntfile.js
+node_modules/
+package.json
+temp_resources
