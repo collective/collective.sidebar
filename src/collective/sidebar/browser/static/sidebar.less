@@ -1,26 +1,18 @@
-// "out": "sidebar.css", "sourcemap": false, "compress": true, "autoprefixer": false
-
-.plone-toolbar-left {
-  padding-left: 0;
-}
-
-#edit-zone {
-  display: none;
-}
-
 #portal-navigation-handle {
+  cursor: pointer;
+  font-size: 24px;
+  left: 30px;
   position: absolute;
   top: 30px;
-  right: 30px;
-  font-size: 24px;
 }
 
 #portal-navigation {
   height: 100vh;
-  position: absolute;
   left: 0;
+  position: fixed;
   top: 0;
-  visibility: invisible;
+  visibility: hidden;
+  z-index: 999;
 
   ::-webkit-scrollbar-track {
     background-color: transparent;
@@ -40,7 +32,7 @@
   }
 
   .menu {
-    background-color: #fff;
+    background-color: @white;
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -50,17 +42,15 @@
     width: 250px;
     will-change: transform;
     z-index: 90;
-    -webkit-transition: all 0.6s ease;
-    -moz-transition: all 0.6s ease;
-    -o-transition: all 0.6s ease;
-    transition: all 0.6s ease;
+
+    .vendor(transition, all 0.6s ease);
 
     a,
     a:hover,
     a:focus,
     a:active,
     a:visited {
-      color: #333;
+      color: @black;
       display: block;
       font-weight: 400;
       margin-bottom: 15px;
@@ -72,7 +62,6 @@
       margin-bottom: 30px;
 
       .menu-section-title {
-        color: #000;
         font-size: 20px;
         font-weight: 200;
         margin-bottom: 30px;
@@ -100,6 +89,7 @@
   }
 }
 
+body[data-with-sidebar='true'],
 .with-sidebar {
   #portal-navigation {
     visibility: visible;

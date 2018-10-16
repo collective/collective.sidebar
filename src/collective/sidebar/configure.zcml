@@ -13,7 +13,7 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="collective.sidebar"
+      title="Collective Sidebar (collective.sidebar)"
       directory="profiles/default"
       description="Installs the collective.sidebar add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -22,7 +22,7 @@
 
   <genericsetup:registerProfile
       name="uninstall"
-      title="collective.sidebar (uninstall)"
+      title="Collective Sidebar (collective.sidebar) - Uninstall"
       directory="profiles/uninstall"
       description="Uninstalls the collective.sidebar add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"

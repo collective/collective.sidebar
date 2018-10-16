@@ -1,13 +1,23 @@
 <?xml version="1.0"?>
 <registry>
 
-  <records prefix="plone.bundles/sidebar" interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+  <records interface='Products.CMFPlone.interfaces.IResourceRegistry' prefix="plone.resources/sidebar">
+    <value key="js">++resource++collective.sidebar/sidebar.js</value>
+    <value key="deps">jquery</value>
+    <value key="css">
+      <element>++resource++collective.sidebar/main.less</element>
+    </value>
+  </records>
+
+  <records interface='Products.CMFPlone.interfaces.IBundleRegistry' prefix="plone.bundles/sidebar">
+    <value key="resources">
+      <element>sidebar</element>
+    </value>
+    <value key="jscompilation">++resource++collective.sidebar/sidebar-compiled.js</value>
+    <value key="csscompilation">++resource++collective.sidebar/sidebar-compiled.css</value>
     <value key="enabled">True</value>
-    <value key="jscompilation">++plone++collective.sidebar/sidebar.js</value>
-    <value key="csscompilation">++plone++collective.sidebar/sidebar.css</value>
-    <value key="last_compilation">2018-07-01 00:00:00</value>
-    <value key="compile">False</value>
-    <value key="depends">jquery</value>
+    <value key="compile">True</value>
+    <value key="depends">plone</value>
   </records>
 
 </registry>

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_translated
 from collective.sidebar.utils import get_user
@@ -13,18 +14,33 @@ class SidebarViewlet(ViewletBase):
     index = ViewPageTemplateFile('templates/sidebar.pt')
 
     def is_anonymous(self):
+        """
+        Check if the user is anonymous.
+        """
         return api.user.is_anonymous()
 
     def get_portal_url(self):
+        """
+        Return the portal URL.
+        """
         return api.portal.get().absolute_url()
 
     def get_user_profile_url(self):
-        return api.portal.get().absolute_url() + get_user()[2]
+        """
+        Return URL for the user profile.
+        """
+        portal_url = self.get_portal_url()
+        portal_user = get_user()[2]
+        return portal_url + portal_user
 
     def get_search_path(self, query=False):
+        """
+        Return a search URL using the SearchableText attribute.
+        """
+        portal_url = self.get_portal_url()
         if query:
-            return api.portal.get().absolute_url() + '/@@search?SearchableText='  # noqa :501
-        return api.portal.get().absolute_url() + '/@@search'
+            return '{0}/@@search?SearchableText='.format(portal_url)
+        return '{0}/@@search'.format(portal_url)
 
     def get_navigation_root_url(self):
         """
@@ -34,6 +50,9 @@ class SidebarViewlet(ViewletBase):
         return navigation_root.absolute_url()
 
     def get_language(self):
+        """
+        Return the current language.
+        """
         return api.portal.get_current_language()
 
     def get_back(self):
@@ -45,21 +64,29 @@ class SidebarViewlet(ViewletBase):
             return None
         if self.context.portal_type == 'LRF':
             return None
-        if hasattr(parent, 'default_page'):
+        try:
             if parent.default_page == self.context.id:
                 if parent == api.portal.get_navigation_root(self.context):
                     return None
                 else:
                     return parent.aq_parent.absolute_url()
+        except AttributeError:
+            pass
         return parent.absolute_url()
 
     def can_edit(self):
+        """
+        Check if the user can modify content.
+        """
         permission = 'cmf.ModifyPortalContent'
         if api.user.has_permission(permission, obj=self.context):
             return True
         return False
 
     def can_manage_portal(self):
+        """
+        Check is user can manage the portal.
+        """
         permission = 'cmf.ManagePortal'
         if api.user.has_permission(permission, obj=self.context):
             return True
@@ -72,9 +99,11 @@ class SidebarViewlet(ViewletBase):
         context = self.context
         if item.exclude_from_nav:
             return False
-        if hasattr(context, 'default_page'):
+        try:
             if context.default_page == item.id:
                 return False
+        except AttributeError:
+            pass
         return True
 
     def get_items(self, root=False):
@@ -112,14 +141,8 @@ class SidebarViewlet(ViewletBase):
         parent = context.aq_parent
         context_url = context.absolute_url()
         parent_url = parent.absolute_url()
-        title_filter = [
-            'Collection',
-            'News Folder',
-            'Frontpage',
-            'Sponsors',
-            'Tracks',
-            'Events',
-        ]
+        # Filter for Content-Types
+        title_filter = []
         factories = api.content.get_view(
             'plone.contentmenu.factories',
             self.context,
@@ -133,9 +156,11 @@ class SidebarViewlet(ViewletBase):
                 pass
             else:
                 url = context_url
-                if hasattr(parent, 'default_page'):
+                try:
                     if parent.default_page == context.id:
                         url = parent_url
+                except AttributeError:
+                    pass
                 url = '{0}/++add++{1}'.format(url, title)
                 data.append({'title': get_translated(title, self), 'url': url})
         return data
@@ -148,10 +173,17 @@ class SidebarViewlet(ViewletBase):
         parent = context.aq_parent
         context_url = context.absolute_url() + '/folder_contents'
         parent_url = parent.absolute_url() + '/folder_contents'
-        if hasattr(parent, 'default_page'):
+        try:
             if parent.default_page == context.id:
                 return parent_url
+        except AttributeError:
+            pass
         if IFolderish.providedBy(context):
             return context_url
         else:
             return parent_url
+
+
+class CoverViewlet(SidebarViewlet):
+
+    index = ViewPageTemplateFile('templates/cover.pt')
