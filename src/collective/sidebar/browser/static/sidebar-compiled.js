@@ -1,0 +1,2 @@
+!function(e){"use strict";e(document).ready(function(){e("#portal-navigation-handle").click(function(t){t.preventDefault(),e("body").attr("data-with-sidebar","true")}),e("#portal-navigation-cover").click(function(t){t.preventDefault(),e("body").attr("data-with-sidebar","")})})}(jQuery),define("/home/jesse/Development/repos/collective/collective.sidebar/src/collective/sidebar/browser/static/sidebar.js",function(){});
+//# sourceMappingURL=sidebar-compiled.js.map
