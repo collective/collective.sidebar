@@ -1,9 +1,5 @@
 <metal:page define-macro="master">
 
-  <tal:comment tal:replace="nothing">
-    My head hurts looking at this, anyone got some asprin..?
-  </tal:comment>
-
   <tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
 
   <html xmlns="http://www.w3.org/1999/xhtml"
