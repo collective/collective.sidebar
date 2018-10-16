@@ -5,8 +5,15 @@ Changelog
 1.0.0a1 (unreleased)
 ------------------
 
+Added:
+
 - Initial release.
   [santonelli]
+
+Changed:
+
+- Improved sidebar styling and introduced a site-cover.
+  [jstippel]
 
 
 Version (Date)
