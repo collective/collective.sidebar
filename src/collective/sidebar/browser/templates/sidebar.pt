@@ -2,10 +2,6 @@
                         navigation_root_url view/get_navigation_root_url;
                         context_url context/absolute_url">
 
-  <nav id="portal-navigation-handle">
-    <i class="menu-item-icon glyphicon glyphicon-menu-hamburger" />
-  </nav>
-
   <nav id="portal-navigation"
        tal:define="items view/get_items;
                    root_items python:view.get_items(root=True)"
@@ -39,7 +35,7 @@
 
         <tal:item tal:condition="view/is_anonymous">
           <a href="#" tal:attributes="href python:portal_url + '/login'">
-            <span class="menu-item-icon glyphicon glyphicon-login"></span> <span class="menu-item-title" i18n:translate="navigation_link_login">Login</span>
+            <span class="menu-item-icon glyphicon glyphicon-log-in"></span> <span class="menu-item-title" i18n:translate="navigation_link_login">Login</span>
           </a>
         </tal:item>
 

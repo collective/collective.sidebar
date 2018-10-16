@@ -7,7 +7,14 @@
 
     $('#portal-navigation-handle').click(function(e) {
       e.preventDefault();
-      $('body').toggleClass('with-sidebar');
+      $('body').attr('data-with-sidebar', 'true');
+    });
+
+    // Sidebar Cover
+
+    $('#portal-navigation-cover').click(function(e) {
+      e.preventDefault();
+      $('body').attr('data-with-sidebar', '');
     });
 
   });
