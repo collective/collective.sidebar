@@ -2,10 +2,6 @@
                         navigation_root_url view/get_navigation_root_url;
                         context_url context/absolute_url">
 
-  <nav id="portal-navigation-handle">
-    <i class="menu-item-icon glyphicon glyphicon-menu-hamburger" />
-  </nav>
-
   <nav id="portal-navigation"
        tal:define="items view/get_items;
                    root_items python:view.get_items(root=True)"
