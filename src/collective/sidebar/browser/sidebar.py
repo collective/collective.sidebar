@@ -3,6 +3,7 @@
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_translated
 from collective.sidebar.utils import get_user
+from collective.sidebar.utils import get_workflow_data
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.CMFCore.interfaces import IFolderish
@@ -182,6 +183,12 @@ class SidebarViewlet(ViewletBase):
             return context_url
         else:
             return parent_url
+
+    def get_workflow(self):
+        """
+        Return options for the workflow.
+        """
+        return get_workflow_data(self.context)
 
 
 class CoverViewlet(SidebarViewlet):
