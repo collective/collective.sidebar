@@ -3,7 +3,6 @@
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_translated
 from collective.sidebar.utils import get_user
-from collective.sidebar.utils import get_workflow_data
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.CMFCore.interfaces import IFolderish
@@ -184,11 +183,32 @@ class SidebarViewlet(ViewletBase):
         else:
             return parent_url
 
-    def get_workflow(self):
+    def get_workflow_data(self):
         """
-        Return options for the workflow.
+        Return the workflow data for the context.
         """
-        return get_workflow_data(self.context)
+        portal_workflow = api.portal.get_tool('portal_workflow')
+        transitions = portal_workflow.getTransitionsFor(self.context)
+        result = {
+            'state': {
+                'name': '',
+                'color': 'sidebar-blue',
+            },
+            'transitions': [],
+        }
+        if transitions:
+            # Get the current state
+            state = api.content.get_state(self.context, None)
+            # Set a color for the state
+            if state == 'private':
+                result['state']['color'] = 'sidebar-red'
+            elif state == 'pending':
+                result['state']['color'] = 'sidebar-yellow'
+            elif state == 'visible':
+                result['state']['color'] = 'sidebar-purple'
+            result['state']['name'] = get_translated(state, self)
+            result['transitions'] = transitions
+        return result
 
 
 class CoverViewlet(SidebarViewlet):

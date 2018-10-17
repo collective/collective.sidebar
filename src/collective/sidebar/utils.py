@@ -55,22 +55,3 @@ def get_user():
     user_id = user.id
     user_dir = '/users/{0}'.format(user_id)
     return user, user_id, user_dir
-
-
-def get_workflow_data(context):
-    """
-    Return the workflow data for the context.
-    """
-    portal_workflow = api.portal.get_tool('portal_workflow')
-    workflows = portal_workflow.getWorkflowsFor(context)
-    result = {
-        'state': '',
-        'transitions': list(),
-    }
-    if workflows:
-        workflow = workflows[0]
-        state = api.content.get_state(context, None)
-        transitions = getattr(workflow.states, state).transitions
-        result['state'] = state
-        result['transitions'] = transitions
-    return result
