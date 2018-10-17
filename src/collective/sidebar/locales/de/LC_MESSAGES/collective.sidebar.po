@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-10-18 11:15+0000\n"
+"POT-Creation-Date: 2018-10-17 15:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,6 +44,11 @@ msgstr "Inhalte"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "edit"
 msgstr "Bearbeiten"
+
+#. Default: "History"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "history"
+msgstr "Historie"
 
 #. Default: "Add"
 #: collective/sidebar/browser/templates/sidebar.pt
@@ -99,6 +104,41 @@ msgstr "Einstellungen"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "select_default_page"
 msgstr "Standardseite"
+
+#. Default: "Sharing"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "sharing"
+msgstr "Freigabe"
+
+#. Default: "History"
+#: collective/sidebar/browser/sidebar.py
+msgid "sidebar_msg_history"
+msgstr ""
+
+#. Default: "$An hour {minutes} minutes ago"
+#: collective/sidebar/browser/sidebar.py
+msgid "sidebar_msg_one_hour_x_minutes_ago"
+msgstr ""
+
+#. Default: "a minute ago"
+#: collective/sidebar/browser/sidebar.py
+msgid "sidebar_msg_one_minute_ago"
+msgstr ""
+
+#. Default: "a few seconds ago"
+#: collective/sidebar/browser/sidebar.py
+msgid "sidebar_msg_seconds_ago"
+msgstr ""
+
+#. Default: "${hours} hours ${minutes} minutes ago"
+#: collective/sidebar/browser/sidebar.py
+msgid "sidebar_msg_x_hours_x_minutes_ago"
+msgstr ""
+
+#. Default: "${minutes} minutes ago"
+#: collective/sidebar/browser/sidebar.py
+msgid "sidebar_msg_x_minutes_ago"
+msgstr ""
 
 #. Default: "View"
 #: collective/sidebar/browser/templates/sidebar.pt
