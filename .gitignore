@@ -33,6 +33,7 @@ parts/
 test.plone_addon/
 var/
 share/
+.idea/
 
 # Files
 
