@@ -113,32 +113,32 @@ msgstr "Freigabe"
 #. Default: "History"
 #: collective/sidebar/browser/sidebar.py
 msgid "sidebar_msg_history"
-msgstr ""
+msgstr "Historie"
 
-#. Default: "$An hour {minutes} minutes ago"
+#. Default: "an hour {minutes} minutes ago"
 #: collective/sidebar/browser/sidebar.py
 msgid "sidebar_msg_one_hour_x_minutes_ago"
-msgstr ""
+msgstr "vor einer Stunde und {minutes} Minuten"
 
 #. Default: "a minute ago"
 #: collective/sidebar/browser/sidebar.py
 msgid "sidebar_msg_one_minute_ago"
-msgstr ""
+msgstr "vor einer Minute"
 
 #. Default: "a few seconds ago"
 #: collective/sidebar/browser/sidebar.py
 msgid "sidebar_msg_seconds_ago"
-msgstr ""
+msgstr "vor ein paar Sekunden"
 
 #. Default: "${hours} hours ${minutes} minutes ago"
 #: collective/sidebar/browser/sidebar.py
 msgid "sidebar_msg_x_hours_x_minutes_ago"
-msgstr ""
+msgstr "vor ${hours} Stunden und ${minutes} Minuten"
 
 #. Default: "${minutes} minutes ago"
 #: collective/sidebar/browser/sidebar.py
 msgid "sidebar_msg_x_minutes_ago"
-msgstr ""
+msgstr "vor ${minutes} Minuten"
 
 #. Default: "View"
 #: collective/sidebar/browser/templates/sidebar.pt

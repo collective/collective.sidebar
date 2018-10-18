@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
-import math
-import pytz
-from Products.ATContentTypes.utils import DT2dt
+from collective.sidebar import _
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_translated
 from collective.sidebar.utils import get_user
-from collective.sidebar import _
+from datetime import datetime
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
+from Products.ATContentTypes.utils import DT2dt
 from Products.CMFCore.interfaces import IFolderish
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from datetime import datetime
+
+import math
+import pytz
 
 
 class SidebarViewlet(ViewletBase):
@@ -194,7 +195,8 @@ class SidebarViewlet(ViewletBase):
             now = now.replace(tzinfo=pytz.utc)
 
             delta = now - date
-            seconds = delta.seconds + delta.microseconds / 1E6 + delta.days * 86400
+            seconds = \
+                delta.seconds + delta.microseconds / 1E6 + delta.days * 86400
             days = math.floor(seconds / (3600 * 24))
 
             if days <= 0 and seconds <= 0:
@@ -204,27 +206,36 @@ class SidebarViewlet(ViewletBase):
             elif days >= 1:
                 return date.strftime('%A %H:%M')  # Tuesday 10:30
             else:
-                hours = math.floor(seconds / 3600.0)
-                minutes = math.floor((seconds % 3600) / 60)
-                if hours > 1:
-                    ret_string = _(u'sidebar_msg_x_hours_x_minutes_ago',
-                                   default=u'${hours} hours ${minutes} minutes ago',
-                                   mapping={u'hours': int(hours), u'minutes': int(minutes)})
-                elif hours == 1:
-                    ret_string = _(u'sidebar_msg_one_hour_x_minutes_ago', default=u'$An hour {minutes} minutes ago',
-                                   mapping={u'minutes': int(minutes)})
-                else:
-                    if minutes > 1:
-                        ret_string = _(u'sidebar_msg_x_minutes_ago', default=u'${minutes} minutes ago',
-                                       mapping={u'minutes': int(minutes)})
-                    elif minutes == 1:
-                        ret_string = _(u'sidebar_msg_one_minute_ago', default=u'a minute ago')
-                    else:
-                        ret_string = _(u'sidebar_msg_seconds_ago', default=u'a few seconds ago')
+                ret_string = self.to_human_readable_timedelta(seconds)
         except AttributeError:
             ret_string = _(u'sidebar_msg_history', default=u'History')
 
         return self.context.translate(ret_string)
+
+    def to_human_readable_timedelta(self, seconds):
+        hours = math.floor(seconds / 3600.0)
+        minutes = math.floor((seconds % 3600) / 60)
+        if hours > 1:
+            ret_string = _(u'sidebar_msg_x_hours_x_minutes_ago',
+                           default=u'${hours} hours ${minutes} minutes ago',
+                           mapping={u'hours': int(hours),
+                                    u'minutes': int(minutes)})
+        elif hours == 1:
+            ret_string = _(u'sidebar_msg_one_hour_x_minutes_ago',
+                           default=u'$An hour {minutes} minutes ago',
+                           mapping={u'minutes': int(minutes)})
+        else:
+            if minutes > 1:
+                ret_string = _(u'sidebar_msg_x_minutes_ago',
+                               default=u'${minutes} minutes ago',
+                               mapping={u'minutes': int(minutes)})
+            elif minutes == 1:
+                ret_string = _(u'sidebar_msg_one_minute_ago',
+                               default=u'a minute ago')
+            else:
+                ret_string = _(u'sidebar_msg_seconds_ago',
+                               inedefault=u'a few seconds ago')
+        return ret_string
 
 
 class CoverViewlet(SidebarViewlet):
