@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-10-17 12:32+0000\n"
+"POT-Creation-Date: 2018-10-18 11:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,93 +14,93 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/sidebar/configure.zcml:21
+#: collective/sidebar/configure.zcml
 msgid "Collective Sidebar (collective.sidebar)"
-msgstr ""
+msgstr "Collective Sidebar (collective.sidebar)"
 
-#: collective/sidebar/configure.zcml:30
+#: collective/sidebar/configure.zcml
 msgid "Collective Sidebar (collective.sidebar) - Uninstall"
-msgstr ""
+msgstr "Collective Sidebar (collective.sidebar) - Uninstall"
 
-#: collective/sidebar/configure.zcml:21
+#: collective/sidebar/configure.zcml
 msgid "Installs the collective.sidebar add-on."
-msgstr ""
+msgstr "Installiert die Sidebar-Erweiterung"
 
-#: collective/sidebar/configure.zcml:30
+#: collective/sidebar/configure.zcml
 msgid "Uninstalls the collective.sidebar add-on."
-msgstr ""
+msgstr "Deinstalliert die Sidebar-Erweiterung"
 
 #. Default: "Back"
-#: collective/sidebar/browser/templates/sidebar.pt:106
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "back"
-msgstr ""
+msgstr "Zurück"
 
 #. Default: "Contents"
-#: collective/sidebar/browser/templates/sidebar.pt:65
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "contents"
-msgstr ""
+msgstr "Inhalte"
 
 #. Default: "Edit"
-#: collective/sidebar/browser/templates/sidebar.pt:61
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #. Default: "Add"
-#: collective/sidebar/browser/templates/sidebar.pt:86
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_heading_add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #. Default: "Display"
-#: collective/sidebar/browser/templates/sidebar.pt:74
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_heading_display"
-msgstr ""
+msgstr "Anzeige"
 
 #. Default: "Edit"
-#: collective/sidebar/browser/templates/sidebar.pt:54
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_heading_edit"
-msgstr ""
+msgstr "Bearbeitung"
 
 #. Default: "Links"
-#: collective/sidebar/browser/templates/sidebar.pt:28
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_heading_links"
-msgstr ""
+msgstr "Links"
 
 #. Default: "Navigation"
-#: collective/sidebar/browser/templates/sidebar.pt:102
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_heading_navigation"
-msgstr ""
+msgstr "Navigation"
 
 #. Default: "Site"
-#: collective/sidebar/browser/templates/sidebar.pt:16
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_heading_site"
-msgstr ""
+msgstr "Webseite"
 
 #. Default: "Home"
-#: collective/sidebar/browser/templates/sidebar.pt:32
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_link_home"
-msgstr ""
+msgstr "Startseite"
 
 #. Default: "Login"
-#: collective/sidebar/browser/templates/sidebar.pt:38
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_link_login"
-msgstr ""
+msgstr "Anmelden"
 
 #. Default: "Logout"
-#: collective/sidebar/browser/templates/sidebar.pt:44
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_link_logout"
-msgstr ""
+msgstr "Abmelden"
 
 #. Default: "Settings"
-#: collective/sidebar/browser/templates/sidebar.pt:20
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_link_settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #. Default: "Select Default Page"
-#: collective/sidebar/browser/templates/sidebar.pt:77
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "select_default_page"
-msgstr ""
+msgstr "Standardseite"
 
 #. Default: "View"
-#: collective/sidebar/browser/templates/sidebar.pt:57
+#: collective/sidebar/browser/templates/sidebar.pt
 msgid "view"
-msgstr ""
+msgstr "Anzeigen"
