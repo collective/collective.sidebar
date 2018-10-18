@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_translated
 from collective.sidebar.utils import get_user
@@ -9,6 +10,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class SidebarViewlet(ViewletBase):
+
     index = ViewPageTemplateFile('templates/sidebar.pt')
 
     def is_anonymous(self):
@@ -183,4 +185,5 @@ class SidebarViewlet(ViewletBase):
 
 
 class CoverViewlet(SidebarViewlet):
+
     index = ViewPageTemplateFile('templates/cover.pt')
