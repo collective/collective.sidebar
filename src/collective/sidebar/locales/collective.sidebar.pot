@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-10-18 09:27+0000\n"
+"POT-Creation-Date: 2018-10-18 16:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,9 +73,19 @@ msgstr ""
 msgid "navigation_heading_navigation"
 msgstr ""
 
+#. Default: "Search"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_search"
+msgstr ""
+
 #. Default: "Site"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_heading_site"
+msgstr ""
+
+#. Default: "Workflow"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_workflow"
 msgstr ""
 
 #. Default: "Home"
@@ -108,7 +118,17 @@ msgstr ""
 msgid "sharing"
 msgstr ""
 
+#. Default: "Advanced"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "sidebar_workflow_advanced"
+msgstr ""
+
 #. Default: "View"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "view"
+msgstr ""
+
+#. Default: "Policy..."
+#: collective/sidebar/browser/sidebar.py
+msgid "workflow_policy"
 msgstr ""
