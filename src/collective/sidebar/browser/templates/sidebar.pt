@@ -125,7 +125,27 @@
 
       </tal:condition>
 
+      <div class="menu-section">
+
+        <div class="menu-section-title" i18n:translate="navigation_heading_search">Search</div>
+
+        <form action="" id="menu-search" method="post">
+          <input class="menu-search-input" type="text" value="">
+        </form>
+
+      </div>
+
     </div>
+
+    <script type="text/javascript" tal:define="searchpath python:view.get_search_path(query=True)">
+      $('#menu-search').submit(function() {
+        var search_val = $('.menu-search-input').val();
+        var search_construct = '${searchpath}' + search_val;
+        $('#menu-search').attr('action', search_construct);
+      });
+
+    </script>
+
 
   </nav>
 
