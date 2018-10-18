@@ -17,6 +17,7 @@
     <value key="csscompilation">++resource++collective.sidebar/sidebar-compiled.css</value>
     <value key="enabled">True</value>
     <value key="compile">True</value>
+    <value key="last_compilation">2018-10-18 18:00:00</value>
     <value key="depends">plone</value>
   </records>
 
