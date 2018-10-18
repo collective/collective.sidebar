@@ -14,6 +14,10 @@ collective.sidebar
 
 A sidebar for Plone to consolidate toolbar and navigation.
 
+.. image:: https://raw.githubusercontent.com/collective/collective.sidebar/master/docs/screenshot.png
+    :target: https://raw.githubusercontent.com/collective/collective.sidebar/master/docs/screenshot.png
+
+
 Features
 --------
 
