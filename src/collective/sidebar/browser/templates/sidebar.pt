@@ -65,6 +65,14 @@
           <span class="menu-item-icon glyphicon glyphicon-folder-open"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
         </a>
 
+        <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
+            <span class="menu-item-icon glyphicon glyphicon-time"></span> <span class="menu-item-title pat-moment" data-pat-moment="format:relative;" tal:content="context/ModificationDate">Modified</span>
+        </a>
+
+        <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
+          <span class="menu-item-icon glyphicon glyphicon-user"></span> <span class="menu-item-title" i18n:translate="sharing">Sharing</span>
+        </a>
+
       </div>
 
       <!-- Display Management -->
