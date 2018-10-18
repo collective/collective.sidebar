@@ -183,6 +183,115 @@ class SidebarViewlet(ViewletBase):
         else:
             return parent_url
 
+    def get_workflow_data(self):
+        """
+        Return the workflow data for the context.
+        """
+        portal_workflow = api.portal.get_tool('portal_workflow')
+        transitions = portal_workflow.getTransitionsFor(self.context)
+        result = {
+            'state': {
+                'name': '',
+                'color': 'sidebar-blue',
+            },
+            'transitions': [],
+        }
+        if transitions:
+            # Get the current state
+            state = api.content.get_state(self.context, None)
+            # Set a color for the state
+            if state == 'private':
+                result['state']['color'] = 'sidebar-red'
+            elif state == 'pending':
+                result['state']['color'] = 'sidebar-yellow'
+            elif state == 'visible':
+                result['state']['color'] = 'sidebar-purple'
+            result['state']['name'] = get_translated(state, self)
+            result['transitions'] = transitions
+        return result
+
+    def get_workflow_actions(self):
+        """Return menu item entries in a TAL-friendly form."""
+        context = self.context
+        request = context.REQUEST
+        from plone.app.contentmenu import PloneMessageFactory as _
+        from zope.component import queryMultiAdapter
+        from Products.CMFCore.utils import getToolByName
+        from plone.protect.utils import addTokenToUrl
+        from Products.CMFCore.utils import _checkPermission
+        import pkg_resources
+        try:
+            pkg_resources.get_distribution('Products.CMFPlacefulWorkflow')
+            from Products.CMFPlacefulWorkflow.permissions import \
+                ManageWorkflowPolicies
+        except pkg_resources.DistributionNotFound:
+            from Products.CMFCore.permissions import \
+                ManagePortal as ManageWorkflowPolicies  # noqa
+
+        results = []
+
+        locking_info = queryMultiAdapter((context, request),
+                                         name='plone_lock_info')
+        if locking_info and locking_info.is_locked_for_current_user():
+            return []
+
+        wf_tool = getToolByName(context, 'portal_workflow')
+        workflowActions = wf_tool.listActionInfos(object=context)
+
+        for action in workflowActions:
+            if action['category'] != 'workflow':
+                continue
+
+            cssClass = ''
+            actionUrl = action['url']
+            if actionUrl == '':
+                actionUrl = '{0}/content_status_modify?workflow_action={1}'
+                actionUrl = actionUrl.format(
+                    context.absolute_url(),
+                    action['id'],
+                )
+                cssClass = ''
+
+            description = ''
+
+            transition = action.get('transition', None)
+            if transition is not None:
+                description = transition.description
+
+            if action['allowed']:
+                results.append({
+                    'title': action['title'],
+                    'description': description,
+                    'action': addTokenToUrl(actionUrl, request),
+                    'selected': False,
+                    'icon': None,
+                    'extra': {
+                        'id': 'workflow-transition-{0}'.format(action['id']),
+                        'separator': None,
+                        'class': cssClass},
+                    'submenu': None,
+                })
+
+        url = context.absolute_url()
+
+        pw = getToolByName(context, 'portal_placeful_workflow', None)
+        if pw is not None:
+            if _checkPermission(ManageWorkflowPolicies, context):
+                results.append({
+                    'title': _(u'workflow_policy',
+                               default=u'Policy...'),
+                    'description': '',
+                    'action': url + '/placeful_workflow_configuration',
+                    'selected': False,
+                    'icon': None,
+                    'extra': {'id': 'workflow-transition-policy',
+                              'separator': None,
+                              'class': ''},
+                    'submenu': None,
+                })
+
+        return results
+
 
 class CoverViewlet(SidebarViewlet):
 

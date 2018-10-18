@@ -4,7 +4,9 @@
 
   <nav id="portal-navigation"
        tal:define="items view/get_items;
-                   root_items python:view.get_items(root=True)"
+                   root_items python:view.get_items(root=True);
+                   token context/@@authenticator/token;
+                   token_arg python:'&amp;_authenticator=' + token"
        i18n:domain="collective.sidebar">
 
     <div class="menu">
@@ -44,6 +46,34 @@
             <span class="menu-item-icon glyphicon glyphicon-log-out"></span> <span class="menu-item-title" i18n:translate="navigation_link_logout">Logout</span>
           </a>
         </tal:item>
+
+      </div>
+
+      <!-- Workflow -->
+
+      <div class="menu-section"
+        tal:define="data view/get_workflow_data;
+                       absolute_url context/absolute_url;
+                       content_status_modify python:absolute_url + '/content_status_modify';
+                       state python:data['state'];
+                       actions view/get_workflow_actions;"
+        tal:condition="python:view.can_edit()">
+
+        <div class="menu-section-title" i18n:translate="navigation_heading_workflow">Workflow</div>
+
+        <a href="#" i18n:domain="plone">
+          <span class="menu-item-icon glyphicon glyphicon-record ${state/color}"></span> <span class="menu-item-title">${state/name/title}</span>
+        </a>
+
+        <tal:repeat tal:repeat="action actions">
+          <a href="${action/action}" i18n:domain="plone">
+            <span class="menu-item-icon glyphicon glyphicon-transfer"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
+          </a>
+        </tal:repeat>
+
+        <a href="${absolute_url}/content_status_history" tal:condition="actions">
+          <span class="menu-item-icon glyphicon glyphicon-option-horizontal"></span> <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
+        </a>
 
       </div>
 
