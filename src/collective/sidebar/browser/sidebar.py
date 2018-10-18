@@ -210,7 +210,7 @@ class SidebarViewlet(ViewletBase):
             result['transitions'] = transitions
         return result
 
-    def getMenuItems(self):
+    def get_workflow_actions(self):
         """Return menu item entries in a TAL-friendly form."""
         context = self.context
         request = context.REQUEST
@@ -273,20 +273,6 @@ class SidebarViewlet(ViewletBase):
                 })
 
         url = context.absolute_url()
-
-        if len(results) > 0:
-            results.append({
-                'title': _(u'label_advanced', default=u'Advanced...'),
-                'description': '',
-                'action': url + '/content_status_history',
-                'selected': False,
-                'icon': None,
-                'extra': {
-                    'id': 'workflow-transition-advanced',
-                    'separator': 'actionSeparator',
-                    'class': 'pat-plone-modal'},
-                'submenu': None,
-            })
 
         pw = getToolByName(context, 'portal_placeful_workflow', None)
         if pw is not None:

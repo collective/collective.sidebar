@@ -52,28 +52,28 @@
       <!-- Workflow -->
 
       <div class="menu-section"
-        i18n:domain="plone"
         tal:define="data view/get_workflow_data;
                        absolute_url context/absolute_url;
                        content_status_modify python:absolute_url + '/content_status_modify';
-                       state python:data['state'];"
+                       state python:data['state'];
+                       actions view/get_workflow_actions;"
         tal:condition="python:view.can_edit()">
 
-        <a href="${absolute_url}/content_status_history" i18n:translate="navigation_heading_workflow">
-          <div class="menu-section-title">
-            Workflow
-          </div>
-        </a>
+        <div class="menu-section-title" i18n:translate="navigation_heading_workflow">Workflow</div>
 
-        <a href="#">
+        <a href="#" i18n:domain="plone">
           <span class="menu-item-icon glyphicon glyphicon-record ${state/color}"></span> <span class="menu-item-title">${state/name/title}</span>
         </a>
 
-        <tal:repeat tal:repeat="action view/getMenuItems">
-          <a href="${action/action}">
+        <tal:repeat tal:repeat="action actions">
+          <a href="${action/action}" i18n:domain="plone">
             <span class="menu-item-icon glyphicon glyphicon-transfer"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
           </a>
         </tal:repeat>
+
+        <a href="${absolute_url}/content_status_history" tal:condition="actions">
+          <span class="menu-item-icon glyphicon glyphicon-option-horizontal"></span> <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
+        </a>
 
       </div>
 
