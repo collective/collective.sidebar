@@ -105,6 +105,11 @@ msgstr "Standardseite"
 msgid "sharing"
 msgstr "Freigabe"
 
+#. Default: "Sharing"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "sharing"
+msgstr "Freigabe"
+
 #. Default: "View"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "view"
