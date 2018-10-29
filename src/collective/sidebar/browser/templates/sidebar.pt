@@ -62,7 +62,7 @@
         <div class="menu-section-title" i18n:translate="navigation_heading_workflow">Workflow</div>
 
         <a href="#" i18n:domain="plone">
-          <span class="menu-item-icon glyphicon glyphicon-record state-${state}"></span> <span class="menu-item-title">${state_title}</span>
+          <span class="menu-item-icon glyphicon glyphicon-record state-${state}"></span> <span class="menu-item-title state-${state}">${state_title}</span>
         </a>
 
         <tal:repeat tal:repeat="action actions">
