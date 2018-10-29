@@ -52,17 +52,17 @@
       <!-- Workflow -->
 
       <div class="menu-section"
-        tal:define="data view/get_workflow_data;
-                       absolute_url context/absolute_url;
-                       content_status_modify python:absolute_url + '/content_status_modify';
-                       state python:data['state'];
-                       actions view/get_workflow_actions;"
-        tal:condition="python:view.can_edit()">
+        tal:define="state view/get_workflow_state;
+                      absolute_url context/absolute_url;
+                      content_status_modify python:absolute_url + '/content_status_modify';
+                      state_title view/get_workflow_state_title;
+                      actions view/get_workflow_actions;"
+        tal:condition="python:view.can_edit() and view.has_workflow()">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_workflow">Workflow</div>
 
         <a href="#" i18n:domain="plone">
-          <span class="menu-item-icon glyphicon glyphicon-record ${state/color}"></span> <span class="menu-item-title">${state/name/title}</span>
+          <span class="menu-item-icon glyphicon glyphicon-record state-${state}"></span> <span class="menu-item-title">${state_title}</span>
         </a>
 
         <tal:repeat tal:repeat="action actions">
