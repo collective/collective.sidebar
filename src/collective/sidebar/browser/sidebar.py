@@ -184,6 +184,16 @@ class SidebarViewlet(ViewletBase):
         else:
             return parent_url
 
+    def get_state_title(self):
+        state = self.get_workflow_state()
+        tools = getMultiAdapter((self.context, self.request),
+                                name='plone_tools')
+        workflows = tools.workflow().getWorkflowsFor(self.context)
+        if workflows:
+            for w in workflows:
+                if state in w.states:
+                    return w.states[state].title or state
+
     def has_workflow(self):
         """Check if there is a workflow for the context"""
         state = self.get_workflow_state()
