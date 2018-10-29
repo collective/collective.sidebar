@@ -189,17 +189,19 @@ class SidebarViewlet(ViewletBase):
         state = self.get_workflow_state()
         return state is not None
 
+    def has_workflow_state_color(self):
+        """
+        This will be a switch in the backend to enable colored state.
+        There will be two css classes: with-state-color and without-state-color
+        """
+        return 'with-state-color'
+
     def get_workflow_state(self):
         """Return the workflow state for the context."""
         context_state = getMultiAdapter((self.context, self.request),
                                         name='plone_context_state')
         state = context_state.workflow_state()
         return state
-
-    def get_workflow_state_title(self):
-        """Return the workflow state title for the context."""
-        state = self.get_workflow_state()
-        return get_translated(state, self)
 
     def get_workflow_actions(self):
         """Return menu item entries in a TAL-friendly form."""
