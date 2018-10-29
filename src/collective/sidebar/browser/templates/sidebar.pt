@@ -53,7 +53,7 @@
 
       <div class="menu-section"
         tal:define="state view/get_workflow_state;
-                      state_title view/get_state_title;
+                      state_title view/get_workflow_state_title;
                       absolute_url context/absolute_url;
                       content_status_modify python:absolute_url + '/content_status_modify';
                       color_state view/has_workflow_state_color;

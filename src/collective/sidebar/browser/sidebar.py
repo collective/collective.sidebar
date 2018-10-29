@@ -184,7 +184,7 @@ class SidebarViewlet(ViewletBase):
         else:
             return parent_url
 
-    def get_state_title(self):
+    def get_workflow_state_title(self):
         state = self.get_workflow_state()
         tools = getMultiAdapter((self.context, self.request),
                                 name='plone_tools')
