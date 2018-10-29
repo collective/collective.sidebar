@@ -7,6 +7,7 @@ from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.CMFCore.interfaces import IFolderish
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getMultiAdapter
 
 
 class SidebarViewlet(ViewletBase):
@@ -183,32 +184,34 @@ class SidebarViewlet(ViewletBase):
         else:
             return parent_url
 
-    def get_workflow_data(self):
+    def get_workflow_state_title(self):
+        state = self.get_workflow_state()
+        tools = getMultiAdapter((self.context, self.request),
+                                name='plone_tools')
+        workflows = tools.workflow().getWorkflowsFor(self.context)
+        if workflows:
+            for w in workflows:
+                if state in w.states:
+                    return w.states[state].title or state
+
+    def has_workflow(self):
+        """Check if there is a workflow for the context"""
+        state = self.get_workflow_state()
+        return state is not None
+
+    def has_workflow_state_color(self):
         """
-        Return the workflow data for the context.
+        This will be a switch in the backend to enable colored state.
+        There will be two css classes: with-state-color and without-state-color
         """
-        portal_workflow = api.portal.get_tool('portal_workflow')
-        transitions = portal_workflow.getTransitionsFor(self.context)
-        result = {
-            'state': {
-                'name': '',
-                'color': 'sidebar-blue',
-            },
-            'transitions': [],
-        }
-        if transitions:
-            # Get the current state
-            state = api.content.get_state(self.context, None)
-            # Set a color for the state
-            if state == 'private':
-                result['state']['color'] = 'sidebar-red'
-            elif state == 'pending':
-                result['state']['color'] = 'sidebar-yellow'
-            elif state == 'visible':
-                result['state']['color'] = 'sidebar-purple'
-            result['state']['name'] = get_translated(state, self)
-            result['transitions'] = transitions
-        return result
+        return 'with-state-color'
+
+    def get_workflow_state(self):
+        """Return the workflow state for the context."""
+        context_state = getMultiAdapter((self.context, self.request),
+                                        name='plone_context_state')
+        state = context_state.workflow_state()
+        return state
 
     def get_workflow_actions(self):
         """Return menu item entries in a TAL-friendly form."""
