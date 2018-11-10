@@ -120,13 +120,14 @@
 
       <!-- Document Management -->
 
-      <div class="menu-section" tal:condition="view/can_edit">
+      <div class="menu-section" tal:define="items view/get_addable_items" tal:condition="items">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_add">Add</div>
 
-        <tal:repeat tal:repeat="item python:view.get_addable_types()">
-          <a href="#" tal:attributes="href item/url">
-            <span class="menu-item-icon glyphicon glyphicon-plus"></span> <span class="menu-item-title" tal:content="item/title"></span>
+        <tal:repeat tal:repeat="item items">
+          <a href="#" tal:attributes="href item/action">
+            <span class="" tal:attributes="class item/icon"></span>
+            <span class="menu-item-title" tal:content="item/title"></span>
           </a>
         </tal:repeat>
 
