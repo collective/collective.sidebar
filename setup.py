@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='collective.sidebar',
-    version='1.0.0a1',
+    version='1.0.0a1.dev0',
     description="A sidebar for Plone to consolidate toolbar and navigation.",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
