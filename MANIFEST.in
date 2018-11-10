@@ -1,4 +1,8 @@
 graft src/collective
 graft docs
 include *.rst
+include *.GPL
+include *.txt
+include *.yml
+recursive-include templates *.in
 global-exclude *.pyc

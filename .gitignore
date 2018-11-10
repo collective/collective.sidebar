@@ -7,7 +7,6 @@
 *.egg-info
 *.EGG-INFO
 *.log
-*.map
 *.mo
 *.py?
 *.pyc
