@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 
+from collective.sidebar import _
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_translated
 from collective.sidebar.utils import get_user
 from plone import api
+from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.viewlets.common import ViewletBase
+from plone.memoize.instance import memoize
 from Products.CMFCore.interfaces import IFolderish
+from Products.CMFPlone.interfaces.constrains import IConstrainTypes
+from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
 
@@ -294,6 +299,90 @@ class SidebarViewlet(ViewletBase):
                 })
 
         return results
+
+    def get_addable_items(self):
+        context = self.context
+        request = self.request
+        """Return menu item entries in a TAL-friendly form."""
+        factories_view = getMultiAdapter((context, request),
+                                         name='folder_factories')
+
+        haveMore = False
+        include = None
+
+        addContext = factories_view.add_context()
+        allowedTypes = _allowedTypes(request, addContext)
+
+        constraints = IConstrainTypes(addContext, None)
+        if constraints is not None:
+            include = constraints.getImmediatelyAddableTypes()
+
+        results = factories_view.addable_types(include=include)
+
+        results_with_icons = []
+        for result in results:
+            result['icon'] = 'menu-item-icon glyphicon glyphicon-plus'
+            results_with_icons.append(result)
+        results = results_with_icons
+
+        constraints = ISelectableConstrainTypes(addContext, None)
+        if constraints is not None:
+            if constraints.canSetConstrainTypes() and \
+                    constraints.getDefaultAddableTypes():
+                url = '{0}/folder_constraintypes_form'.format(
+                    addContext.absolute_url(),
+                )
+                results.append({
+                    'title': _(u'folder_add_settings',
+                               default=u'Restrictions'),
+                    'description': _(
+                        u'title_configure_addable_content_types',
+                        default=u'Configure which content types can be '
+                                u'added here'),
+                    'action': url,
+                    'selected': False,
+                    'icon': 'menu-item-icon glyphicon glyphicon-cog',
+                    'id': 'settings',
+                    'extra': {
+                        'id': 'plone-contentmenu-settings',
+                        'separator': None,
+                        'class': ''},
+                    'submenu': None,
+                })
+
+        # Also add a menu item to add items to the default page
+        context_state = getMultiAdapter((context, request),
+                                        name='plone_context_state')
+        if context_state.is_structural_folder() and \
+                context_state.is_default_page() and \
+                self._contentCanBeAdded(context, request):
+            results.append({
+                'title': _(u'default_page_folder',
+                           default=u'Add item to default page'),
+                'description': _(
+                    u'desc_default_page_folder',
+                    default=u'If the default page is also a folder, '
+                            u'add items to it from here.'),
+                'action': context.absolute_url() + '/@@folder_factories',
+                'selected': False,
+                'icon': 'menu-item-icon glyphicon glyphicon-cog',
+                'id': 'special',
+                'extra': {
+                    'id': 'plone-contentmenu-add-to-default-page',
+                    'separator': None,
+                    'class': 'pat-plone-modal'},
+                'submenu': None,
+            })
+        return results
+
+    def _contentCanBeAdded(self, addContext, request):
+        """Find out if content can be added either by local constraints on the
+        context or by allowed_content_types on the FTI.
+        """
+        constrain = IConstrainTypes(addContext, None)
+        if constrain is None:
+            return _allowedTypes(request, addContext)
+        return constrain.getLocallyAllowedTypes()
 
 
 class CoverViewlet(SidebarViewlet):
