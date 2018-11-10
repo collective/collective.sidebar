@@ -7,7 +7,6 @@ from collective.sidebar.utils import get_user
 from plone import api
 from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.viewlets.common import ViewletBase
-from plone.memoize.instance import memoize
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
@@ -307,11 +306,9 @@ class SidebarViewlet(ViewletBase):
         factories_view = getMultiAdapter((context, request),
                                          name='folder_factories')
 
-        haveMore = False
         include = None
 
         addContext = factories_view.add_context()
-        allowedTypes = _allowedTypes(request, addContext)
 
         constraints = IConstrainTypes(addContext, None)
         if constraints is not None:

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-10-18 16:54+0000\n"
+"POT-Creation-Date: 2018-11-10 05:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,10 +40,25 @@ msgstr "Zurück"
 msgid "contents"
 msgstr "Inhalte"
 
+#. Default: "Add item to default page"
+#: collective/sidebar/browser/sidebar.py
+msgid "default_page_folder"
+msgstr "Artikel zur Standardseite hinzufügen"
+
+#. Default: "If the default page is also a folder, add items to it from here."
+#: collective/sidebar/browser/sidebar.py
+msgid "desc_default_page_folder"
+msgstr "Wenn die Standardseite auch ein Ordner ist, füge Artikel von hier aus hinzu."
+
 #. Default: "Edit"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "edit"
 msgstr "Bearbeiten"
+
+#. Default: "Restrictions"
+#: collective/sidebar/browser/sidebar.py
+msgid "folder_add_settings"
+msgstr "Einschränkungen"
 
 #. Default: "Add"
 #: collective/sidebar/browser/templates/sidebar.pt
@@ -119,6 +134,11 @@ msgstr "Freigabe"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "sidebar_workflow_advanced"
 msgstr "Erweitert"
+
+#. Default: "Configure which content types can be added here"
+#: collective/sidebar/browser/sidebar.py
+msgid "title_configure_addable_content_types"
+msgstr ""
 
 #. Default: "View"
 #: collective/sidebar/browser/templates/sidebar.pt
