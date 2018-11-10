@@ -7,29 +7,16 @@ Changelog
 
 Added:
 
+- Add workflow section to sidebar. #7
+  [santonelli]
+
 - Initial release.
   [santonelli]
 
 Changed:
 
-- Improved sidebar styling and introduced a site-cover.
+- Refactor add section. #24
+  [santonelli]
+
+- Improved sidebar styling and introduced a site-cover. #1
   [jstippel]
-
-
-Version (Date)
-------------------
-
-Added:
-
-- Feature #1234
-  [user]
-
-Changed:
-
-- Task #1234
-  [user]
-
-Fixed:
-
-- Bug #1234
-  [user]
