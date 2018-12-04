@@ -9,9 +9,14 @@
     </value>
   </records>
 
+  <records interface='Products.CMFPlone.interfaces.IResourceRegistry' prefix="plone.resources/mockup-patterns-structureupdater">
+    <value key="js">++resource++collective.sidebar/mockup-patterns-structureupdater.js</value>
+  </records>
+
   <records interface='Products.CMFPlone.interfaces.IBundleRegistry' prefix="plone.bundles/sidebar">
     <value key="resources">
       <element>sidebar</element>
+      <element>mockup-patterns-structureupdater</element>
     </value>
     <value key="jscompilation">++resource++collective.sidebar/sidebar-compiled.js</value>
     <value key="csscompilation">++resource++collective.sidebar/sidebar-compiled.css</value>

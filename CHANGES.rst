@@ -5,7 +5,10 @@ Changelog
 1.0.0a2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+Added:
+
+- Added structureupdater functionality to the sidebar. #11
+  [netroxen, sarnold]
 
 
 1.0.0a1 (2018-11-10)
