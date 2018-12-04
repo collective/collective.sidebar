@@ -1,5 +1,6 @@
 <tal:define tal:define="portal_url view/get_portal_url;
                         navigation_root_url view/get_navigation_root_url;
+                        toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                         context_url context/absolute_url">
 
   <nav id="portal-navigation"
@@ -88,7 +89,7 @@
         </a>
 
         <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
-            <span class="menu-item-icon glyphicon glyphicon-time"></span> <span id="sidebar-modified" class="menu-item-title pat-moment" data-pat-moment="format:relative;" tal:content="context/ModificationDate">Modified</span>
+            <span class="menu-item-icon glyphicon glyphicon-time"></span> <span id="sidebar-modified" class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
         </a>
 
         <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
