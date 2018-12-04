@@ -18,24 +18,14 @@ require([
     parser: 'mockup',
     init: function() {
       $('body').on('context-info-loaded', function(e, data) {
-
-        var request = $.ajax({
+        $.ajax({
           type: "post",
           url: data.object.getURL + '/navData',
           data: 'render=' + 1,
-          success: function(data) {
-            return data;
+          success: function(nav) {
+            $('#portal-navigation').html(nav);
           }
         });
-
-        request.done(function(data) {
-          var elid = '#sidebar-modified';
-          var mod_date = $(data).find(elid);
-          self.moment = new patMoment(mod_date, {format: 'relative'});
-          $('#portal-navigation').html(data);
-          $(elid).replaceWith(self.moment.$el[0]);
-        });
-
       }.bind(this));
     }
   });
