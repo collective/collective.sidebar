@@ -89,7 +89,7 @@
         </a>
 
         <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
-            <span class="menu-item-icon glyphicon glyphicon-time"></span> <span id="sidebar-modified" class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
+            <span class="menu-item-icon glyphicon glyphicon-time"></span> <span class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
         </a>
 
         <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
@@ -102,11 +102,11 @@
 
       <div class="menu-section"
         tal:define="state view/get_workflow_state;
-                      state_title view/get_workflow_state_title;
-                      absolute_url context/absolute_url;
-                      content_status_modify python:absolute_url + '/content_status_modify';
-                      color_state view/has_workflow_state_color;
-                      actions view/get_workflow_actions;"
+                    state_title view/get_workflow_state_title;
+                    absolute_url context/absolute_url;
+                    content_status_modify python:absolute_url + '/content_status_modify';
+                    color_state view/has_workflow_state_color;
+                    actions view/get_workflow_actions;"
         tal:condition="python:view.can_edit() and view.has_workflow()">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_workflow">Workflow</div>
