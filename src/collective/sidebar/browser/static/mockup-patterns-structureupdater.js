@@ -8,9 +8,8 @@ if (require === undefined) {
 require([
   'jquery',
   'pat-base',
-  'mockup-patterns-moment',
   'mockup-patterns-structure-url/pattern-structureupdater',
-], function($, Base, patMoment) {
+], function($, Base) {
   'use strict';
   var Pattern = Base.extend({
     name: 'sidebar-structureupdater',
