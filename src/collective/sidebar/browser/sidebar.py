@@ -10,6 +10,7 @@ from plone.app.layout.viewlets.common import ViewletBase
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
 
@@ -380,6 +381,20 @@ class SidebarViewlet(ViewletBase):
         if constrain is None:
             return _allowedTypes(request, addContext)
         return constrain.getLocallyAllowedTypes()
+
+
+class SidebarAJAX(BrowserView):
+
+    def __call__(self, render):
+        context = self.context
+        request = self.request
+        if render:
+            return self.render_viewlet(context, request)
+        return
+
+    def render_viewlet(self, context, request):
+        navigation = SidebarViewlet(context, request, None, None)
+        return navigation.render()
 
 
 class CoverViewlet(SidebarViewlet):

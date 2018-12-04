@@ -32,4 +32,13 @@
       permission="zope2.View"
       />
 
+  <!-- AJAX -->
+
+  <browser:page
+      name="navData"
+      for="*"
+      class=".sidebar.SidebarAJAX"
+      permission="zope2.View"
+      />
+
 </configure>
