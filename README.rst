@@ -25,6 +25,7 @@ Features
 - Inherits structureupdater pattern
 - Includes workflow state management
 - Includes site navigation
+- Includes quick access to the user profile
 
 
 Examples
