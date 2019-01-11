@@ -7,17 +7,33 @@ from collective.sidebar.utils import get_user
 from plone import api
 from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.viewlets.common import ViewletBase
+from plone.protect.utils import addTokenToUrl
 from Products.CMFCore.interfaces import IFolderish
+from Products.CMFCore.utils import _checkPermission
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
+
+import pkg_resources
 
 
 class SidebarViewlet(ViewletBase):
 
     index = ViewPageTemplateFile('templates/sidebar.pt')
+
+    def _contentCanBeAdded(self, addContext, request):
+        """
+        Find out if content can be added either by local constraints on the
+        current context or by allowed_content_types on the FTI.
+        """
+        constrain = IConstrainTypes(addContext, None)
+        if constrain is None:
+            return _allowedTypes(request, addContext)
+        return constrain.getLocallyAllowedTypes()
 
     def is_anonymous(self):
         """
@@ -190,9 +206,14 @@ class SidebarViewlet(ViewletBase):
             return parent_url
 
     def get_workflow_state_title(self):
+        """
+        Returns the workflow state title.
+        """
         state = self.get_workflow_state()
-        tools = getMultiAdapter((self.context, self.request),
-                                name='plone_tools')
+        tools = getMultiAdapter(
+            (self.context, self.request),
+            name='plone_tools',
+        )
         workflows = tools.workflow().getWorkflowsFor(self.context)
         if workflows:
             for w in workflows:
@@ -200,56 +221,56 @@ class SidebarViewlet(ViewletBase):
                     return w.states[state].title or state
 
     def has_workflow(self):
-        """Check if there is a workflow for the context"""
+        """
+        Check if there is a workflow for the current context.
+        """
         state = self.get_workflow_state()
         return state is not None
 
     def has_workflow_state_color(self):
         """
-        This will be a switch in the backend to enable colored state.
-        There will be two css classes: with-state-color and without-state-color
+        Returns a CSS class for workflow state:
+            - with-state-color
+            - without-state-color
+        TODO: This should be a switch in the backend # noqa: T000
+              to enable colored states.
         """
         return 'with-state-color'
 
     def get_workflow_state(self):
-        """Return the workflow state for the context."""
-        context_state = getMultiAdapter((self.context, self.request),
-                                        name='plone_context_state')
-        state = context_state.workflow_state()
-        return state
+        """
+        Return the workflow state for the current context.
+        """
+        context_state = getMultiAdapter(
+            (self.context, self.request),
+            name='plone_context_state',
+        )
+        return context_state.workflow_state()
 
     def get_workflow_actions(self):
-        """Return menu item entries in a TAL-friendly form."""
+        """
+        Return menu item entries in a TAL-friendly form.
+        """
+        from plone.app.contentmenu import PloneMessageFactory as _
         context = self.context
         request = context.REQUEST
-        from plone.app.contentmenu import PloneMessageFactory as _
-        from zope.component import queryMultiAdapter
-        from Products.CMFCore.utils import getToolByName
-        from plone.protect.utils import addTokenToUrl
-        from Products.CMFCore.utils import _checkPermission
-        import pkg_resources
         try:
             pkg_resources.get_distribution('Products.CMFPlacefulWorkflow')
-            from Products.CMFPlacefulWorkflow.permissions import \
-                ManageWorkflowPolicies
+            from Products.CMFPlacefulWorkflow.permissions import ManageWorkflowPolicies  # noqa: 501
         except pkg_resources.DistributionNotFound:
-            from Products.CMFCore.permissions import \
-                ManagePortal as ManageWorkflowPolicies  # noqa
-
+            from Products.CMFCore.permissions import ManagePortal as ManageWorkflowPolicies  # noqa: 501
         results = []
-
-        locking_info = queryMultiAdapter((context, request),
-                                         name='plone_lock_info')
+        locking_info = queryMultiAdapter(
+            (context, request),
+            name='plone_lock_info',
+        )
         if locking_info and locking_info.is_locked_for_current_user():
             return []
-
         wf_tool = getToolByName(context, 'portal_workflow')
         workflowActions = wf_tool.listActionInfos(object=context)
-
         for action in workflowActions:
             if action['category'] != 'workflow':
                 continue
-
             cssClass = ''
             actionUrl = action['url']
             if actionUrl == '':
@@ -259,13 +280,10 @@ class SidebarViewlet(ViewletBase):
                     action['id'],
                 )
                 cssClass = ''
-
             description = ''
-
             transition = action.get('transition', None)
             if transition is not None:
                 description = transition.description
-
             if action['allowed']:
                 results.append({
                     'title': action['title'],
@@ -276,53 +294,50 @@ class SidebarViewlet(ViewletBase):
                     'extra': {
                         'id': 'workflow-transition-{0}'.format(action['id']),
                         'separator': None,
-                        'class': cssClass},
+                        'class': cssClass,
+                    },
                     'submenu': None,
                 })
-
         url = context.absolute_url()
-
         pw = getToolByName(context, 'portal_placeful_workflow', None)
         if pw is not None:
             if _checkPermission(ManageWorkflowPolicies, context):
                 results.append({
-                    'title': _(u'workflow_policy',
-                               default=u'Policy...'),
+                    'title': _(u'workflow_policy', default=u'Policy...'),
                     'description': '',
                     'action': url + '/placeful_workflow_configuration',
                     'selected': False,
                     'icon': None,
-                    'extra': {'id': 'workflow-transition-policy',
-                              'separator': None,
-                              'class': ''},
+                    'extra': {
+                        'id': 'workflow-transition-policy',
+                        'separator': None,
+                        'class': '',
+                    },
                     'submenu': None,
                 })
-
         return results
 
     def get_addable_items(self):
+        """
+        Return menu item entries in a TAL-friendly form.
+        """
         context = self.context
         request = self.request
-        """Return menu item entries in a TAL-friendly form."""
-        factories_view = getMultiAdapter((context, request),
-                                         name='folder_factories')
-
+        factories_view = getMultiAdapter(
+            (context, request),
+            name='folder_factories',
+        )
         include = None
-
         addContext = factories_view.add_context()
-
         constraints = IConstrainTypes(addContext, None)
         if constraints is not None:
             include = constraints.getImmediatelyAddableTypes()
-
         results = factories_view.addable_types(include=include)
-
         results_with_icons = []
         for result in results:
             result['icon'] = 'menu-item-icon glyphicon glyphicon-plus'
             results_with_icons.append(result)
         results = results_with_icons
-
         constraints = ISelectableConstrainTypes(addContext, None)
         if constraints is not None:
             if constraints.canSetConstrainTypes() and \
@@ -336,7 +351,8 @@ class SidebarViewlet(ViewletBase):
                     'description': _(
                         u'title_configure_addable_content_types',
                         default=u'Configure which content types can be '
-                                u'added here'),
+                                u'added here',
+                    ),
                     'action': url,
                     'selected': False,
                     'icon': 'menu-item-icon glyphicon glyphicon-cog',
@@ -344,13 +360,15 @@ class SidebarViewlet(ViewletBase):
                     'extra': {
                         'id': 'plone-contentmenu-settings',
                         'separator': None,
-                        'class': ''},
+                        'class': '',
+                    },
                     'submenu': None,
                 })
-
         # Also add a menu item to add items to the default page
-        context_state = getMultiAdapter((context, request),
-                                        name='plone_context_state')
+        context_state = getMultiAdapter(
+            (context, request),
+            name='plone_context_state',
+        )
         if context_state.is_structural_folder() and \
                 context_state.is_default_page() and \
                 self._contentCanBeAdded(context, request):
@@ -360,7 +378,8 @@ class SidebarViewlet(ViewletBase):
                 'description': _(
                     u'desc_default_page_folder',
                     default=u'If the default page is also a folder, '
-                            u'add items to it from here.'),
+                            u'add items to it from here.',
+                ),
                 'action': context.absolute_url() + '/@@folder_factories',
                 'selected': False,
                 'icon': 'menu-item-icon glyphicon glyphicon-cog',
@@ -368,19 +387,11 @@ class SidebarViewlet(ViewletBase):
                 'extra': {
                     'id': 'plone-contentmenu-add-to-default-page',
                     'separator': None,
-                    'class': 'pat-plone-modal'},
+                    'class': 'pat-plone-modal',
+                },
                 'submenu': None,
             })
         return results
-
-    def _contentCanBeAdded(self, addContext, request):
-        """Find out if content can be added either by local constraints on the
-        context or by allowed_content_types on the FTI.
-        """
-        constrain = IConstrainTypes(addContext, None)
-        if constrain is None:
-            return _allowedTypes(request, addContext)
-        return constrain.getLocallyAllowedTypes()
 
 
 class SidebarAJAX(BrowserView):
