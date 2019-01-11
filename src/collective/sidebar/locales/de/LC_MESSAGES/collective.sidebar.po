@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-11-10 05:29+0000\n"
+"POT-Creation-Date: 2019-01-11 10:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,21 @@ msgstr "Collective Sidebar (collective.sidebar)"
 msgid "Collective Sidebar (collective.sidebar) - Uninstall"
 msgstr "Collective Sidebar (collective.sidebar) - Uninstall"
 
+#: collective/sidebar/profiles/default/actions.xml
+msgid "Home"
+msgstr "Startseite"
+
 #: collective/sidebar/configure.zcml
 msgid "Installs the collective.sidebar add-on."
 msgstr "Installiert die Sidebar-Erweiterung"
+
+#: collective/sidebar/profiles/default/actions.xml
+msgid "Login"
+msgstr "Anmeldung"
+
+#: collective/sidebar/profiles/default/actions.xml
+msgid "Logout"
+msgstr "Abmelden"
 
 #: collective/sidebar/configure.zcml
 msgid "Uninstalls the collective.sidebar add-on."
@@ -99,21 +111,6 @@ msgstr "Webseite"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_heading_workflow"
 msgstr "Arbeitsablauf"
-
-#. Default: "Home"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "navigation_link_home"
-msgstr "Startseite"
-
-#. Default: "Login"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "navigation_link_login"
-msgstr "Anmelden"
-
-#. Default: "Logout"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "navigation_link_logout"
-msgstr "Abmelden"
 
 #. Default: "Settings"
 #: collective/sidebar/browser/templates/sidebar.pt

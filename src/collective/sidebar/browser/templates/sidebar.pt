@@ -45,27 +45,16 @@
 
       </div>
 
-      <div class="menu-section">
+      <div class="menu-section" tal:define="links view/get_sidebar_links">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_links">Links</div>
 
-        <tal:item>
-          <a href="#" tal:attributes="href navigation_root_url">
-            <span class="menu-item-icon glyphicon glyphicon-home"></span> <span class="menu-item-title" i18n:translate="navigation_link_home">Home</span>
+        <tal:actions repeat="link links">
+          <a tal:attributes="href link/url;
+                             title link/title">
+            <span class="menu-item-icon glyphicon glyphicon-${link/icon}"></span> <span class="menu-item-title" tal:content="link/title"></span>
           </a>
-        </tal:item>
-
-        <tal:item tal:condition="view/is_anonymous">
-          <a href="#" tal:attributes="href python:portal_url + '/login'">
-            <span class="menu-item-icon glyphicon glyphicon-log-in"></span> <span class="menu-item-title" i18n:translate="navigation_link_login">Login</span>
-          </a>
-        </tal:item>
-
-        <tal:item tal:condition="not:view/is_anonymous">
-          <a href="#" tal:attributes="href python:portal_url + '/logout'">
-            <span class="menu-item-icon glyphicon glyphicon-log-out"></span> <span class="menu-item-title" i18n:translate="navigation_link_logout">Logout</span>
-          </a>
-        </tal:item>
+        </tal:actions>
 
       </div>
 
