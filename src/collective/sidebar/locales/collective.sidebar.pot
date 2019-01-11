@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-11-10 05:29+0000\n"
+"POT-Creation-Date: 2019-01-11 10:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,8 +25,20 @@ msgstr ""
 msgid "Collective Sidebar (collective.sidebar) - Uninstall"
 msgstr ""
 
+#: collective/sidebar/profiles/default/actions.xml
+msgid "Home"
+msgstr ""
+
 #: collective/sidebar/configure.zcml
 msgid "Installs the collective.sidebar add-on."
+msgstr ""
+
+#: collective/sidebar/profiles/default/actions.xml
+msgid "Login"
+msgstr ""
+
+#: collective/sidebar/profiles/default/actions.xml
+msgid "Logout"
 msgstr ""
 
 #: collective/sidebar/configure.zcml
@@ -101,21 +113,6 @@ msgstr ""
 #. Default: "Workflow"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_heading_workflow"
-msgstr ""
-
-#. Default: "Home"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "navigation_link_home"
-msgstr ""
-
-#. Default: "Login"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "navigation_link_login"
-msgstr ""
-
-#. Default: "Logout"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "navigation_link_logout"
 msgstr ""
 
 #. Default: "Settings"

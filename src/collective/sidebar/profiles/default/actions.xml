@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+  <action-provider name="portal_workflow" />
+  <action-provider name="portal_types" />
+  <action-provider name="portal_actions" />
+
+  <object name="sidebar_links" meta_type="CMF Action Category">
+
+    <property name="title">Sidebar Links</property>
+
+    <object name="home" meta_type="CMF Action" i18n:domain="collective.sidebar">
+      <property name="title" i18n:translate="">Home</property>
+      <property name="description" i18n:translate=""></property>
+      <property name="url_expr">string:${portal_url}</property>
+      <property name="link_target"></property>
+      <property name="icon_expr">string:home</property>
+      <property name="available_expr"></property>
+      <property name="permissions">
+        <element value="View" />
+      </property>
+      <property name="visible">True</property>
+    </object>
+
+    <object name="login" meta_type="CMF Action" i18n:domain="collective.sidebar">
+      <property name="title" i18n:translate="">Login</property>
+      <property name="description" i18n:translate=""></property>
+      <property name="url_expr">string:${portal_url}/login</property>
+      <property name="link_target"></property>
+      <property name="icon_expr">string:log-in</property>
+      <property name="available_expr">python:member is None</property>
+      <property name="permissions">
+        <element value="View" />
+      </property>
+      <property name="visible">True</property>
+    </object>
+
+    <object name="logout" meta_type="CMF Action" i18n:domain="collective.sidebar">
+      <property name="title" i18n:translate="">Logout</property>
+      <property name="description" i18n:translate=""></property>
+      <property name="url_expr">string:${portal_url}/logout</property>
+      <property name="link_target"></property>
+      <property name="icon_expr">string:log-out</property>
+      <property name="available_expr">python:member is not None</property>
+      <property name="permissions">
+        <element value="View" />
+      </property>
+      <property name="visible">True</property>
+    </object>
+
+  </object>
+
+</object>
