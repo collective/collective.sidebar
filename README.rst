@@ -26,12 +26,19 @@ Features
 - Includes workflow state management
 - Includes site navigation
 - Includes quick access to the user profile
+- Includes configurable persistent site links through the ZMI
 
 
 Examples
 --------
 
 - TBD
+
+
+Documentation
+-------------
+
+Full documentation for end users can be found in the "docs" folder.
 
 
 Translations
