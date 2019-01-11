@@ -1,3 +1,5 @@
-==================collective.sidebar
 ==================
-User documentation
+collective.sidebar
+==================
+
+User Documentation

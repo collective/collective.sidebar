@@ -21,7 +21,10 @@ A sidebar for Plone to consolidate toolbar and navigation.
 Features
 --------
 
-- Adds sidebar to Plone
+- Replaces the default Plone toolbar
+- Inherits structureupdater pattern
+- Includes workflow state management
+- Includes site navigation
 
 
 Examples
@@ -30,16 +33,10 @@ Examples
 - TBD
 
 
-Documentation
--------------
-
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
-
-
 Translations
 ------------
 
-This product has been translated into
+This product has been translated into:
 
 - German (thanks, santonelli)
 
@@ -57,7 +54,7 @@ Install collective.sidebar by adding it to your buildout::
         collective.sidebar
 
 
-and then running ``bin/buildout``
+and then running ``bin/buildout``...
 
 
 Contribute
