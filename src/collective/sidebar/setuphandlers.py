@@ -7,10 +7,8 @@ from zope.interface import implementer
 class HiddenProfiles(object):
 
     def getNonInstallableProfiles(self):
-        """Hide uninstall profile from site-creation and quickinstaller."""
-        return [
-            'collective.sidebar:uninstall',
-        ]
+        """Hide uninstall profile from site-creation and quickinstaller"""
+        return ['collective.sidebar:uninstall']
 
 
 def post_install(context):
@@ -21,3 +19,8 @@ def post_install(context):
 def uninstall(context):
     """Uninstall script"""
     # Do something at the end of the uninstallation of this package.
+
+
+def testing(context):
+    """post_handler for the collective.sidebar:testing profile"""
+    # Do something at the end of the testing installation of this package.

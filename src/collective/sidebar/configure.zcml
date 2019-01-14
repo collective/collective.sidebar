@@ -21,6 +21,15 @@
       />
 
   <genericsetup:registerProfile
+      name="testing"
+      title="Collective Sidebar (collective.sidebar) - Testing"
+      directory="profiles/testing"
+      description="Installs the collective.sidebar:testing profile."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.testing"
+      />
+
+  <genericsetup:registerProfile
       name="uninstall"
       title="Collective Sidebar (collective.sidebar) - Uninstall"
       directory="profiles/uninstall"
