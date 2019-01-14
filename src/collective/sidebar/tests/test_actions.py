@@ -43,3 +43,17 @@ class TestActionsFunctional(unittest.TestCase):
             home_el,
             self.viewlet(context=self.portal, request=self.request),
         )
+        # Add a new action to the sidebar_links
+        new_action_view = api.content.get_view(
+            name='new-action',
+            context=self.portal,
+            request=self.request,
+        )
+        new_action_view.createAndAdd({
+            'id': 'Contact',
+            'category': 'sidebar_links',
+        })
+        self.assertIn(
+            '<span class="menu-item-title">Contact</span>',
+            self.viewlet(context=self.portal, request=self.request),
+        )
