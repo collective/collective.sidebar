@@ -79,30 +79,42 @@ class CollectiveSidebarLayer(PloneSandboxLayer):
         )
 
 
-class CollectiveSidebarAcceptanceLayer(CollectiveSidebarLayer):
+class CollectiveSidebarTestingLayer(CollectiveSidebarLayer):
+    def setUpPloneSite(self, portal):  # noqa
+        applyProfile(portal, 'collective.sidebar:testing')
+        portal.acl_users.userFolderAddUser(
+            SITE_OWNER_NAME,
+            SITE_OWNER_PASSWORD,
+            ['Manager'],
+            [],
+        )
+
+
+class CollectiveSidebarSessionLayer(CollectiveSidebarTestingLayer):
     def setUpPloneSite(self, portal):
-        super(CollectiveSidebarAcceptanceLayer, self).setUpPloneSite(portal)
+        super(CollectiveSidebarSessionLayer, self).setUpPloneSite(portal)
         setup_sdm(portal)
 
 
 COLLECTIVE_SIDEBAR_FIXTURE = CollectiveSidebarLayer()
-COLLECTIVE_SIDEBAR_ACCEPTANCE_FIXTURE = CollectiveSidebarAcceptanceLayer()
+COLLECTIVE_SIDEBAR_TESTING_FIXTURE = CollectiveSidebarTestingLayer()
+COLLECTIVE_SIDEBAR_ACCEPTANCE_SESSION_FIXTURE = CollectiveSidebarSessionLayer()
 
 COLLECTIVE_SIDEBAR_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(COLLECTIVE_SIDEBAR_FIXTURE,),
+    bases=(COLLECTIVE_SIDEBAR_TESTING_FIXTURE,),
     name='CollectiveSidebarLayer:IntegrationTesting',
 )
 
 
 COLLECTIVE_SIDEBAR_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(COLLECTIVE_SIDEBAR_FIXTURE,),
+    bases=(COLLECTIVE_SIDEBAR_TESTING_FIXTURE,),
     name='CollectiveSidebarLayer:FunctionalTesting',
 )
 
 
 COLLECTIVE_SIDEBAR_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
-        COLLECTIVE_SIDEBAR_ACCEPTANCE_FIXTURE,
+        COLLECTIVE_SIDEBAR_ACCEPTANCE_SESSION_FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),
