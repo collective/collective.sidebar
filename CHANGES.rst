@@ -5,7 +5,10 @@ Changelog
 1.0.0a3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+Added:
+
+- Added a profile section to the top of the sidebar panel. #5
+  [netroxen]
 
 
 1.0.0a2 (2018-12-04)

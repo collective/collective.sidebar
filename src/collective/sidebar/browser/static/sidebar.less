@@ -62,6 +62,40 @@
     .menu-section {
       margin-bottom: 30px;
 
+      .menu-profile {
+        .profile-image {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 50%;
+          height: 80px;
+          margin: 0 auto 30px auto;
+          opacity: 1;
+          overflow: hidden;
+          transition: opacity 150ms ease-in-out;
+          width: 80px;
+        }
+
+        .profile-info {
+          text-align: center;
+
+          .profile-name {
+            background-color: @sidebar-smoke;
+            border-radius: 8px;
+            color: @sidebar-black;
+            font-size: 18px;
+            font-weight: 300;
+            padding: 4px;
+          }
+        }
+
+        &:hover {
+          .profile-image {
+            opacity: 0.5;
+          }
+        }
+      }
+
       .menu-section-title {
         font-size: 20px;
         font-weight: 200;

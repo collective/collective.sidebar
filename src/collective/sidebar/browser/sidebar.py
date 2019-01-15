@@ -47,13 +47,16 @@ class SidebarViewlet(ViewletBase):
         """
         return api.portal.get().absolute_url()
 
-    def get_user_profile_url(self):
-        """
-        Return URL for the user profile.
-        """
-        portal_url = self.get_portal_url()
-        portal_user = get_user()[2]
-        return portal_url + portal_user
+    def get_user_data(self):
+        user = get_user()
+        mtool = api.portal.get_tool('portal_membership')
+        portrait = mtool.getPersonalPortrait(id=user[1])
+        user_info = mtool.getMemberInfo(user[1])
+        data = {
+            'user_info': user_info,
+            'portrait': portrait.absolute_url(),
+        }
+        return data
 
     def get_search_path(self, query=False):
         """
