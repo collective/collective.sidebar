@@ -3595,5 +3595,5 @@ require([
   return Pattern;
 });
 
-define("/Users/stefan/Development/collective.sidebar/src/collective/sidebar/browser/static/mockup-patterns-structureupdater.js", function(){});
+define("/home/jesse/Development/repos/collective/collective.sidebar/src/collective/sidebar/browser/static/mockup-patterns-structureupdater.js", function(){});
 
