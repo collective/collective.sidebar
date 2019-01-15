@@ -52,7 +52,7 @@
         <tal:actions repeat="link links">
           <a tal:attributes="href link/url;
                              title link/title">
-            <span class="menu-item-icon glyphicon glyphicon-${link/icon}"></span> <span class="menu-item-title" tal:content="link/title"></span>
+            <span class="menu-item-icon glyphicon ${link/icon}"></span> <span class="menu-item-title" tal:content="link/title"></span>
           </a>
         </tal:actions>
 

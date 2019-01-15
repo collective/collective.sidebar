@@ -32,7 +32,7 @@ msgstr "Installiert die Sidebar-Erweiterung"
 
 #: collective/sidebar/profiles/default/actions.xml
 msgid "Login"
-msgstr "Anmeldung"
+msgstr "Anmelden"
 
 #: collective/sidebar/profiles/default/actions.xml
 msgid "Logout"
