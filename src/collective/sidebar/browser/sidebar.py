@@ -47,7 +47,7 @@ class SidebarViewlet(ViewletBase):
         """
         return api.portal.get().absolute_url()
 
-    def get_sidebar_links(self):
+    def get_static_links(self):
         """
         Return sidebar links from portal_actions.
         """

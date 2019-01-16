@@ -45,7 +45,7 @@
 
       </div>
 
-      <div class="menu-section" tal:define="links view/get_sidebar_links">
+      <div class="menu-section" tal:define="links view/get_static_links">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_links">Links</div>
 
