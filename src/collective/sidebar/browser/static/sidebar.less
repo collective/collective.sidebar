@@ -122,6 +122,33 @@
       }
     }
   }
+
+  #menu-collapse {
+    background-color: @sidebar-smoke;
+    bottom: 0;
+    cursor: pointer;
+    height: 30px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    transform: translate3d(-250px, 0, 0);
+    transition-property: background-color, translate3d;
+    width: 100%;
+    z-index: 100;
+
+    .vendor(transition, all 0.6s ease);
+
+    &:hover {
+      background-color: @sidebar-gray;
+    }
+
+    span {
+      color: @sidebar-dark-gray;
+      font-size: 16px;
+      height: 100%;
+      line-height: 30px;
+    }
+  }
 }
 
 body[data-with-sidebar='true'],
@@ -130,6 +157,10 @@ body[data-with-sidebar='true'],
     visibility: visible;
 
     .menu {
+      transform: translate3d(0, 0, 0);
+    }
+
+    #menu-collapse {
       transform: translate3d(0, 0, 0);
     }
   }

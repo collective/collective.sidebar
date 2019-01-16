@@ -1,0 +1,59 @@
+#portal-navigation {
+  &.collapsed {
+    .menu {
+      padding: 0;
+      width: 80px;
+
+      a,
+      a:hover,
+      a:focus,
+      a:active,
+      a:visited {
+        margin-bottom: 0;
+        min-height: 0;
+        text-align: center;
+      }
+
+      .menu-section {
+        margin-bottom: 0;
+
+        .menu-section-title,
+        .menu-item-title {
+          display: none;
+        }
+
+        .menu-item-icon {
+          color: @sidebar-dark-gray;
+          font-size: 16px;
+          margin: 0 auto 30px auto;
+          text-align: center;
+          transition: color 150ms ease-in-out;
+          width: 80px;
+
+          &:hover {
+            color: @sidebar-black;
+          }
+        }
+      }
+
+      .menu-profile {
+        margin-bottom: 30px;
+
+        .profile-image {
+          border-radius: 0;
+          margin-bottom: 0;
+        }
+
+        .profile-info {
+          .profile-name {
+            border-radius: 0;
+          }
+        }
+      }
+
+      .hidden-intent {
+        display: none;
+      }
+    }
+  }
+}

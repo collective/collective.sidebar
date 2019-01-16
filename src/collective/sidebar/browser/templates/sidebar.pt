@@ -13,48 +13,56 @@
     <div class="menu">
 
       <div class="menu-section" tal:condition="not:view/is_anonymous">
-        <div class="menu-profile"
-             tal:define="data view/get_user_data;
-                         user_info data/user_info;
-                         portrait data/portrait">
 
-          <a href="${portal_url}/@@personal-information">
+        <div class="section-inner">
+          <div class="menu-profile"
+               tal:define="data view/get_user_data;
+                           user_info data/user_info;
+                           portrait data/portrait">
 
-            <div class="profile-image" style="background-image: url('${portrait}');"></div>
+            <a href="${portal_url}/@@personal-information">
 
-            <div class="profile-info">
-              <div class="profile-name" tal:content="python:user_info['fullname'] or user_info['username']"></div>
-            </div>
+              <div class="profile-image" style="background-image: url('${portrait}');"></div>
 
-          </a>
+              <div class="profile-info">
+                <div class="profile-name" tal:content="python:user_info['fullname'] or user_info['username']"></div>
+              </div>
 
+            </a>
+
+          </div>
         </div>
+
       </div>
 
       <!-- Main Menu -->
 
       <div class="menu-section" tal:condition="view/can_manage_portal">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_site">Site</div>
+        <div class="section-inner">
+          <div class="menu-section-title" i18n:translate="navigation_heading_site">Site</div>
 
-        <tal:item>
-          <a href="#" tal:attributes="href python:portal_url + '/plone_control_panel'">
-            <span class="menu-item-icon glyphicon glyphicon-cog"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
-          </a>
-        </tal:item>
+          <tal:item>
+            <a href="#" tal:attributes="href python:portal_url + '/plone_control_panel'">
+              <span class="menu-item-icon glyphicon glyphicon-cog"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
+            </a>
+          </tal:item>
+        </div>
 
       </div>
 
       <div class="menu-section" tal:define="links view/get_static_links">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_links">Links</div>
+        <div class="section-inner">
+          <div class="menu-section-title" i18n:translate="navigation_heading_links">Links</div>
 
-        <tal:actions repeat="link links">
-          <a tal:attributes="href link/url;
-                             title link/title">
-            <span class="menu-item-icon glyphicon ${link/icon}"></span> <span class="menu-item-title" tal:content="link/title"></span>
-          </a>
-        </tal:actions>
+          <tal:actions repeat="link links">
+            <a tal:attributes="href link/url;
+                               title link/title">
+              <span class="menu-item-icon glyphicon ${link/icon}"></span> <span class="menu-item-title" tal:content="link/title"></span>
+            </a>
+          </tal:actions>
+        </div>
 
       </div>
 
@@ -62,19 +70,21 @@
 
       <div class="menu-section" tal:condition="items">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_navigation">Navigation</div>
+        <div class="section-inner hidden-intent">
+          <div class="menu-section-title" i18n:translate="navigation_heading_navigation">Navigation</div>
 
-        <tal:item tal:condition="view/get_back">
-          <a href="#" tal:attributes="href view/get_back">
-            <span class="menu-item-icon glyphicon glyphicon-menu-left"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
-          </a>
-        </tal:item>
+          <tal:item tal:condition="view/get_back">
+            <a href="#" tal:attributes="href view/get_back">
+              <span class="menu-item-icon glyphicon glyphicon-menu-left"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
+            </a>
+          </tal:item>
 
-        <tal:items tal:repeat="item items">
-          <a href="#" tal:attributes="title item/title; href item/url;">
-            <span class="menu-item-icon glyphicon glyphicon-menu-right"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
-          </a>
-        </tal:items>
+          <tal:items tal:repeat="item items">
+            <a href="#" tal:attributes="title item/title; href item/url;">
+              <span class="menu-item-icon glyphicon glyphicon-menu-right"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
+            </a>
+          </tal:items>
+        </div>
 
       </div>
 
@@ -82,27 +92,29 @@
 
       <div class="menu-section" tal:condition="view/can_edit">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_edit">Edit</div>
+        <div class="section-inner">
+          <div class="menu-section-title" i18n:translate="navigation_heading_edit">Edit</div>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/view'">
-          <span class="menu-item-icon glyphicon glyphicon-eye-open"></span> <span class="menu-item-title" i18n:translate="view">View</span>
-        </a>
+          <a href="#" tal:attributes="href python:context.absolute_url() + '/view'">
+            <span class="menu-item-icon glyphicon glyphicon-eye-open"></span> <span class="menu-item-title" i18n:translate="view">View</span>
+          </a>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/edit'">
-          <span class="menu-item-icon glyphicon glyphicon-edit"></span> <span class="menu-item-title" i18n:translate="edit">Edit</span>
-        </a>
+          <a href="#" tal:attributes="href python:context.absolute_url() + '/edit'">
+            <span class="menu-item-icon glyphicon glyphicon-edit"></span> <span class="menu-item-title" i18n:translate="edit">Edit</span>
+          </a>
 
-        <a href="#" tal:attributes="href python:view.get_folder_contents_url()">
-          <span class="menu-item-icon glyphicon glyphicon-folder-open"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
-        </a>
+          <a href="#" tal:attributes="href python:view.get_folder_contents_url()">
+            <span class="menu-item-icon glyphicon glyphicon-folder-open"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
+          </a>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
-            <span class="menu-item-icon glyphicon glyphicon-time"></span> <span class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
-        </a>
+          <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
+              <span class="menu-item-icon glyphicon glyphicon-time"></span> <span class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
+          </a>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
-          <span class="menu-item-icon glyphicon glyphicon-user"></span> <span class="menu-item-title" i18n:translate="sharing">Sharing</span>
-        </a>
+          <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
+            <span class="menu-item-icon glyphicon glyphicon-user"></span> <span class="menu-item-title" i18n:translate="sharing">Sharing</span>
+          </a>
+        </div>
 
       </div>
 
@@ -117,21 +129,23 @@
                       actions view/get_workflow_actions;"
         tal:condition="python:view.can_edit() and view.has_workflow()">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_workflow">Workflow</div>
+        <div class="section-inner">
+          <div class="menu-section-title" i18n:translate="navigation_heading_workflow">Workflow</div>
 
-        <a href="#" i18n:domain="plone">
-          <span class="menu-item-icon glyphicon glyphicon-record state-${state} ${color_state}"></span> <span class="menu-item-title state-${state} ${color_state}" i18n:translate="">${state_title}</span>
-        </a>
-
-        <tal:repeat tal:repeat="action actions">
-          <a href="${action/action}" i18n:domain="plone">
-            <span class="menu-item-icon glyphicon glyphicon-transfer"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
+          <a href="#" i18n:domain="plone">
+            <span class="menu-item-icon glyphicon glyphicon-record state-${state} ${color_state}"></span> <span class="menu-item-title state-${state} ${color_state}" i18n:translate="">${state_title}</span>
           </a>
-        </tal:repeat>
 
-        <a href="${absolute_url}/content_status_history" tal:condition="actions">
-          <span class="menu-item-icon glyphicon glyphicon-option-horizontal"></span> <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
-        </a>
+          <tal:repeat tal:repeat="action actions">
+            <a href="${action/action}" i18n:domain="plone">
+              <span class="menu-item-icon glyphicon glyphicon-transfer"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
+            </a>
+          </tal:repeat>
+
+          <a href="${absolute_url}/content_status_history" tal:condition="actions">
+            <span class="menu-item-icon glyphicon glyphicon-option-horizontal"></span> <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
+          </a>
+        </div>
 
       </div>
 
@@ -139,14 +153,16 @@
 
       <div class="menu-section" tal:define="items view/get_addable_items" tal:condition="items">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_add">Add</div>
+        <div class="section-inner hidden-intent">
+          <div class="menu-section-title" i18n:translate="navigation_heading_add">Add</div>
 
-        <tal:repeat tal:repeat="item items">
-          <a href="#" tal:attributes="href item/action">
-            <span class="" tal:attributes="class item/icon"></span>
-            <span class="menu-item-title" tal:content="item/title"></span>
-          </a>
-        </tal:repeat>
+          <tal:repeat tal:repeat="item items">
+            <a href="#" tal:attributes="href item/action">
+              <span class="" tal:attributes="class item/icon"></span>
+              <span class="menu-item-title" tal:content="item/title"></span>
+            </a>
+          </tal:repeat>
+        </div>
 
       </div>
 
@@ -154,11 +170,13 @@
 
       <div class="menu-section" tal:condition="view/can_edit">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_display">Display</div>
+        <div class="section-inner">
+          <div class="menu-section-title" i18n:translate="navigation_heading_display">Display</div>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/@@select_default_page'">
-          <span class="menu-item-icon glyphicon glyphicon-blackboard"></span> <span class="menu-item-title" i18n:translate="select_default_page">Select Default Page</span>
-        </a>
+          <a href="#" tal:attributes="href python:context.absolute_url() + '/@@select_default_page'">
+            <span class="menu-item-icon glyphicon glyphicon-blackboard"></span> <span class="menu-item-title" i18n:translate="select_default_page">Select Default Page</span>
+          </a>
+        </div>
 
       </div>
 
@@ -166,15 +184,24 @@
 
       <div class="menu-section">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_search">Search</div>
+        <div class="section-inner hidden-intent">
+          <div class="menu-section-title" i18n:translate="navigation_heading_search">Search</div>
 
-        <form action="" id="menu-search" method="post">
-          <input class="menu-search-input" type="text" value="">
-        </form>
+          <form action="" id="menu-search" method="post">
+            <input class="menu-search-input" type="text" value="">
+          </form>
+        </div>
 
       </div>
 
     </div>
+
+    <tal:condition tal:condition="not:view/is_anonymous">
+      <div id="menu-collapse">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+      </div>
+    </tal:condition>
 
     <script type="text/javascript" tal:define="searchpath python:view.get_search_path(query=True)">
       $('#menu-search').submit(function() {

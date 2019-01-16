@@ -14,6 +14,8 @@
 @sidebar-black: #2F3334;
 @sidebar-white: #FAFAFA;
 @sidebar-smoke: #F1F1F1;
+@sidebar-gray: #CCCCCC;
+@sidebar-dark-gray: #8E8E8E;
 
 .without-state-color {
   color: #000000 !important;
@@ -31,9 +33,18 @@
   color: @sidebar-smoke;
 }
 
+.sidebar-gray {
+  color: @sidebar-gray;
+}
+
+.sidebar-dark-gray {
+  color: @sidebar-dark-gray;
+}
+
 /* Imports */
 @import './cover.less';
 @import './sidebar.less';
+@import './compact.less';
 
 /* Vendor */
 .vendor(@property, @value) {
