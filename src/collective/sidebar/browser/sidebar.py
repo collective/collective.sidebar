@@ -56,14 +56,6 @@ class SidebarViewlet(ViewletBase):
         sidebar_links = filtered.get('sidebar_links', [])
         return sidebar_links
 
-    def get_user_profile_url(self):
-        """
-        Return URL for the user profile.
-        """
-        portal_url = self.get_portal_url()
-        portal_user = get_user()[2]
-        return portal_url + portal_user
-
     def get_user_data(self):
         user = get_user()
         mtool = api.portal.get_tool('portal_membership')
