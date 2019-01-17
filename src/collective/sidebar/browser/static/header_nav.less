@@ -1,0 +1,49 @@
+#mainnavigation-wrapper {
+  #mainnavigation {
+    .plone-navbar {
+      .plone-nav {
+        line-height: 50px;
+        margin: 0 -10px;
+
+        .plone-nav-toggle {
+          float: left;
+        }
+
+        .plone-nav-links {
+          float: right;
+
+           > div {
+            display: inline-block;
+            padding: 0 10px;
+
+            a {
+              color: @sidebar-white;
+              display: block;
+              text-decoration: none;
+            }
+
+            &.selected {
+              background-color: rgba(255,255,255,0.15);
+            }
+
+            &:hover {
+              background-color: rgba(255,255,255,0.15);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#burger-menu {
+  color: @sidebar-white;
+  cursor: pointer;
+  font-size: 24px;
+  height: inherit;
+  padding: 0 10px;
+
+  .menu-item-icon {
+    top: 4px;
+  }
+}

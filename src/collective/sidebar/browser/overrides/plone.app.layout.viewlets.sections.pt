@@ -1,0 +1,31 @@
+<tal:sections xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n" tal:define="portal_tabs view/portal_tabs" tal:condition="portal_tabs" i18n:domain="plone">
+
+  <nav class="plone-navbar">
+    <div class="container">
+      <ul class="plone-nav" tal:define="selected_tab python:view.selected_portal_tab">
+
+        <li class="plone-nav-toggle">
+          <div id="burger-menu">
+            <i class="menu-item-icon glyphicon glyphicon-menu-hamburger" />
+          </div>
+        </li>
+
+        <li class="plone-nav-links">
+          <tal:tabs tal:repeat="tab portal_tabs">
+            <div tal:define="tid tab/id"
+                tal:attributes="class python:selected_tab == tid and 'selected' or nothing">
+              <a tal:content="tab/name"
+                 tal:attributes="href tab/url;
+                                 title tab/description|nothing;
+                                 target tab/link_target|nothing;">
+                Tab Title
+              </a>
+            </div>
+          </tal:tabs>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+</tal:sections>

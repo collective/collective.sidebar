@@ -3,9 +3,6 @@
 
   $(document).ready(function() {
 
-    // Add burger icon to navigation
-    $('#portal-globalnav').prepend('<li id=\"portaltab-burger-menu\"><i class=\"glyphicon glyphicon-menu-hamburger\" /></li>');
-
     // Mouse
     $('body').on('mousemove',function(event) {
       if (event.pageX < 20) {
@@ -15,7 +12,7 @@
 
     // Burger
 
-    $('#portaltab-burger-menu').click(function(e) {
+    $('#burger-menu').click(function(e) {
       e.preventDefault();
       $('body').attr('data-with-sidebar', 'true');
     });
