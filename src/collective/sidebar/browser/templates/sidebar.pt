@@ -7,7 +7,9 @@
        tal:define="items view/get_items;
                    root_items python:view.get_items(root=True);
                    token context/@@authenticator/token;
-                   token_arg python:'&amp;_authenticator=' + token"
+                   token_arg python:'&amp;_authenticator=' + token;
+                   collapsed python:view.request.cookies.get('sidebar-collapsed', '')"
+       tal:attributes="class python:'collapsed' if collapsed else ''"
        i18n:domain="collective.sidebar">
 
     <div class="menu">

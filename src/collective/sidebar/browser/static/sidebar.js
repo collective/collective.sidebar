@@ -33,6 +33,13 @@
       $('.menu .menu-section').fadeOut(150, function() {
         $('#portal-navigation').toggleClass('collapsed').one('transitionend', function() {
           $('.menu .menu-section').fadeIn(150);
+          var collapsed = 'sidebar-collapsed';
+          if ($.cookie(collapsed)) {
+            $.removeCookie(collapsed);
+          } else {
+            $.cookie(collapsed, 1);
+          }
+
         });
       });
     });
