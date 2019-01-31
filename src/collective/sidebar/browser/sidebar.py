@@ -88,7 +88,7 @@ class SidebarViewlet(ViewletBase):
                         id=user_info.get('username', ''),
                     )[0]
                     images_view = api.content.get_view(
-                        'images', user, self.request
+                        'images', user.getObject(), self.request
                     )
                     scale = images_view.scale(
                         avatar_field, width=256, height=256, direction='down'
