@@ -16,9 +16,10 @@
         <div class="menu-profile"
              tal:define="data view/get_user_data;
                          user_info data/user_info;
-                         portrait data/portrait">
+                         portrait data/portrait;
+                         user_url data/user_url">
 
-          <a href="${portal_url}/@@personal-information">
+          <a href="${user_url}">
 
             <div class="profile-image" style="background-image: url('${portrait}');"></div>
 

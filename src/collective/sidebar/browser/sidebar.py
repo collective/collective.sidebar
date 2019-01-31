@@ -61,9 +61,11 @@ class SidebarViewlet(ViewletBase):
         mtool = api.portal.get_tool('portal_membership')
         portrait = mtool.getPersonalPortrait(id=user[1])
         user_info = mtool.getMemberInfo(user[1])
+        portal_url = self.get_portal_url()
         data = {
             'user_info': user_info,
             'portrait': portrait.absolute_url(),
+            'user_url': portal_url + '/@@personal-information',
         }
         return data
 
