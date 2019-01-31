@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collective.sidebar import _
+from collective.sidebar.directives import AVATAR_KEY
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_translated
 from collective.sidebar.utils import get_user
@@ -17,6 +18,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
+from zope.dottedname.resolve import resolve
 
 import pkg_resources
 
@@ -56,15 +58,51 @@ class SidebarViewlet(ViewletBase):
         return sidebar_links
 
     def get_user_data(self):
+        # Set Defaults
         user = get_user()
-        mtool = api.portal.get_tool('portal_membership')
-        portrait = mtool.getPersonalPortrait(id=user[1])
-        user_info = mtool.getMemberInfo(user[1])
         portal_url = self.get_portal_url()
+        mtool = api.portal.get_tool('portal_membership')
+        dxtool = api.portal.get_tool('portal_types')
+        # Get Default Portrait
+        portrait = mtool.getPersonalPortrait(id=user[1])
+        # Set Default User-Variables
+        user_info = mtool.getMemberInfo(user[1])
+        user_avatar = portrait.absolute_url()
+        user_url = portal_url + '/@@personal-information'
+        # When Custom Member-Creation is Active
+        if mtool.memberareaCreationFlag:
+            # Get Avatar-Field
+            user_dx = dxtool.get(mtool.memberarea_type)
+            custom_schema = user_dx.schema
+            if custom_schema:
+                user_dx_iface = resolve(custom_schema)
+                avatar_fields = user_dx_iface.queryTaggedValue(AVATAR_KEY)
+                if avatar_fields:
+                    for iface, field, active in avatar_fields:
+                        if active:
+                            images_view = api.content.get_view(
+                                'images',
+                                self.context,
+                                self.request,
+                            )
+                            scale = images_view.scale(
+                                user_dx_iface.get(field),
+                                width=256,
+                                height=256,
+                                direction='down',
+                            )
+                            user_avatar = scale.url
+            # Set User-Profile URL
+            user_url = '{0}/{1}/{2}'.format(
+                portal_url,
+                mtool.membersfolder_id,
+                user_info.get('username', ''),
+            )
+        # Concatenate the Data Together
         data = {
             'user_info': user_info,
-            'portrait': portrait.absolute_url(),
-            'user_url': portal_url + '/@@personal-information',
+            'user_avatar': user_avatar,
+            'user_url': user_url,
         }
         return data
 

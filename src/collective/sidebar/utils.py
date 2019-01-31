@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from collective.sidebar import _
+from collective.sidebar.directives import AVATAR_KEY
 from plone import api
+from zope import schema
 from zope.i18n import translate
 
 
@@ -55,3 +57,22 @@ def get_user():
     user_id = user.id
     user_dir = '/users/{0}'.format(user_id)
     return user, user_id, user_dir
+
+
+def user_avatar(iface, field_name):
+    """
+    Mark a field in the existing interface as the avatar image provider.
+    """
+    if schema.getFields(iface).get(field_name) is None:
+        dottedname = '.'.join((iface.__module__, iface.__name__))
+        raise AttributeError(
+            '{0} has no field "{1}"'.format(
+                dottedname,
+                field_name
+            )
+        )
+    store = iface.queryTaggedValue(AVATAR_KEY)
+    if store is None:
+        store = []
+    store.append((iface, field_name, 'true'))
+    iface.setTaggedValue(AVATAR_KEY, store)

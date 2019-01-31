@@ -20,12 +20,12 @@
         <div class="menu-profile"
              tal:define="data view/get_user_data;
                          user_info data/user_info;
-                         portrait data/portrait;
+                         user_avatar data/user_avatar;
                          user_url data/user_url">
 
           <a href="${user_url}">
 
-            <div class="profile-image" style="background-image: url('${portrait}');"></div>
+            <div class="profile-image" style="background-image: url('${user_avatar}');"></div>
 
             <div class="profile-info">
               <div class="profile-name" tal:content="python:user_info['fullname'] or user_info['username']"></div>
