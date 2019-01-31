@@ -60,6 +60,7 @@ class SidebarViewlet(ViewletBase):
     def get_user_data(self):
         # Set Defaults
         user = get_user()
+        portal = api.portal.get()
         portal_url = self.get_portal_url()
         mtool = api.portal.get_tool('portal_membership')
         dxtool = api.portal.get_tool('portal_types')
@@ -77,21 +78,22 @@ class SidebarViewlet(ViewletBase):
             if custom_schema:
                 user_dx_iface = resolve(custom_schema)
                 avatar_fields = user_dx_iface.queryTaggedValue(AVATAR_KEY)
+                avatar_field = None
                 if avatar_fields:
-                    for iface, field, active in avatar_fields:
-                        if active:
-                            images_view = api.content.get_view(
-                                'images',
-                                self.context,
-                                self.request,
-                            )
-                            scale = images_view.scale(
-                                user_dx_iface.get(field),
-                                width=256,
-                                height=256,
-                                direction='down',
-                            )
-                            user_avatar = scale.url
+                    avatar_field = avatar_fields[0][1]
+                if avatar_field:
+                    user = api.content.find(
+                        portal_type=mtool.memberarea_type,
+                        context=portal.get(mtool.membersfolder_id),
+                        id=user_info.get('username', ''),
+                    )[0]
+                    images_view = api.content.get_view(
+                        'images', user, self.request
+                    )
+                    scale = images_view.scale(
+                        avatar_field, width=256, height=256, direction='down'
+                    )
+                    user_avatar = scale.url
             # Set User-Profile URL
             user_url = '{0}/{1}/{2}'.format(
                 portal_url,
