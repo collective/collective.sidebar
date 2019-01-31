@@ -58,6 +58,14 @@ class SidebarViewlet(ViewletBase):
         return sidebar_links
 
     def get_user_data(self):
+        """
+        Returns member data for the currently logged-in user.
+        Can also return custom member object data when toggling the,
+        memberareaCreationFlag option in the ZMI.
+        Note:
+            Custom avatar images are only used when marking a field with
+            the user_avatar directive in the Content-Type schema.
+        """
         # Set Defaults
         user = get_user()
         portal = api.portal.get()
@@ -72,28 +80,37 @@ class SidebarViewlet(ViewletBase):
         user_url = portal_url + '/@@personal-information'
         # When Custom Member-Creation is Active
         if mtool.memberareaCreationFlag:
-            # Get Avatar-Field
+            # Get Dexterity Type
             user_dx = dxtool.get(mtool.memberarea_type)
             custom_schema = user_dx.schema
             if custom_schema:
+                # Get Dexterity-Schema Interface
                 user_dx_iface = resolve(custom_schema)
+                # Get Marked-Fields from Metadata
                 avatar_fields = user_dx_iface.queryTaggedValue(AVATAR_KEY)
                 avatar_field = None
                 if avatar_fields:
                     avatar_field = avatar_fields[0][1]
                 if avatar_field:
-                    user = api.content.find(
+                    # Get User-View and Fetch Image
+                    users = api.content.find(
                         portal_type=mtool.memberarea_type,
                         context=portal.get(mtool.membersfolder_id),
-                        id=user_info.get('username', ''),
-                    )[0]
-                    images_view = api.content.get_view(
-                        'images', user.getObject(), self.request
+                        id=user[1],
                     )
-                    scale = images_view.scale(
-                        avatar_field, width=256, height=256, direction='down'
-                    )
-                    user_avatar = scale.url
+                    if users:
+                        images_view = api.content.get_view(
+                            'images',
+                            users[0].getObject(),
+                            self.request,
+                        )
+                        scale = images_view.scale(
+                            avatar_field,
+                            width=256,
+                            height=256,
+                            direction='down',
+                        )
+                        user_avatar = scale.url
             # Set User-Profile URL
             user_url = '{0}/{1}/{2}'.format(
                 portal_url,
