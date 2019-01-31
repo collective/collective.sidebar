@@ -8,6 +8,8 @@ Changelog
 Added:
 
 - Added a profile section to the top of the sidebar panel. #5
+  [netroxen]
+  
 - Sidebar links are now configurable through the portal_actions menu. #22
   [netroxen]
 
