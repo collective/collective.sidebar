@@ -5,7 +5,6 @@
 
   <nav id="portal-navigation"
        tal:define="items view/get_items;
-                   root_items python:view.get_items();
                    token context/@@authenticator/token;
                    token_arg python:'&amp;_authenticator=' + token"
        i18n:domain="collective.sidebar">
