@@ -5,7 +5,18 @@ Changelog
 1.0.0a5 (unreleased)
 --------------------
 
-- Nothing changed yet.
+Added:
+
+- Added a controlpanel for sidebar configuration. #41
+  [netroxen]
+
+- Added setting to pin the root level navigation to the sidebar. #41
+  [netroxen]
+
+Changed:
+
+- Removed the "root" parameter from the get_items method of the sidebar. #41
+  [netroxen]
 
 
 1.0.0a4 (2019-02-01)

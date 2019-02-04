@@ -8,6 +8,8 @@
   <i18n:registerTranslations directory="locales" />
 
   <include package=".browser" />
+  <include package=".controlpanel" />
+  
   <include file="permissions.zcml" />
   <include file="upgrades.zcml" />
 
