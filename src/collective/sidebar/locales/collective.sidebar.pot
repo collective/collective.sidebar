@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-01-11 10:08+0000\n"
+"POT-Creation-Date: 2019-02-04 12:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,10 @@ msgid "Collective Sidebar (collective.sidebar)"
 msgstr ""
 
 #: collective/sidebar/configure.zcml
+msgid "Collective Sidebar (collective.sidebar) - Testing"
+msgstr ""
+
+#: collective/sidebar/configure.zcml
 msgid "Collective Sidebar (collective.sidebar) - Uninstall"
 msgstr ""
 
@@ -31,6 +35,10 @@ msgstr ""
 
 #: collective/sidebar/configure.zcml
 msgid "Installs the collective.sidebar add-on."
+msgstr ""
+
+#: collective/sidebar/configure.zcml
+msgid "Installs the collective.sidebar:testing profile."
 msgstr ""
 
 #: collective/sidebar/profiles/default/actions.xml

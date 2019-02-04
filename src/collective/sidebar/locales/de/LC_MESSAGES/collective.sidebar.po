@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-01-11 10:08+0000\n"
+"POT-Creation-Date: 2019-02-04 12:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,10 @@ msgid "Collective Sidebar (collective.sidebar)"
 msgstr "Collective Sidebar (collective.sidebar)"
 
 #: collective/sidebar/configure.zcml
+msgid "Collective Sidebar (collective.sidebar) - Testing"
+msgstr "Collective Sidebar (collective.sidebar) - Testing"
+
+#: collective/sidebar/configure.zcml
 msgid "Collective Sidebar (collective.sidebar) - Uninstall"
 msgstr "Collective Sidebar (collective.sidebar) - Uninstall"
 
@@ -29,6 +33,10 @@ msgstr "Startseite"
 #: collective/sidebar/configure.zcml
 msgid "Installs the collective.sidebar add-on."
 msgstr "Installiert die Sidebar-Erweiterung"
+
+#: collective/sidebar/configure.zcml
+msgid "Installs the collective.sidebar:testing profile."
+msgstr "Installs the collective.sidebar:testing profile."
 
 #: collective/sidebar/profiles/default/actions.xml
 msgid "Login"
@@ -135,7 +143,7 @@ msgstr "Erweitert"
 #. Default: "Configure which content types can be added here"
 #: collective/sidebar/browser/sidebar.py
 msgid "title_configure_addable_content_types"
-msgstr ""
+msgstr "Konfigurieren Sie, welche Inhaltstypen hier hinzugefügt werden können"
 
 #. Default: "View"
 #: collective/sidebar/browser/templates/sidebar.pt
