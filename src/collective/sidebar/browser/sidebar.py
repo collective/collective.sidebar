@@ -148,7 +148,8 @@ class SidebarViewlet(ViewletBase):
         """
         context = self.context
         root_nav = api.portal.get_registry_record(
-            'collective.sidebar.root_nav',
+            name='collective.sidebar.root_nav',
+            default=False,
         )
         if root_nav:
             context = api.portal.get_navigation_root(context)

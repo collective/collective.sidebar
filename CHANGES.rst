@@ -5,7 +5,10 @@ Changelog
 1.0.0a6 (unreleased)
 --------------------
 
-- Nothing changed yet.
+Bugfixes
+
+- Add default to get registry record in the get_items method.
+  [netroxen]
 
 
 1.0.0a5 (2019-02-04)
