@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.sidebar">
+
+    <include package="plone.app.registry"/>
+    <include package="plone.app.contentmenu"/>
+
+    <browser:page
+        name="sidebar-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.ControlPanelView"
+        permission="cmf.ManagePortal"
+        />
+
+</configure>

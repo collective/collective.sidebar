@@ -142,12 +142,15 @@ class SidebarViewlet(ViewletBase):
             pass
         return True
 
-    def get_items(self, root=False):
+    def get_items(self):
         """
         Get folder contents and return.
         """
         context = self.context
-        if root:
+        root_nav = api.portal.get_registry_record(
+            'collective.sidebar.root_nav',
+        )
+        if root_nav:
             context = api.portal.get_navigation_root(context)
         contents = []
         if IFolderish.providedBy(context):

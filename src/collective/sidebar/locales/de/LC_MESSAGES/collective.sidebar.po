@@ -14,6 +14,10 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: collective/sidebar/profiles/default/controlpanel.xml
+msgid "Collective Sidebar"
+msgstr "Collective Sidebar"
+
 #: collective/sidebar/configure.zcml
 msgid "Collective Sidebar (collective.sidebar)"
 msgstr "Collective Sidebar (collective.sidebar)"
@@ -55,10 +59,25 @@ msgstr "Deinstalliert die Sidebar-Erweiterung"
 msgid "back"
 msgstr "Zurück"
 
+#. Default: "Collective Sidebar"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "collective_sidebar_title"
+msgstr "Collective Sidebar"
+
 #. Default: "Contents"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "contents"
 msgstr "Inhalte"
+
+#. Default: "When enabled, the sidebar will always display the root level navigation."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_root_nav_description"
+msgstr "Wenn eingeschaltet zeigt die Sidebar immer die oberste Ebene der Navigation."
+
+#. Default: "Root Navigation"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_root_nav_title"
+msgstr "Root Navigation"
 
 #. Default: "Add item to default page"
 #: collective/sidebar/browser/sidebar.py
