@@ -5,7 +5,10 @@ Changelog
 1.0.0a7 (unreleased)
 --------------------
 
-- Nothing changed yet.
+Changed:
+
+- Back button not visible when root level navigation enabled.
+  [netroxen, sarnold]
 
 
 1.0.0a6 (2019-02-04)
