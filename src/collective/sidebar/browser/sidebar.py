@@ -95,17 +95,20 @@ class SidebarViewlet(ViewletBase):
         """
         Get link to parent.
         """
-        parent = self.context.aq_parent
-        if self.context == api.portal.get():
-            return None
-        if self.context.portal_type == 'LRF':
+        context = self.context
+        portal = api.portal.get()
+        parent = context.aq_parent
+        root_nav = api.portal.get_registry_record(
+            name='collective.sidebar.root_nav',
+            default=False,
+        )
+        if context == portal or context.portal_type == 'LRF' or root_nav:
             return None
         try:
-            if parent.default_page == self.context.id:
-                if parent == api.portal.get_navigation_root(self.context):
+            if parent.default_page == context.id:
+                if parent == api.portal.get_navigation_root(context):
                     return None
-                else:
-                    return parent.aq_parent.absolute_url()
+                return parent.aq_parent.absolute_url()
         except AttributeError:
             pass
         return parent.absolute_url()
