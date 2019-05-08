@@ -11,7 +11,7 @@ Install requirements with pip::
 
 Run buildout::
 
-    $ ./bin/buildout
+    $ ./bin/buildout -c development.cfg
 
 Start Plone in foreground:
 
