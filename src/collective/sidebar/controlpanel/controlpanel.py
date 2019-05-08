@@ -26,6 +26,23 @@ class IControlPanel(Interface):
         default=False,
     )
 
+    enable_actions = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_actions_title',
+            default='Show Actions',
+        ),
+        description=_(
+            u'controlpanel_sidebar_show_actions_description',
+            default=(
+                u'When enabled, the sidebar will '
+                'display registred object_buttons actions '
+                'like cut, copy, paste, ...'
+            ),
+        ),
+        required=False,
+        default=True,
+    )
+
 
 class ControlPanelEditForm(RegistryEditForm):
     schema = IControlPanel

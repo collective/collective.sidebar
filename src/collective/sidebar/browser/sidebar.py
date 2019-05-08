@@ -22,7 +22,6 @@ import pkg_resources
 
 
 class SidebarViewlet(ViewletBase):
-
     index = ViewPageTemplateFile('templates/sidebar.pt')
 
     def _contentCanBeAdded(self, addContext, request):
@@ -338,6 +337,38 @@ class SidebarViewlet(ViewletBase):
                 })
         return results
 
+    @staticmethod
+    def is_actions_enabled():
+        """
+        Should actions be shown
+        """
+        return api.portal.get_registry_record(
+            name='collective.sidebar.enable_actions',
+            default=True,
+        )
+
+    def has_actions(self):
+        """
+        Checks whether there are actions to display
+        """
+        return len(self.get_actions()) > 0
+
+    def get_actions(self):
+        """
+        Returns registred object_actions like cut, copy, paste, ...
+        """
+        portal = api.portal.get()
+        actions = portal.portal_actions.listFilteredActionsFor(self.context)
+        buttons = list()
+        if actions:
+            buttons = actions.get('object_buttons', list())
+            for action in buttons:
+                if not action.get('icon', None):
+                    action.icon = get_action_icon(action.get('id', None))
+                if action.get('url', None):
+                    action.url = addTokenToUrl(action.get('url'), self.request)
+        return buttons
+
     def get_addable_items(self):
         """
         Return menu item entries in a TAL-friendly form.
@@ -415,6 +446,25 @@ class SidebarViewlet(ViewletBase):
         return results
 
 
+def get_action_icon(id1):
+    """
+    Returns icons for action ids
+    """
+    icon_map = {
+        'cut': 'glyphicon glyphicon-scissors',
+        'copy': 'glyphicon glyphicon-copy',
+        'paste': 'glyphicon glyphicon-paste',
+        'delete': 'glyphicon glyphicon-trash',
+        'rename': 'glyphicon glyphicon-pencil',
+        'ical_import_enable': 'glyphicon glyphicon-calendar',
+        'ical_import_disable': 'glyphicon glyphicon-calendar',
+    }
+    if id1 and id1 in icon_map:
+        return icon_map[id1]
+    else:
+        return 'glyphicon glyphicon-star'
+
+
 class SidebarAJAX(BrowserView):
 
     def __call__(self, render):
@@ -430,5 +480,4 @@ class SidebarAJAX(BrowserView):
 
 
 class CoverViewlet(SidebarViewlet):
-
     index = ViewPageTemplateFile('templates/cover.pt')

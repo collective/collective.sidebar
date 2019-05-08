@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-02-04 12:56+0000\n"
+"POT-Creation-Date: 2019-05-08 12:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,16 @@ msgstr ""
 msgid "contents"
 msgstr ""
 
+#. Default: "When enabled, the sidebar will display registred object_buttons actions like cut, copy, paste, ..."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_actions_description"
+msgstr ""
+
+#. Default: "Show Actions"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_actions_title"
+msgstr ""
+
 #. Default: "When enabled, the sidebar will always display the root level navigation."
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_root_nav_description"
@@ -100,6 +110,11 @@ msgstr ""
 #. Default: "Restrictions"
 #: collective/sidebar/browser/sidebar.py
 msgid "folder_add_settings"
+msgstr ""
+
+#. Default: "Actions"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_actions"
 msgstr ""
 
 #. Default: "Add"
