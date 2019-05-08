@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-02-04 12:56+0000\n"
+"POT-Creation-Date: 2019-05-08 08:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,9 +147,14 @@ msgstr ""
 msgid "navigation_link_settings"
 msgstr ""
 
-#. Default: "Select Default Page"
+#. Default: "Default Page"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "select_default_page"
+msgstr ""
+
+#. Default: "Default View"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "select_default_view"
 msgstr ""
 
 #. Default: "Sharing"
