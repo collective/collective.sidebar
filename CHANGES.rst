@@ -5,7 +5,10 @@ Changelog
 1.0.0a8 (unreleased)
 --------------------
 
-- Nothing changed yet.
+Added:
+
+- Added a link to select_default_view. #33
+  [sarnold]
 
 
 1.0.0a7 (2019-02-05)
