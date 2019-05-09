@@ -472,10 +472,10 @@ def get_action_icon(id1):
     """
     icon_map = {
         'cut': 'glyphicon glyphicon-scissors',
-        'copy': 'glyphicon glyphicon-copy',
-        'paste': 'glyphicon glyphicon-paste',
+        'copy': 'glyphicon glyphicon-duplicate',
+        'paste': 'glyphicon glyphicon-open-file',
         'delete': 'glyphicon glyphicon-trash',
-        'rename': 'glyphicon glyphicon-pencil',
+        'rename': 'glyphicon glyphicon-random',
         'ical_import_enable': 'glyphicon glyphicon-calendar',
         'ical_import_disable': 'glyphicon glyphicon-calendar',
     }
