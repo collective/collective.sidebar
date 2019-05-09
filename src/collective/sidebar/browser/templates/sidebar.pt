@@ -135,6 +135,23 @@
 
       </div>
 
+      <!-- Actions -->
+
+      <div class="menu-section"
+        tal:define="actions view/get_actions"
+        tal:condition="python:view.is_actions_enabled() and view.can_edit() and view.has_actions()">
+
+        <div class="menu-section-title" i18n:translate="navigation_heading_actions">Actions</div>
+
+        <tal:repeat tal:repeat="action actions">
+          <a tal:condition="action/allowed"
+            href="${action/url|nothing}" i18n:domain="plone" class="${python:'pat-plone-modal' if action.get('modal', None) else ''}" data-pat-plone-modal="${action/modal|nothing}">
+            <span class="menu-item-icon ${action/icon}"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
+          </a>
+        </tal:repeat>
+
+      </div>
+
       <!-- Document Management -->
 
       <div class="menu-section" tal:define="items view/get_addable_items" tal:condition="items">

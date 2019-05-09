@@ -10,6 +10,9 @@ Added:
 - Added a link to select_default_view. #33
   [sarnold]
 
+- Added object_buttons actions like cut,copy,paste. #46
+  [sarnold]
+
 
 1.0.0a7 (2019-02-05)
 --------------------
