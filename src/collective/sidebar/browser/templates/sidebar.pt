@@ -173,8 +173,12 @@
 
         <div class="menu-section-title" i18n:translate="navigation_heading_display">Display</div>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/@@select_default_page'">
-          <span class="menu-item-icon glyphicon glyphicon-blackboard"></span> <span class="menu-item-title" i18n:translate="select_default_page">Select Default Page</span>
+        <a href="${view/get_default_view_link}" class="pat-plone-modal">
+          <span class="menu-item-icon glyphicon glyphicon-blackboard"></span> <span class="menu-item-title" i18n:translate="select_default_view">Default View</span>
+        </a>
+
+        <a href="${view/get_default_page_link}" class="pat-plone-modal">
+          <span class="menu-item-icon glyphicon glyphicon-pushpin"></span> <span class="menu-item-title" i18n:translate="select_default_page">Default Page</span>
         </a>
 
       </div>

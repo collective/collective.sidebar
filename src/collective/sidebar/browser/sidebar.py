@@ -445,6 +445,26 @@ class SidebarViewlet(ViewletBase):
             })
         return results
 
+    def _get_context_state(self):
+        return getMultiAdapter((self.context, self.request),
+                               name='plone_context_state')
+
+    def get_default_view_link(self):
+        context_state = self._get_context_state()
+        if context_state.is_default_page():
+            parent = context_state.parent()
+            return parent.absolute_url() + '/select_default_view'
+        else:
+            return self.context.absolute_url() + '/select_default_view'
+
+    def get_default_page_link(self):
+        context_state = self._get_context_state()
+        if context_state.is_default_page():
+            parent = context_state.parent()
+            return parent.absolute_url() + '/select_default_page'
+        else:
+            return self.context.absolute_url() + '/select_default_page'
+
 
 def get_action_icon(id1):
     """

@@ -7,6 +7,9 @@ Changelog
 
 Added:
 
+- Added a link to select_default_view. #33
+  [sarnold]
+
 - Added object_buttons actions like cut,copy,paste. #46
   [sarnold]
 

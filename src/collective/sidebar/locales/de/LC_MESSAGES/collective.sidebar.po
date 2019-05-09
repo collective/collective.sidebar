@@ -1,6 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2019-05-08 08:24+0000\n"
 "POT-Creation-Date: 2019-05-08 12:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
@@ -159,10 +160,15 @@ msgstr "Arbeitsablauf"
 msgid "navigation_link_settings"
 msgstr "Einstellungen"
 
-#. Default: "Select Default Page"
+#. Default: "Default Page"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "select_default_page"
 msgstr "Standardseite"
+
+#. Default: "Default View"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "select_default_view"
+msgstr "Darstellung"
 
 #. Default: "Sharing"
 #: collective/sidebar/browser/templates/sidebar.pt
