@@ -1,7 +1,4 @@
 language: python
-dist: xenial
-services:
-  - xvfb
 sudo: false
 cache:
   pip: true
@@ -20,7 +17,6 @@ install:
 script:
   - bin/code-analysis
   - bin/test
-  - xvfb-run ./bin/test --all -t robot
 after_success:
   - bin/createcoverage
   - bin/pip install coverage
