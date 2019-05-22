@@ -29,18 +29,6 @@
       $('body').attr('data-with-sidebar', '');
     });
 
-    // Collapse
-
-    $('.userrole-authenticated .menu .menu-section-title').click(function() {
-      var parent = $(this).parent();
-      parent.toggleClass('collapsed');
-      if (parent.attr('data-state') == 'show') {
-        parent.attr('data-state', 'hide');
-      } else {
-        parent.attr('data-state', 'show');
-      }
-    });
-
   });
 
 })(jQuery); // End of use strict

@@ -42,7 +42,15 @@
            data-state="${section_state}"
            tal:condition="view/can_manage_portal">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_site">Site</div>
+        <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_site">Site</span>
+
+          <span tal:condition="python:cookies and collapsible">
+            <i class="section-up glyphicon glyphicon-chevron-up"></i>
+            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          </span>
+
+        </div>
 
         <tal:item>
           <a href="#" tal:attributes="href python:portal_url + '/plone_control_panel'">
@@ -60,7 +68,15 @@
            data-state="${section_state}"
            tal:condition="links">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_links">Links</div>
+        <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_links">Links</span>
+
+          <span tal:condition="python:cookies and collapsible">
+            <i class="section-up glyphicon glyphicon-chevron-up"></i>
+            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          </span>
+
+        </div>
 
         <tal:actions repeat="link links">
           <a tal:attributes="href link/url;
@@ -79,7 +95,15 @@
            data-state="${section_state}"
            tal:condition="items">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_navigation">Navigation</div>
+        <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_navigation">Navigation</span>
+
+          <span tal:condition="python:cookies and collapsible">
+            <i class="section-up glyphicon glyphicon-chevron-up"></i>
+            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          </span>
+
+        </div>
 
         <tal:item tal:condition="view/get_back">
           <a href="#" tal:attributes="href view/get_back">
@@ -103,7 +127,15 @@
            data-state="${section_state}"
            tal:condition="view/can_edit">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_edit">Edit</div>
+        <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_edit">Edit</span>
+
+          <span tal:condition="python:cookies and collapsible">
+            <i class="section-up glyphicon glyphicon-chevron-up"></i>
+            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          </span>
+
+        </div>
 
         <a href="#" tal:attributes="href python:context.absolute_url() + '/view'">
           <span class="menu-item-icon glyphicon glyphicon-eye-open"></span> <span class="menu-item-title" i18n:translate="view">View</span>
@@ -142,7 +174,15 @@
            data-state="${section_state}"
            tal:condition="python:view.can_edit() and view.has_workflow()">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_workflow">Workflow</div>
+        <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_workflow">Workflow</span>
+
+          <span tal:condition="python:cookies and collapsible">
+            <i class="section-up glyphicon glyphicon-chevron-up"></i>
+            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          </span>
+
+        </div>
 
         <a href="#" i18n:domain="plone">
           <span class="menu-item-icon glyphicon glyphicon-record state-${state} ${color_state}"></span> <span class="menu-item-title state-${state} ${color_state}" i18n:translate="">${state_title}</span>
@@ -170,7 +210,15 @@
            tal:define="actions view/get_actions"
            tal:condition="python:view.is_actions_enabled() and view.can_edit() and view.has_actions()">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_actions">Actions</div>
+        <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_actions">Actions</span>
+
+          <span tal:condition="python:cookies and collapsible">
+            <i class="section-up glyphicon glyphicon-chevron-up"></i>
+            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          </span>
+
+        </div>
 
         <tal:repeat tal:repeat="action actions">
           <a tal:condition="action/allowed"
@@ -193,7 +241,15 @@
            data-state="${section_state}"
            tal:condition="items">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_add">Add</div>
+        <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_add">Add</span>
+
+          <span tal:condition="python:cookies and collapsible">
+            <i class="section-up glyphicon glyphicon-chevron-up"></i>
+            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          </span>
+
+        </div>
 
         <tal:repeat tal:repeat="item items">
           <a href="#" tal:attributes="href item/action">
@@ -212,7 +268,15 @@
            data-state="${section_state}"
            tal:condition="view/can_edit">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_display">Display</div>
+        <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_display">Display</span>
+
+          <span tal:condition="python:cookies and collapsible">
+            <i class="section-up glyphicon glyphicon-chevron-up"></i>
+            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          </span>
+
+        </div>
 
         <a href="${view/get_default_view_link}" class="pat-plone-modal">
           <span class="menu-item-icon glyphicon glyphicon-blackboard"></span> <span class="menu-item-title" i18n:translate="select_default_view">Default View</span>
@@ -231,7 +295,15 @@
            data-section="search"
            data-state="${section_state}">
 
-        <div class="menu-section-title" i18n:translate="navigation_heading_search">Search</div>
+        <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_search">Search</span>
+
+          <span tal:condition="python:cookies and collapsible">
+            <i class="section-up glyphicon glyphicon-chevron-up"></i>
+            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          </span>
+
+        </div>
 
         <form action="" id="menu-search" method="post">
           <input class="menu-search-input" type="text" value="">
@@ -265,9 +337,16 @@
 
           $('.menu-section-title').click(function() {
             var parent = $(this).parent();
+            parent.toggleClass('collapsed');
             var parent_name = parent.attr('data-section');
             var parent_state = parent.attr('data-state');
             var set_sections = $.parseJSON($.cookie('sidebar-sections'));
+
+            if (parent.attr('data-state') == 'show') {
+              parent.attr('data-state', 'hide');
+            } else {
+              parent.attr('data-state', 'show');
+            }
 
             set_sections[parent_name] = parent_state;
 
