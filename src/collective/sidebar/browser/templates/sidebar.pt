@@ -37,7 +37,7 @@
       <!-- Main Menu -->
 
       <div tal:define="section_state python:sidebar_sections.get('site', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
            data-section="site"
            data-state="${section_state}"
            tal:condition="view/can_manage_portal">
@@ -62,7 +62,7 @@
 
       <div tal:define="links view/get_static_links;
                        section_state python:sidebar_sections.get('links', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
            id="menu-links"
            data-section="links"
            data-state="${section_state}"
@@ -90,7 +90,7 @@
       <!-- Navigation Controls -->
 
       <div tal:define="section_state python:sidebar_sections.get('navigation', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
            data-section="navigation"
            data-state="${section_state}"
            tal:condition="items">
@@ -122,7 +122,7 @@
       <!-- Editing -->
 
       <div tal:define="section_state python:sidebar_sections.get('edit', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
            data-section="edit"
            data-state="${section_state}"
            tal:condition="view/can_edit">
@@ -169,7 +169,7 @@
                   color_state view/has_workflow_state_color;
                   actions view/get_workflow_actions;
                   section_state python:sidebar_sections.get('workflow', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
            data-section="workflow"
            data-state="${section_state}"
            tal:condition="python:view.can_edit() and view.has_workflow()">
@@ -205,7 +205,7 @@
 
       <div tal:define="actions view/get_actions;
                        section_state python:sidebar_sections.get('actions', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
            data-section="actions"
            data-state="${section_state}"
            tal:condition="python:view.is_actions_enabled() and view.can_edit() and view.has_actions()">
@@ -236,7 +236,7 @@
 
       <div tal:define="items view/get_addable_items;
                        section_state python:sidebar_sections.get('add', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
            data-section="add"
            data-state="${section_state}"
            tal:condition="items">
@@ -263,7 +263,7 @@
       <!-- Display Management -->
 
       <div tal:define="section_state python:sidebar_sections.get('display', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
            data-section="display"
            data-state="${section_state}"
            tal:condition="view/can_edit">
@@ -291,7 +291,7 @@
       <!-- Search -->
 
       <div tal:define="section_state python:sidebar_sections.get('search', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
            data-section="search"
            data-state="${section_state}">
 
