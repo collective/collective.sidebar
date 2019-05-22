@@ -37,3 +37,26 @@ class TestSidebarFunctional(unittest.TestCase):
             '<div class="profile-name">Max Mustermann</div>',
             viewlet(context=self.portal, request=self.request),
         )
+
+    def test_link_section(self):
+        nav_data_view = api.content.get_view(
+            name='navData',
+            context=self.portal,
+            request=self.request,
+        )
+        viewlet = nav_data_view.render_viewlet
+        viewlet(context=self.portal, request=self.request)
+        self.assertIn(
+            '<div class="menu-section" id="menu-links">',
+            viewlet(context=self.portal, request=self.request),
+        )
+        # Login with user that has fullname property set
+        ac = self.portal.portal_actions.sidebar_links
+        ac['home'].visible = False
+        ac['login'].visible = False
+        ac['logout'].visible = False
+        self.assertNotIn(
+            '<div class="menu-section" id="menu-links">',
+            viewlet(context=self.portal, request=self.request),
+        )
+        logout()
