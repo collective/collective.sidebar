@@ -1,4 +1,7 @@
 language: python
+dist: xenial
+services:
+  - xvfb
 sudo: false
 cache:
   pip: true
@@ -14,13 +17,10 @@ install:
   - bin/pip install -r requirements.txt
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True
-before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- firefox -v
 script:
   - bin/code-analysis
   - bin/test
+  - bin/test --all -t robot
 after_success:
   - bin/createcoverage
   - bin/pip install coverage
