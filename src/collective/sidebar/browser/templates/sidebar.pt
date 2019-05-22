@@ -45,9 +45,9 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_site">Site</span>
 
-          <span tal:condition="python:cookies and collapsible">
-            <i class="section-up glyphicon glyphicon-chevron-up"></i>
-            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
+            <i class="section-up glyphicon glyphicon-menu-up"></i>
+            <i class="section-down glyphicon glyphicon-menu-down"></i>
           </span>
 
         </div>
@@ -71,9 +71,9 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_links">Links</span>
 
-          <span tal:condition="python:cookies and collapsible">
-            <i class="section-up glyphicon glyphicon-chevron-up"></i>
-            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
+            <i class="section-up glyphicon glyphicon-menu-up"></i>
+            <i class="section-down glyphicon glyphicon-menu-down"></i>
           </span>
 
         </div>
@@ -98,9 +98,9 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_navigation">Navigation</span>
 
-          <span tal:condition="python:cookies and collapsible">
-            <i class="section-up glyphicon glyphicon-chevron-up"></i>
-            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
+            <i class="section-up glyphicon glyphicon-menu-up"></i>
+            <i class="section-down glyphicon glyphicon-menu-down"></i>
           </span>
 
         </div>
@@ -130,9 +130,9 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_edit">Edit</span>
 
-          <span tal:condition="python:cookies and collapsible">
-            <i class="section-up glyphicon glyphicon-chevron-up"></i>
-            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
+            <i class="section-up glyphicon glyphicon-menu-up"></i>
+            <i class="section-down glyphicon glyphicon-menu-down"></i>
           </span>
 
         </div>
@@ -177,9 +177,9 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_workflow">Workflow</span>
 
-          <span tal:condition="python:cookies and collapsible">
-            <i class="section-up glyphicon glyphicon-chevron-up"></i>
-            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
+            <i class="section-up glyphicon glyphicon-menu-up"></i>
+            <i class="section-down glyphicon glyphicon-menu-down"></i>
           </span>
 
         </div>
@@ -213,9 +213,9 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_actions">Actions</span>
 
-          <span tal:condition="python:cookies and collapsible">
-            <i class="section-up glyphicon glyphicon-chevron-up"></i>
-            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
+            <i class="section-up glyphicon glyphicon-menu-up"></i>
+            <i class="section-down glyphicon glyphicon-menu-down"></i>
           </span>
 
         </div>
@@ -244,9 +244,9 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_add">Add</span>
 
-          <span tal:condition="python:cookies and collapsible">
-            <i class="section-up glyphicon glyphicon-chevron-up"></i>
-            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
+            <i class="section-up glyphicon glyphicon-menu-up"></i>
+            <i class="section-down glyphicon glyphicon-menu-down"></i>
           </span>
 
         </div>
@@ -271,9 +271,9 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_display">Display</span>
 
-          <span tal:condition="python:cookies and collapsible">
-            <i class="section-up glyphicon glyphicon-chevron-up"></i>
-            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
+            <i class="section-up glyphicon glyphicon-menu-up"></i>
+            <i class="section-down glyphicon glyphicon-menu-down"></i>
           </span>
 
         </div>
@@ -298,9 +298,9 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_search">Search</span>
 
-          <span tal:condition="python:cookies and collapsible">
-            <i class="section-up glyphicon glyphicon-chevron-up"></i>
-            <i class="section-down glyphicon glyphicon-chevron-down"></i>
+          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
+            <i class="section-up glyphicon glyphicon-menu-up"></i>
+            <i class="section-down glyphicon glyphicon-menu-down"></i>
           </span>
 
         </div>
@@ -321,7 +321,7 @@
       });
     </script>
 
-    <tal:condition tal:condition="python:cookies and collapsible">
+    <tal:condition tal:condition="python:cookies and collapsible and not view.is_anonymous()">
       <script type="text/javascript">
 
         var sections = {};
@@ -337,19 +337,16 @@
 
           $('.menu-section-title').click(function() {
             var parent = $(this).parent();
-            parent.toggleClass('collapsed');
-            var parent_name = parent.attr('data-section');
-            var parent_state = parent.attr('data-state');
-            var set_sections = $.parseJSON($.cookie('sidebar-sections'));
-
             if (parent.attr('data-state') == 'show') {
               parent.attr('data-state', 'hide');
             } else {
               parent.attr('data-state', 'show');
             }
-
+            parent.toggleClass('collapsed');
+            var parent_name = parent.attr('data-section');
+            var parent_state = parent.attr('data-state');
+            var set_sections = $.parseJSON($.cookie('sidebar-sections'));
             set_sections[parent_name] = parent_state;
-
             $.cookie('sidebar-sections', JSON.stringify(set_sections));
           });
         })
