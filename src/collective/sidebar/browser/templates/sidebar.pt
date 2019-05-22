@@ -1,7 +1,10 @@
 <tal:define tal:define="portal_url view/get_portal_url;
                         navigation_root_url view/get_navigation_root_url;
                         toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                        context_url context/absolute_url">
+                        context_url context/absolute_url;
+                        cookies view/is_cookies_enabled;
+                        collapsible view/is_collapse_enabled;
+                        sidebar_sections view/get_sidebar_sections">
 
   <nav id="portal-navigation"
        tal:define="items view/get_items;
@@ -33,7 +36,11 @@
 
       <!-- Main Menu -->
 
-      <div class="menu-section" tal:condition="view/can_manage_portal">
+      <div tal:define="section_state python:sidebar_sections.get('site', 'show')"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           data-section="site"
+           data-state="${section_state}"
+           tal:condition="view/can_manage_portal">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_site">Site</div>
 
@@ -45,7 +52,13 @@
 
       </div>
 
-      <div class="menu-section" id="menu-links" tal:condition="links" tal:define="links view/get_static_links">
+      <div tal:define="links view/get_static_links;
+                       section_state python:sidebar_sections.get('links', 'show')"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           id="menu-links"
+           data-section="links"
+           data-state="${section_state}"
+           tal:condition="links">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_links">Links</div>
 
@@ -60,7 +73,11 @@
 
       <!-- Navigation Controls -->
 
-      <div class="menu-section" tal:condition="items">
+      <div tal:define="section_state python:sidebar_sections.get('navigation', 'show')"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           data-section="navigation"
+           data-state="${section_state}"
+           tal:condition="items">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_navigation">Navigation</div>
 
@@ -80,7 +97,11 @@
 
       <!-- Editing -->
 
-      <div class="menu-section" tal:condition="view/can_edit">
+      <div tal:define="section_state python:sidebar_sections.get('edit', 'show')"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           data-section="edit"
+           data-state="${section_state}"
+           tal:condition="view/can_edit">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_edit">Edit</div>
 
@@ -97,7 +118,8 @@
         </a>
 
         <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
-            <span class="menu-item-icon glyphicon glyphicon-time"></span> <span class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
+          <span class="menu-item-icon glyphicon glyphicon-time"></span>
+          <span class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
         </a>
 
         <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
@@ -108,14 +130,17 @@
 
       <!-- Workflow -->
 
-      <div class="menu-section"
-        tal:define="state view/get_workflow_state;
-                      state_title view/get_workflow_state_title;
-                      absolute_url context/absolute_url;
-                      content_status_modify python:absolute_url + '/content_status_modify';
-                      color_state view/has_workflow_state_color;
-                      actions view/get_workflow_actions;"
-        tal:condition="python:view.can_edit() and view.has_workflow()">
+      <div tal:define="state view/get_workflow_state;
+                  state_title view/get_workflow_state_title;
+                  absolute_url context/absolute_url;
+                  content_status_modify python:absolute_url + '/content_status_modify';
+                  color_state view/has_workflow_state_color;
+                  actions view/get_workflow_actions;
+                  section_state python:sidebar_sections.get('workflow', 'show')"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           data-section="workflow"
+           data-state="${section_state}"
+           tal:condition="python:view.can_edit() and view.has_workflow()">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_workflow">Workflow</div>
 
@@ -130,22 +155,29 @@
         </tal:repeat>
 
         <a href="${absolute_url}/content_status_history" tal:condition="actions">
-          <span class="menu-item-icon glyphicon glyphicon-option-horizontal"></span> <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
+          <span class="menu-item-icon glyphicon glyphicon-option-horizontal"></span>
+          <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
         </a>
 
       </div>
 
       <!-- Actions -->
 
-      <div class="menu-section"
-        tal:define="actions view/get_actions"
-        tal:condition="python:view.is_actions_enabled() and view.can_edit() and view.has_actions()">
+      <div tal:define="section_state python:sidebar_sections.get('actions', 'show')"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           data-section="actions"
+           data-state="${section_state}"
+           tal:define="actions view/get_actions"
+           tal:condition="python:view.is_actions_enabled() and view.can_edit() and view.has_actions()">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_actions">Actions</div>
 
         <tal:repeat tal:repeat="action actions">
           <a tal:condition="action/allowed"
-            href="${action/url|nothing}" i18n:domain="plone" class="${python:'pat-plone-modal' if action.get('modal', None) else ''}" data-pat-plone-modal="${action/modal|nothing}">
+             href="${action/url|nothing}"
+             i18n:domain="plone"
+             class="${python:'pat-plone-modal' if action.get('modal', None) else ''}"
+             data-pat-plone-modal="${action/modal|nothing}">
             <span class="menu-item-icon ${action/icon}"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
           </a>
         </tal:repeat>
@@ -154,7 +186,12 @@
 
       <!-- Document Management -->
 
-      <div class="menu-section" tal:define="items view/get_addable_items" tal:condition="items">
+      <div tal:define="items view/get_addable_items;
+                       section_state python:sidebar_sections.get('add', 'show')"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           data-section="add"
+           data-state="${section_state}"
+           tal:condition="items">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_add">Add</div>
 
@@ -169,7 +206,11 @@
 
       <!-- Display Management -->
 
-      <div class="menu-section" tal:condition="view/can_edit">
+      <div tal:define="section_state python:sidebar_sections.get('display', 'show')"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           data-section="display"
+           data-state="${section_state}"
+           tal:condition="view/can_edit">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_display">Display</div>
 
@@ -185,7 +226,10 @@
 
       <!-- Search -->
 
-      <div class="menu-section">
+      <div tal:define="section_state python:sidebar_sections.get('search', 'show')"
+           class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
+           data-section="search"
+           data-state="${section_state}">
 
         <div class="menu-section-title" i18n:translate="navigation_heading_search">Search</div>
 
@@ -204,6 +248,35 @@
         $('#menu-search').attr('action', search_construct);
       });
     </script>
+
+    <tal:condition tal:condition="python:cookies and collapsible">
+      <script type="text/javascript">
+
+        var sections = {};
+
+        $('.menu-section').each(function() {
+          var name = $(this).attr('data-section');
+          var state = $(this).attr('data-state');
+          sections[name] = state;
+        });
+
+        $(document).ready(function() {
+          $.cookie('sidebar-sections', JSON.stringify(sections));
+
+          $('.menu-section-title').click(function() {
+            var parent = $(this).parent();
+            var parent_name = parent.attr('data-section');
+            var parent_state = parent.attr('data-state');
+            var set_sections = $.parseJSON($.cookie('sidebar-sections'));
+
+            set_sections[parent_name] = parent_state;
+
+            $.cookie('sidebar-sections', JSON.stringify(set_sections));
+          });
+        })
+
+      </script>
+    </tal:condition>
 
   </nav>
 
