@@ -20,7 +20,7 @@ install:
 script:
   - bin/code-analysis
   - bin/test
-  - bin/test --all -t robot
+  - xvfb-run ./bin/test --all -t robot
 after_success:
   - bin/createcoverage
   - bin/pip install coverage
