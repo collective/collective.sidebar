@@ -7,6 +7,45 @@
   }
 }
 
+.userrole-authenticated {
+  #portal-navigation {
+    .menu {
+      .menu-section {
+        .section-handle {
+          font-size: 14px;
+          cursor: pointer;
+        }
+
+        .section-up {
+          display: inline-block;
+        }
+
+        .section-down {
+          display: none;
+        }
+
+        a, input {
+          display: block;
+        }
+
+        &.collapsed {
+          .section-up {
+            display: none;
+          }
+
+          .section-down {
+            display: inline-block;
+          }
+
+          a, input {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
 #portal-navigation {
   height: 100vh;
   left: 0;
@@ -61,37 +100,6 @@
 
     .menu-section {
       margin-bottom: 30px;
-
-      .section-handle {
-        font-size: 14px;
-        cursor: pointer;
-      }
-
-      .section-up {
-        display: inline-block;
-      }
-
-      .section-down {
-        display: none;
-      }
-
-      a, input {
-        display: block;
-      }
-
-      &.collapsed {
-        .section-up {
-          display: none;
-        }
-
-        .section-down {
-          display: inline-block;
-        }
-
-        a, input {
-          display: none;
-        }
-      }
 
       .menu-profile {
         .profile-image {

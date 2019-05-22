@@ -333,22 +333,24 @@
         });
 
         $(document).ready(function() {
-          $.cookie('sidebar-sections', JSON.stringify(sections));
-
-          $('.menu-section-title').click(function() {
-            var parent = $(this).parent();
-            if (parent.attr('data-state') == 'show') {
-              parent.attr('data-state', 'hide');
-            } else {
-              parent.attr('data-state', 'show');
-            }
-            parent.toggleClass('collapsed');
-            var parent_name = parent.attr('data-section');
-            var parent_state = parent.attr('data-state');
-            var set_sections = $.parseJSON($.cookie('sidebar-sections'));
-            set_sections[parent_name] = parent_state;
-            $.cookie('sidebar-sections', JSON.stringify(set_sections));
-          });
+          if (typeof $.cookie('sidebar-sections') === 'undefined'){
+            $.cookie('sidebar-sections', JSON.stringify(sections));
+          } else {
+            $('.menu-section-title').click(function() {
+              var parent = $(this).parent();
+              if (parent.attr('data-state') == 'show') {
+                parent.attr('data-state', 'hide');
+              } else {
+                parent.attr('data-state', 'show');
+              }
+              parent.toggleClass('collapsed');
+              var parent_name = parent.attr('data-section');
+              var parent_state = parent.attr('data-state');
+              var set_sections = $.parseJSON($.cookie('sidebar-sections'));
+              set_sections[parent_name] = parent_state;
+              $.cookie('sidebar-sections', JSON.stringify(set_sections));
+            });
+          }
         })
 
       </script>
