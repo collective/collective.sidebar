@@ -203,11 +203,11 @@
 
       <!-- Actions -->
 
-      <div tal:define="section_state python:sidebar_sections.get('actions', 'show')"
+      <div tal:define="actions view/get_actions;
+                       section_state python:sidebar_sections.get('actions', 'show')"
            class="menu-section ${python:'collapsed' if section_state == 'hide' else ''}"
            data-section="actions"
            data-state="${section_state}"
-           tal:define="actions view/get_actions"
            tal:condition="python:view.is_actions_enabled() and view.can_edit() and view.has_actions()">
 
         <div class="menu-section-title">
