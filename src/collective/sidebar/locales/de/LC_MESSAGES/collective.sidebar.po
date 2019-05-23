@@ -1,8 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-05-08 08:24+0000\n"
-"POT-Creation-Date: 2019-05-08 12:51+0000\n"
+"POT-Creation-Date: 2019-05-23 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,25 +69,45 @@ msgstr "Collective Sidebar"
 msgid "contents"
 msgstr "Inhalte"
 
-#. Default: "When enabled, the sidebar will display registred object_buttons actions like cut, copy, paste, ..."
+#. Default: "When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_collapse_description"
+msgstr "Aktiveren um die Sektionen der Sidebar zuklappen zu können. Dieses Feature ist nur verfügbar, wenn Cookies aktiviert sind."
+
+#. Default: "Collapsible Sections"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_collapse_title"
+msgstr "Einklappbare Sektionen"
+
+#. Default: "Enable cookies for sidebar features."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_cookies_description"
+msgstr "Aktiviere Cookies für erweiterte Funktionen der Sidebar."
+
+#. Default: "Enable Cookies"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_cookies_title"
+msgstr "Aktiviere Cookies"
+
+#. Default: "Show actions section including object buttons for cut, copy, paste, etc."
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_actions_description"
-msgstr "Wenn eingeschaltet zeigt die Sidebar object_buttons Aktionen, wie cut/copy/paste/usw.."
+msgstr "Zeigt die Sektion \"Aktionen\" mit den Links für Ausschneiden, Kopieren, Einfügen, etc. an."
 
-#. Default: "Show Actions"
+#. Default: "Show Actions Section"
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_actions_title"
-msgstr "Aktionen anzeigen"
+msgstr "Sektion Aktionen anzeigen"
 
-#. Default: "When enabled, the sidebar will always display the root level navigation."
+#. Default: "When enabled, the sidebar will display the root level navigation."
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_root_nav_description"
-msgstr "Wenn eingeschaltet zeigt die Sidebar immer die oberste Ebene der Navigation."
+msgstr "Wenn aktiv zeigt die Sidebar immer die oberste Ebene der Navigation."
 
-#. Default: "Root Navigation"
+#. Default: "Root Level Navigation"
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_root_nav_title"
-msgstr "Root Navigation"
+msgstr "Root Level Navigation"
 
 #. Default: "Add item to default page"
 #: collective/sidebar/browser/sidebar.py
