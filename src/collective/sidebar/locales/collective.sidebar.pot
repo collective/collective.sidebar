@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-05-08 12:51+0000\n"
+"POT-Creation-Date: 2019-05-23 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,22 +72,42 @@ msgstr ""
 msgid "contents"
 msgstr ""
 
-#. Default: "When enabled, the sidebar will display registred object_buttons actions like cut, copy, paste, ..."
+#. Default: "When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_collapse_description"
+msgstr ""
+
+#. Default: "Collapsible Sections"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_collapse_title"
+msgstr ""
+
+#. Default: "Enable cookies for sidebar features."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_cookies_description"
+msgstr ""
+
+#. Default: "Enable Cookies"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_cookies_title"
+msgstr ""
+
+#. Default: "Show actions section including object buttons for cut, copy, paste, etc."
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_actions_description"
 msgstr ""
 
-#. Default: "Show Actions"
+#. Default: "Show Actions Section"
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_actions_title"
 msgstr ""
 
-#. Default: "When enabled, the sidebar will always display the root level navigation."
+#. Default: "When enabled, the sidebar will display the root level navigation."
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_root_nav_description"
 msgstr ""
 
-#. Default: "Root Navigation"
+#. Default: "Root Level Navigation"
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_root_nav_title"
 msgstr ""

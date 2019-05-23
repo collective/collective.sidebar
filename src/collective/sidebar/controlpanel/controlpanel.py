@@ -13,14 +13,11 @@ class IControlPanel(Interface):
     root_nav = schema.Bool(
         title=_(
             u'controlpanel_sidebar_show_root_nav_title',
-            default='Root Navigation',
+            default='Root Level Navigation',
         ),
         description=_(
             u'controlpanel_sidebar_show_root_nav_description',
-            default=(
-                u'When enabled, the sidebar will always '
-                'display the root level navigation.'
-            ),
+            default=(u'When enabled, the sidebar will display the root level navigation.'),  # noqa: 501
         ),
         required=False,
         default=False,
@@ -29,15 +26,11 @@ class IControlPanel(Interface):
     enable_actions = schema.Bool(
         title=_(
             u'controlpanel_sidebar_show_actions_title',
-            default='Show Actions',
+            default='Show Actions Section',
         ),
         description=_(
             u'controlpanel_sidebar_show_actions_description',
-            default=(
-                u'When enabled, the sidebar will '
-                'display registred object_buttons actions '
-                'like cut, copy, paste, ...'
-            ),
+            default=(u'Show actions section including object buttons for cut, copy, paste, etc.'),  # noqa: 501
         ),
         required=False,
         default=True,
@@ -46,11 +39,11 @@ class IControlPanel(Interface):
     enable_cookies = schema.Bool(
         title=_(
             u'controlpanel_sidebar_enable_cookies_title',
-            default='Enable Cookie Features',
+            default='Enable Cookies',
         ),
         description=_(
             u'controlpanel_sidebar_enable_cookies_description',
-            default=u'Enable or disable cookies for sidebar enhancements.',
+            default=u'Enable cookies for sidebar features.',
         ),
         required=False,
         default=False,
@@ -59,15 +52,11 @@ class IControlPanel(Interface):
     enable_collapse = schema.Bool(
         title=_(
             u'controlpanel_sidebar_enable_collapse_title',
-            default='Enable Collapsible Sections',
+            default='Collapsible Sections',
         ),
         description=_(
             u'controlpanel_sidebar_enable_collapse_description',
-            default=(
-                u'When enabled, the sidebar sections can be collapsed'
-                u'or expanded. This feature is only available '
-                u'with cookie features enabled.'
-            ),
+            default=(u'When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled.'),  # noqa: 501
         ),
         required=False,
         default=False,
