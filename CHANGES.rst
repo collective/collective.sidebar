@@ -7,6 +7,9 @@ Changelog
 
 Added:
 
+- Added collapsible sections to the sidebar template. #3
+  [netroxen]
+
 - Added conditional to static-links section. #54
   [goschtl]
 
