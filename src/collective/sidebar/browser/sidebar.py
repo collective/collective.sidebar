@@ -18,7 +18,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
 
-import json
 import pkg_resources
 
 
@@ -348,7 +347,7 @@ class SidebarViewlet(ViewletBase):
             default=True,
         )
 
-    def is_cookies_enabled(self):
+    def cookies_enabled(self):
         """
         Should cookie support be enabled
         """
@@ -356,7 +355,7 @@ class SidebarViewlet(ViewletBase):
             'collective.sidebar.enable_cookies',
         )
 
-    def is_collapse_enabled(self):
+    def collapse_enabled(self):
         """
         Should collapsible sections be enabled
         """
@@ -364,14 +363,17 @@ class SidebarViewlet(ViewletBase):
             'collective.sidebar.enable_collapse',
         )
 
-    def get_sidebar_sections(self):
+    def get_section_state(self, section_name=''):
         """
-        Converts cookie string array to Python dict
+        Return section 'collapsed' state
         """
-        sidebar_sections = self.request.get('sidebar-sections', '')
-        if sidebar_sections:
-            return json.loads(sidebar_sections)
-        return dict()
+        if self.cookies_enabled() and self.collapse_enabled():
+            sections = self.request.get('sections', '')
+            if sections:
+                sections = sections.split(',')
+                if section_name in sections:
+                    return 'collapsed'
+        return ''
 
     def has_actions(self):
         """

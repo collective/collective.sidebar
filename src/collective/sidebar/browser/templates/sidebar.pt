@@ -2,9 +2,10 @@
                         navigation_root_url view/get_navigation_root_url;
                         toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                         context_url context/absolute_url;
-                        cookies view/is_cookies_enabled;
-                        collapsible view/is_collapse_enabled;
-                        sidebar_sections view/get_sidebar_sections">
+                        anonymous view/is_anonymous;
+                        cookies view/cookies_enabled;
+                        collapsible view/collapse_enabled;
+                        can_collapse python:cookies and collapsible and not anonymous">
 
   <nav id="portal-navigation"
        tal:define="items view/get_items;
@@ -14,7 +15,8 @@
 
     <div class="menu">
 
-      <div class="menu-section" tal:condition="not:view/is_anonymous">
+      <div id="sidebar-section-profile" class="menu-section"
+           tal:condition="not:anonymous">
         <div class="menu-profile"
              tal:define="data view/get_user_data;
                          user_info data/user_info;
@@ -36,278 +38,252 @@
 
       <!-- Main Menu -->
 
-      <div tal:define="section_state python:sidebar_sections.get('site', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
-           data-section="site"
-           data-state="${section_state}"
+      <div id="sidebar-section-site" class="menu-section ${python:view.get_section_state('sidebar-section-site')}"
            tal:condition="view/can_manage_portal">
 
         <div class="menu-section-title">
-          <span i18n:translate="navigation_heading_site">Site</span>
-
-          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-            <i class="section-up glyphicon glyphicon-menu-up"></i>
-            <i class="section-down glyphicon glyphicon-menu-down"></i>
+          <span class="section-handle" tal:condition="can_collapse">
+            <i class="section-up glyphicon glyphicon-menu-down"></i>
+            <i class="section-down glyphicon glyphicon-menu-right"></i>
           </span>
-
+          <span i18n:translate="navigation_heading_site">Site</span>
         </div>
 
-        <tal:item>
-          <a href="#" tal:attributes="href python:portal_url + '/plone_control_panel'">
-            <span class="menu-item-icon glyphicon glyphicon-cog"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
-          </a>
-        </tal:item>
+        <div class="menu-section-content">
+          <tal:item>
+            <a href="#" tal:attributes="href python:portal_url + '/plone_control_panel'">
+              <span class="menu-item-icon glyphicon glyphicon-cog"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
+            </a>
+          </tal:item>
+        </div>
 
       </div>
 
-      <div tal:define="links view/get_static_links;
-                       section_state python:sidebar_sections.get('links', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
-           id="menu-links"
-           data-section="links"
-           data-state="${section_state}"
+      <div tal:define="links view/get_static_links"
+           id="sidebar-section-links" class="menu-section ${python:view.get_section_state('sidebar-section-links')}"
            tal:condition="links">
 
         <div class="menu-section-title">
-          <span i18n:translate="navigation_heading_links">Links</span>
-
-          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-            <i class="section-up glyphicon glyphicon-menu-up"></i>
-            <i class="section-down glyphicon glyphicon-menu-down"></i>
+          <span class="section-handle" tal:condition="can_collapse">
+            <i class="section-up glyphicon glyphicon-menu-down"></i>
+            <i class="section-down glyphicon glyphicon-menu-right"></i>
           </span>
-
+          <span i18n:translate="navigation_heading_links">Links</span>
         </div>
 
-        <tal:actions repeat="link links">
-          <a tal:attributes="href link/url;
-                             title link/title">
-            <span class="menu-item-icon glyphicon ${link/icon}"></span> <span class="menu-item-title" tal:content="link/title"></span>
-          </a>
-        </tal:actions>
+        <div class="menu-section-content">
+          <tal:actions repeat="link links">
+            <a tal:attributes="href link/url; title link/title">
+              <span class="menu-item-icon glyphicon ${link/icon}"></span>
+              <span class="menu-item-title" tal:content="link/title"></span>
+            </a>
+          </tal:actions>
+        </div>
 
       </div>
 
       <!-- Navigation Controls -->
 
-      <div tal:define="section_state python:sidebar_sections.get('navigation', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
-           data-section="navigation"
-           data-state="${section_state}"
+      <div id="sidebar-section-navigation" class="menu-section ${python:view.get_section_state('sidebar-section-navigation')}"
            tal:condition="items">
 
         <div class="menu-section-title">
-          <span i18n:translate="navigation_heading_navigation">Navigation</span>
-
-          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-            <i class="section-up glyphicon glyphicon-menu-up"></i>
-            <i class="section-down glyphicon glyphicon-menu-down"></i>
+          <span class="section-handle" tal:condition="can_collapse">
+            <i class="section-up glyphicon glyphicon-menu-down"></i>
+            <i class="section-down glyphicon glyphicon-menu-right"></i>
           </span>
-
+          <span i18n:translate="navigation_heading_navigation">Navigation</span>
         </div>
 
-        <tal:item tal:condition="view/get_back">
-          <a href="#" tal:attributes="href view/get_back">
-            <span class="menu-item-icon glyphicon glyphicon-menu-left"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
-          </a>
-        </tal:item>
+        <div class="menu-section-content">
+          <tal:item tal:condition="view/get_back">
+            <a href="#" tal:attributes="href view/get_back">
+              <span class="menu-item-icon glyphicon glyphicon-menu-left"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
+            </a>
+          </tal:item>
 
-        <tal:items tal:repeat="item items">
-          <a href="#" tal:attributes="title item/title; href item/url;">
-            <span class="menu-item-icon glyphicon glyphicon-menu-right"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
-          </a>
-        </tal:items>
+          <tal:items tal:repeat="item items">
+            <a href="#" tal:attributes="title item/title; href item/url;">
+              <span class="menu-item-icon glyphicon glyphicon-menu-right"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
+            </a>
+          </tal:items>
+        </div>
 
       </div>
 
       <!-- Editing -->
 
-      <div tal:define="section_state python:sidebar_sections.get('edit', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
-           data-section="edit"
-           data-state="${section_state}"
+      <div id="sidebar-section-edit" class="menu-section ${python:view.get_section_state('sidebar-section-edit')}"
            tal:condition="view/can_edit">
 
         <div class="menu-section-title">
-          <span i18n:translate="navigation_heading_edit">Edit</span>
-
-          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-            <i class="section-up glyphicon glyphicon-menu-up"></i>
-            <i class="section-down glyphicon glyphicon-menu-down"></i>
+          <span class="section-handle" tal:condition="can_collapse">
+            <i class="section-up glyphicon glyphicon-menu-down"></i>
+            <i class="section-down glyphicon glyphicon-menu-right"></i>
           </span>
-
+          <span i18n:translate="navigation_heading_edit">Edit</span>
         </div>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/view'">
-          <span class="menu-item-icon glyphicon glyphicon-eye-open"></span> <span class="menu-item-title" i18n:translate="view">View</span>
-        </a>
+        <div class="menu-section-content">
+          <a href="#" tal:attributes="href python:context.absolute_url() + '/view'">
+            <span class="menu-item-icon glyphicon glyphicon-eye-open"></span> <span class="menu-item-title" i18n:translate="view">View</span>
+          </a>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/edit'">
-          <span class="menu-item-icon glyphicon glyphicon-edit"></span> <span class="menu-item-title" i18n:translate="edit">Edit</span>
-        </a>
+          <a href="#" tal:attributes="href python:context.absolute_url() + '/edit'">
+            <span class="menu-item-icon glyphicon glyphicon-edit"></span> <span class="menu-item-title" i18n:translate="edit">Edit</span>
+          </a>
 
-        <a href="#" tal:attributes="href python:view.get_folder_contents_url()">
-          <span class="menu-item-icon glyphicon glyphicon-folder-open"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
-        </a>
+          <a href="#" tal:attributes="href python:view.get_folder_contents_url()">
+            <span class="menu-item-icon glyphicon glyphicon-folder-open"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
+          </a>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
-          <span class="menu-item-icon glyphicon glyphicon-time"></span>
-          <span class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
-        </a>
+          <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
+            <span class="menu-item-icon glyphicon glyphicon-time"></span>
+            <span class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
+          </a>
 
-        <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
-          <span class="menu-item-icon glyphicon glyphicon-user"></span> <span class="menu-item-title" i18n:translate="sharing">Sharing</span>
-        </a>
+          <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
+            <span class="menu-item-icon glyphicon glyphicon-user"></span> <span class="menu-item-title" i18n:translate="sharing">Sharing</span>
+          </a>
+        </div>
 
       </div>
 
       <!-- Workflow -->
 
       <div tal:define="state view/get_workflow_state;
-                  state_title view/get_workflow_state_title;
-                  absolute_url context/absolute_url;
-                  content_status_modify python:absolute_url + '/content_status_modify';
-                  color_state view/has_workflow_state_color;
-                  actions view/get_workflow_actions;
-                  section_state python:sidebar_sections.get('workflow', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
-           data-section="workflow"
-           data-state="${section_state}"
+                       state_title view/get_workflow_state_title;
+                       absolute_url context/absolute_url;
+                       content_status_modify python:absolute_url + '/content_status_modify';
+                       color_state view/has_workflow_state_color;
+                       actions view/get_workflow_actions"
+           id="sidebar-section-workflow" class="menu-section ${python:view.get_section_state('sidebar-section-workflow')}"
            tal:condition="python:view.can_edit() and view.has_workflow()">
 
         <div class="menu-section-title">
-          <span i18n:translate="navigation_heading_workflow">Workflow</span>
-
-          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-            <i class="section-up glyphicon glyphicon-menu-up"></i>
-            <i class="section-down glyphicon glyphicon-menu-down"></i>
+          <span class="section-handle" tal:condition="can_collapse">
+            <i class="section-up glyphicon glyphicon-menu-down"></i>
+            <i class="section-down glyphicon glyphicon-menu-right"></i>
           </span>
-
+          <span i18n:translate="navigation_heading_workflow">Workflow</span>
         </div>
 
-        <a href="#" i18n:domain="plone">
-          <span class="menu-item-icon glyphicon glyphicon-record state-${state} ${color_state}"></span> <span class="menu-item-title state-${state} ${color_state}" i18n:translate="">${state_title}</span>
-        </a>
-
-        <tal:repeat tal:repeat="action actions">
-          <a href="${action/action}" i18n:domain="plone">
-            <span class="menu-item-icon glyphicon glyphicon-transfer"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
+        <div class="menu-section-content">
+          <a href="#" i18n:domain="plone">
+            <span class="menu-item-icon glyphicon glyphicon-record state-${state} ${color_state}"></span> <span class="menu-item-title state-${state} ${color_state}" i18n:translate="">${state_title}</span>
           </a>
-        </tal:repeat>
 
-        <a href="${absolute_url}/content_status_history" tal:condition="actions">
-          <span class="menu-item-icon glyphicon glyphicon-option-horizontal"></span>
-          <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
-        </a>
+          <tal:repeat tal:repeat="action actions">
+            <a href="${action/action}" i18n:domain="plone">
+              <span class="menu-item-icon glyphicon glyphicon-transfer"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
+            </a>
+          </tal:repeat>
+
+          <a href="${absolute_url}/content_status_history" tal:condition="actions">
+            <span class="menu-item-icon glyphicon glyphicon-option-horizontal"></span>
+            <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
+          </a>
+        </div>
 
       </div>
 
       <!-- Actions -->
 
-      <div tal:define="actions view/get_actions;
-                       section_state python:sidebar_sections.get('actions', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
-           data-section="actions"
-           data-state="${section_state}"
+      <div tal:define="actions view/get_actions"
+           id="sidebar-section-actions" class="menu-section ${python:view.get_section_state('sidebar-section-actions')}"
            tal:condition="python:view.is_actions_enabled() and view.can_edit() and view.has_actions()">
 
         <div class="menu-section-title">
-          <span i18n:translate="navigation_heading_actions">Actions</span>
-
-          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-            <i class="section-up glyphicon glyphicon-menu-up"></i>
-            <i class="section-down glyphicon glyphicon-menu-down"></i>
+          <span class="section-handle" tal:condition="can_collapse">
+            <i class="section-up glyphicon glyphicon-menu-down"></i>
+            <i class="section-down glyphicon glyphicon-menu-right"></i>
           </span>
-
+          <span i18n:translate="navigation_heading_actions">Actions</span>
         </div>
 
-        <tal:repeat tal:repeat="action actions">
-          <a tal:condition="action/allowed"
-             href="${action/url|nothing}"
-             i18n:domain="plone"
-             class="${python:'pat-plone-modal' if action.get('modal', None) else ''}"
-             data-pat-plone-modal="${action/modal|nothing}">
-            <span class="menu-item-icon ${action/icon}"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
-          </a>
-        </tal:repeat>
+        <div class="menu-section-content">
+          <tal:repeat tal:repeat="action actions">
+            <a tal:condition="action/allowed"
+               href="${action/url|nothing}"
+               i18n:domain="plone"
+               class="${python:'pat-plone-modal' if action.get('modal', None) else ''}"
+               data-pat-plone-modal="${action/modal|nothing}">
+              <span class="menu-item-icon ${action/icon}"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
+            </a>
+          </tal:repeat>
+        </div>
 
       </div>
 
       <!-- Document Management -->
 
-      <div tal:define="items view/get_addable_items;
-                       section_state python:sidebar_sections.get('add', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
-           data-section="add"
-           data-state="${section_state}"
+      <div tal:define="items view/get_addable_items"
+           id="sidebar-section-add" class="menu-section ${python:view.get_section_state('sidebar-section-add')}"
            tal:condition="items">
 
         <div class="menu-section-title">
-          <span i18n:translate="navigation_heading_add">Add</span>
-
-          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-            <i class="section-up glyphicon glyphicon-menu-up"></i>
-            <i class="section-down glyphicon glyphicon-menu-down"></i>
+          <span class="section-handle" tal:condition="can_collapse">
+            <i class="section-up glyphicon glyphicon-menu-down"></i>
+            <i class="section-down glyphicon glyphicon-menu-right"></i>
           </span>
-
+          <span i18n:translate="navigation_heading_add">Add</span>
         </div>
 
-        <tal:repeat tal:repeat="item items">
-          <a href="#" tal:attributes="href item/action">
-            <span class="" tal:attributes="class item/icon"></span>
-            <span class="menu-item-title" tal:content="item/title"></span>
-          </a>
-        </tal:repeat>
+        <div class="menu-section-content">
+          <tal:repeat tal:repeat="item items">
+            <a href="#" tal:attributes="href item/action">
+              <span class="" tal:attributes="class item/icon"></span>
+              <span class="menu-item-title" tal:content="item/title"></span>
+            </a>
+          </tal:repeat>
+        </div>
 
       </div>
 
       <!-- Display Management -->
 
-      <div tal:define="section_state python:sidebar_sections.get('display', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
-           data-section="display"
-           data-state="${section_state}"
+      <div id="sidebar-section-display"
+           class="menu-section ${python:view.get_section_state('sidebar-section-display')}"
            tal:condition="view/can_edit">
 
         <div class="menu-section-title">
-          <span i18n:translate="navigation_heading_display">Display</span>
-
-          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-            <i class="section-up glyphicon glyphicon-menu-up"></i>
-            <i class="section-down glyphicon glyphicon-menu-down"></i>
+          <span class="section-handle" tal:condition="can_collapse">
+            <i class="section-up glyphicon glyphicon-menu-down"></i>
+            <i class="section-down glyphicon glyphicon-menu-right"></i>
           </span>
-
+          <span i18n:translate="navigation_heading_display">Display</span>
         </div>
 
-        <a href="${view/get_default_view_link}" class="pat-plone-modal">
-          <span class="menu-item-icon glyphicon glyphicon-blackboard"></span> <span class="menu-item-title" i18n:translate="select_default_view">Default View</span>
-        </a>
-
-        <a href="${view/get_default_page_link}" class="pat-plone-modal">
-          <span class="menu-item-icon glyphicon glyphicon-pushpin"></span> <span class="menu-item-title" i18n:translate="select_default_page">Default Page</span>
-        </a>
+        <div class="menu-section-content">
+          <a href="${view/get_default_view_link}" class="pat-plone-modal">
+            <span class="menu-item-icon glyphicon glyphicon-blackboard"></span>
+            <span class="menu-item-title" i18n:translate="select_default_view">Default View</span>
+          </a>
+          <a href="${view/get_default_page_link}" class="pat-plone-modal">
+            <span class="menu-item-icon glyphicon glyphicon-pushpin"></span>
+            <span class="menu-item-title" i18n:translate="select_default_page">Default Page</span>
+          </a>
+        </div>
 
       </div>
 
       <!-- Search -->
 
-      <div tal:define="section_state python:sidebar_sections.get('search', 'show')"
-           class="menu-section ${python:'collapsed' if section_state == 'hide' and collapsible else ''}"
-           data-section="search"
-           data-state="${section_state}">
+      <div id="sidebar-section-search" class="menu-section ${python:view.get_section_state('sidebar-section-search')}">
 
         <div class="menu-section-title">
-          <span i18n:translate="navigation_heading_search">Search</span>
-
-          <span class="section-handle" tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-            <i class="section-up glyphicon glyphicon-menu-up"></i>
-            <i class="section-down glyphicon glyphicon-menu-down"></i>
+          <span class="section-handle" tal:condition="can_collapse">
+            <i class="section-up glyphicon glyphicon-menu-down"></i>
+            <i class="section-down glyphicon glyphicon-menu-right"></i>
           </span>
-
+          <span i18n:translate="navigation_heading_search">Search</span>
         </div>
 
-        <form action="" id="menu-search" method="post">
-          <input class="menu-search-input" type="text" value="">
-        </form>
+        <div class="menu-section-content">
+          <form action="" id="menu-search" method="post">
+            <input class="menu-search-input" type="text" value="">
+          </form>
+        </div>
 
       </div>
 
@@ -321,41 +297,10 @@
       });
     </script>
 
-    <tal:condition tal:condition="python:cookies and collapsible and not view.is_anonymous()">
-      <script type="text/javascript">
-
-        var sections = {};
-
-        $('.menu-section').each(function() {
-          var name = $(this).attr('data-section');
-          var state = $(this).attr('data-state');
-          sections[name] = state;
-        });
-
-        $(document).ready(function() {
-          if (typeof $.cookie('sidebar-sections') === 'undefined'){
-            $.cookie('sidebar-sections', JSON.stringify(sections));
-          } else {
-            $('.menu-section-title').click(function() {
-              var parent = $(this).parent();
-              if (parent.attr('data-state') == 'show') {
-                parent.attr('data-state', 'hide');
-              } else {
-                parent.attr('data-state', 'show');
-              }
-              parent.toggleClass('collapsed');
-              var parent_name = parent.attr('data-section');
-              var parent_state = parent.attr('data-state');
-              var set_sections = $.parseJSON($.cookie('sidebar-sections'));
-              set_sections[parent_name] = parent_state;
-              $.cookie('sidebar-sections', JSON.stringify(set_sections));
-            });
-          }
-        })
-
-      </script>
-    </tal:condition>
-
   </nav>
+
+  <tal:condition tal:condition="can_collapse">
+    <script src="++resource++collective.sidebar/sidebar_collapse.js" charset="utf-8"></script>
+  </tal:condition>
 
 </tal:define>

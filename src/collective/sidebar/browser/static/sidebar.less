@@ -12,34 +12,20 @@
     .menu {
       .menu-section {
         .section-handle {
-          font-size: 14px;
-          cursor: pointer;
-        }
-
-        .section-up {
+          font-size: 10px;
+          padding: 5px;
+          margin-right: 10px;
+          vertical-align: text-bottom;
           display: inline-block;
+          border-radius: 4px;
         }
 
-        .section-down {
-          display: none;
-        }
-
-        a, input {
-          display: block;
-        }
+        .menu-section-content, .section-up {display: inline-block}
+        .section-down {display: none}
 
         &.collapsed {
-          .section-up {
-            display: none;
-          }
-
-          .section-down {
-            display: inline-block;
-          }
-
-          a, input {
-            display: none;
-          }
+          .menu-section-content, .section-up {display: none}
+          .section-down {display: inline-block}
         }
       }
     }
@@ -99,7 +85,7 @@
     }
 
     .menu-section {
-      margin-bottom: 30px;
+      margin-bottom: 15px;
 
       .menu-profile {
         .profile-image {
@@ -141,6 +127,7 @@
         margin-bottom: 30px;
         position: relative;
         text-transform: uppercase;
+        cursor: pointer;
       }
 
       .menu-item-title {
