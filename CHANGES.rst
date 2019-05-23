@@ -10,6 +10,12 @@ Added:
 - Added conditional to static-links section. #54
   [goschtl]
 
+Changed:
+
+- Removed main_template override from package. #52
+  [netroxen]
+  
+
 1.0.0a8 (2019-05-09)
 --------------------
 
