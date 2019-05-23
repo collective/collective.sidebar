@@ -19,7 +19,7 @@ class IControlPanel(Interface):
             u'controlpanel_sidebar_show_root_nav_description',
             default=(
                 u'When enabled, the sidebar will always '
-                u'display the root level navigation.'
+                'display the root level navigation.'
             ),
         ),
         required=False,
@@ -35,7 +35,8 @@ class IControlPanel(Interface):
             u'controlpanel_sidebar_show_actions_description',
             default=(
                 u'When enabled, the sidebar will '
-                u'display registered actions like cut, copy and paste...'
+                'display registred object_buttons actions '
+                'like cut, copy, paste, ...'
             ),
         ),
         required=False,
