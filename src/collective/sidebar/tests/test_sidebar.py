@@ -47,7 +47,7 @@ class TestSidebarFunctional(unittest.TestCase):
         viewlet = nav_data_view.render_viewlet
         viewlet(context=self.portal, request=self.request)
         self.assertIn(
-            '<div class="menu-section" id="menu-links">',
+            '<div id="sidebar-section-links" class="menu-section">',
             viewlet(context=self.portal, request=self.request),
         )
         # Login with user that has fullname property set
@@ -56,7 +56,7 @@ class TestSidebarFunctional(unittest.TestCase):
         ac['login'].visible = False
         ac['logout'].visible = False
         self.assertNotIn(
-            '<div class="menu-section" id="menu-links">',
+            '<div id="sidebar-section-links" class="menu-section">',
             viewlet(context=self.portal, request=self.request),
         )
         logout()

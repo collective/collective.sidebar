@@ -38,15 +38,15 @@
 
       <!-- Main Menu -->
 
-      <div id="sidebar-section-site" class="menu-section ${python:view.get_section_state('sidebar-section-site')}"
+      <div id="sidebar-section-site" class="${python:view.get_section_state('sidebar-section-site')}"
            tal:condition="view/can_manage_portal">
 
         <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_site">Site</span>
           <span class="section-handle" tal:condition="can_collapse">
             <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-right"></i>
+            <i class="section-down glyphicon glyphicon-menu-up"></i>
           </span>
-          <span i18n:translate="navigation_heading_site">Site</span>
         </div>
 
         <div class="menu-section-content">
@@ -60,15 +60,15 @@
       </div>
 
       <div tal:define="links view/get_static_links"
-           id="sidebar-section-links" class="menu-section ${python:view.get_section_state('sidebar-section-links')}"
+           id="sidebar-section-links" class="${python:view.get_section_state('sidebar-section-links')}"
            tal:condition="links">
 
         <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_links">Links</span>
           <span class="section-handle" tal:condition="can_collapse">
             <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-right"></i>
+            <i class="section-down glyphicon glyphicon-menu-up"></i>
           </span>
-          <span i18n:translate="navigation_heading_links">Links</span>
         </div>
 
         <div class="menu-section-content">
@@ -84,15 +84,15 @@
 
       <!-- Navigation Controls -->
 
-      <div id="sidebar-section-navigation" class="menu-section ${python:view.get_section_state('sidebar-section-navigation')}"
+      <div id="sidebar-section-navigation" class="${python:view.get_section_state('sidebar-section-navigation')}"
            tal:condition="items">
 
         <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_navigation">Navigation</span>
           <span class="section-handle" tal:condition="can_collapse">
             <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-right"></i>
+            <i class="section-down glyphicon glyphicon-menu-up"></i>
           </span>
-          <span i18n:translate="navigation_heading_navigation">Navigation</span>
         </div>
 
         <div class="menu-section-content">
@@ -113,15 +113,15 @@
 
       <!-- Editing -->
 
-      <div id="sidebar-section-edit" class="menu-section ${python:view.get_section_state('sidebar-section-edit')}"
+      <div id="sidebar-section-edit" class="${python:view.get_section_state('sidebar-section-edit')}"
            tal:condition="view/can_edit">
 
         <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_edit">Edit</span>
           <span class="section-handle" tal:condition="can_collapse">
             <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-right"></i>
+            <i class="section-down glyphicon glyphicon-menu-up"></i>
           </span>
-          <span i18n:translate="navigation_heading_edit">Edit</span>
         </div>
 
         <div class="menu-section-content">
@@ -157,15 +157,15 @@
                        content_status_modify python:absolute_url + '/content_status_modify';
                        color_state view/has_workflow_state_color;
                        actions view/get_workflow_actions"
-           id="sidebar-section-workflow" class="menu-section ${python:view.get_section_state('sidebar-section-workflow')}"
+           id="sidebar-section-workflow" class="${python:view.get_section_state('sidebar-section-workflow')}"
            tal:condition="python:view.can_edit() and view.has_workflow()">
 
         <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_workflow">Workflow</span>
           <span class="section-handle" tal:condition="can_collapse">
             <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-right"></i>
+            <i class="section-down glyphicon glyphicon-menu-up"></i>
           </span>
-          <span i18n:translate="navigation_heading_workflow">Workflow</span>
         </div>
 
         <div class="menu-section-content">
@@ -190,15 +190,15 @@
       <!-- Actions -->
 
       <div tal:define="actions view/get_actions"
-           id="sidebar-section-actions" class="menu-section ${python:view.get_section_state('sidebar-section-actions')}"
+           id="sidebar-section-actions" class="${python:view.get_section_state('sidebar-section-actions')}"
            tal:condition="python:view.is_actions_enabled() and view.can_edit() and view.has_actions()">
 
         <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_actions">Actions</span>
           <span class="section-handle" tal:condition="can_collapse">
             <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-right"></i>
+            <i class="section-down glyphicon glyphicon-menu-up"></i>
           </span>
-          <span i18n:translate="navigation_heading_actions">Actions</span>
         </div>
 
         <div class="menu-section-content">
@@ -218,15 +218,15 @@
       <!-- Document Management -->
 
       <div tal:define="items view/get_addable_items"
-           id="sidebar-section-add" class="menu-section ${python:view.get_section_state('sidebar-section-add')}"
+           id="sidebar-section-add" class="${python:view.get_section_state('sidebar-section-add')}"
            tal:condition="items">
 
         <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_add">Add</span>
           <span class="section-handle" tal:condition="can_collapse">
             <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-right"></i>
+            <i class="section-down glyphicon glyphicon-menu-up"></i>
           </span>
-          <span i18n:translate="navigation_heading_add">Add</span>
         </div>
 
         <div class="menu-section-content">
@@ -243,15 +243,15 @@
       <!-- Display Management -->
 
       <div id="sidebar-section-display"
-           class="menu-section ${python:view.get_section_state('sidebar-section-display')}"
+           class="${python:view.get_section_state('sidebar-section-display')}"
            tal:condition="view/can_edit">
 
         <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_display">Display</span>
           <span class="section-handle" tal:condition="can_collapse">
             <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-right"></i>
+            <i class="section-down glyphicon glyphicon-menu-up"></i>
           </span>
-          <span i18n:translate="navigation_heading_display">Display</span>
         </div>
 
         <div class="menu-section-content">
@@ -269,14 +269,14 @@
 
       <!-- Search -->
 
-      <div id="sidebar-section-search" class="menu-section ${python:view.get_section_state('sidebar-section-search')}">
+      <div id="sidebar-section-search" class="${python:view.get_section_state('sidebar-section-search')}">
 
         <div class="menu-section-title">
+          <span i18n:translate="navigation_heading_search">Search</span>
           <span class="section-handle" tal:condition="can_collapse">
             <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-right"></i>
+            <i class="section-down glyphicon glyphicon-menu-up"></i>
           </span>
-          <span i18n:translate="navigation_heading_search">Search</span>
         </div>
 
         <div class="menu-section-content">

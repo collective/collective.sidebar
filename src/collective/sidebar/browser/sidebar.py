@@ -372,8 +372,8 @@ class SidebarViewlet(ViewletBase):
             if sections:
                 sections = sections.split(',')
                 if section_name in sections:
-                    return 'collapsed'
-        return ''
+                    return 'menu-section collapsed'
+        return 'menu-section'
 
     def has_actions(self):
         """
