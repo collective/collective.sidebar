@@ -300,7 +300,7 @@
   </nav>
 
   <tal:condition tal:condition="can_collapse">
-    <script src="++resource++collective.sidebar/sidebar_collapse.js" charset="utf-8"></script>
+    <script src="++resource++collective.sidebar/sidebar.collapse.min.js" charset="utf-8"></script>
   </tal:condition>
 
 </tal:define>
