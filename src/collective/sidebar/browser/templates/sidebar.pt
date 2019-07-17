@@ -13,13 +13,6 @@
                    token_arg python:'&amp;_authenticator=' + token"
        i18n:domain="collective.sidebar">
 
-    <!-- Sidebar Updater -->
-    <script type="text/javascript" src="++resource++collective.sidebar/mockup-patterns-structureupdater.min.js"></script>
-
-    <!-- Sidebar -->
-    <link rel="stylesheet" href="++resource++collective.sidebar/sidebar.min.css">
-    <script type="text/javascript" src="++resource++collective.sidebar/sidebar.min.js"></script>
-
     <div class="menu">
 
       <div id="sidebar-section-profile" class="menu-section"
