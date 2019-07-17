@@ -1,29 +1,9 @@
 <?xml version="1.0"?>
 <registry>
 
-  <records interface='Products.CMFPlone.interfaces.IResourceRegistry' prefix="plone.resources/sidebar">
-    <value key="js">++resource++collective.sidebar/sidebar.js</value>
-    <value key="deps">jquery</value>
-    <value key="css">
-      <element>++resource++collective.sidebar/main.less</element>
-    </value>
-  </records>
-
-  <records interface='Products.CMFPlone.interfaces.IResourceRegistry' prefix="plone.resources/mockup-patterns-structureupdater">
-    <value key="js">++resource++collective.sidebar/mockup-patterns-structureupdater.js</value>
-  </records>
-
-  <records interface='Products.CMFPlone.interfaces.IBundleRegistry' prefix="plone.bundles/sidebar">
-    <value key="resources">
-      <element>sidebar</element>
-      <element>mockup-patterns-structureupdater</element>
-    </value>
-    <value key="jscompilation">++resource++collective.sidebar/sidebar-compiled.js</value>
-    <value key="csscompilation">++resource++collective.sidebar/sidebar-compiled.css</value>
-    <value key="enabled">True</value>
-    <value key="compile">True</value>
-    <value key="last_compilation">2018-12-04 17:00:00</value>
-    <value key="depends">plone</value>
+  <records prefix="plone.resources/mockup-patterns-structureupdater"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="js">++resource++collective.sidebar/mockup-patterns-structureupdater.min.js</value>
   </records>
 
   <records interface="collective.sidebar.controlpanel.controlpanel.IControlPanel" prefix="collective.sidebar" />

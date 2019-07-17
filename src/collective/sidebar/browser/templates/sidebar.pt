@@ -13,6 +13,13 @@
                    token_arg python:'&amp;_authenticator=' + token"
        i18n:domain="collective.sidebar">
 
+    <!-- Sidebar Updater -->
+    <script type="text/javascript" src="++resource++collective.sidebar/mockup-patterns-structureupdater.min.js"></script>
+
+    <!-- Sidebar -->
+    <link rel="stylesheet" href="++resource++collective.sidebar/sidebar.min.css">
+    <script type="text/javascript" src="++resource++collective.sidebar/sidebar.min.js"></script>
+
     <div class="menu">
 
       <div id="sidebar-section-profile" class="menu-section"
@@ -290,17 +297,18 @@
     </div>
 
     <script type="text/javascript" tal:define="searchpath python:view.get_search_path(query=True)">
-      $('#menu-search').submit(function() {
+      $('#menu-search').submit(function () {
         var search_val = $('.menu-search-input').val();
         var search_construct = '${searchpath}' + search_val;
         $('#menu-search').attr('action', search_construct);
       });
+
     </script>
 
   </nav>
 
   <tal:condition tal:condition="can_collapse">
-    <script src="++resource++collective.sidebar/sidebar_collapse.js" charset="utf-8"></script>
+    <script src="++resource++collective.sidebar/sidebar.collapse.min.js" charset="utf-8"></script>
   </tal:condition>
 
 </tal:define>
