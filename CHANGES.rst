@@ -5,7 +5,10 @@ Changelog
 1.0.0a10 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+Added:
+
+- Added back button to empty folders. #58
+  [sarnold]
 
 
 1.0.0a9 (2019-05-24)
@@ -23,7 +26,7 @@ Changed:
 
 - Removed main_template override from package. #52
   [netroxen]
-  
+
 
 1.0.0a8 (2019-05-09)
 --------------------
