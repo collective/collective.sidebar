@@ -8,6 +8,10 @@
 .. image:: https://coveralls.io/repos/github/collective/collective.sidebar/badge.svg?branch=master
     :target: https://coveralls.io/github/collective/collective.sidebar?branch=master
 
+.. image:: https://badge.fury.io/py/collective.sidebar.svg
+    :target: https://badge.fury.io/py/collective.sidebar
+
+
 ==================
 collective.sidebar
 ==================
