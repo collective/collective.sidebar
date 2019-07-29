@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<registry>
+
+  <records prefix="plone.resources/sidebar"
+           interface="Products.CMFPlone.interfaces.IResourceRegistry"
+           purge="True"
+           remove="True">
+  </records>
+
+  <records prefix="plone.bundles/sidebar"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'
+           purge="True"
+           remove="True">
+  </records>
+
+</registry>

@@ -353,6 +353,7 @@ class SidebarViewlet(ViewletBase):
         """
         return api.portal.get_registry_record(
             'collective.sidebar.enable_cookies',
+            default=False,
         )
 
     def collapse_enabled(self):
@@ -361,6 +362,7 @@ class SidebarViewlet(ViewletBase):
         """
         return api.portal.get_registry_record(
             'collective.sidebar.enable_collapse',
+            default=False,
         )
 
     def get_section_state(self, section_name=''):
