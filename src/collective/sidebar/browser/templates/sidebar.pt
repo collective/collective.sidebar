@@ -9,6 +9,7 @@
 
   <nav id="portal-navigation"
        tal:define="items view/get_items;
+                   back view/get_back;
                    token context/@@authenticator/token;
                    token_arg python:'&amp;_authenticator=' + token"
        i18n:domain="collective.sidebar">
@@ -85,7 +86,7 @@
       <!-- Navigation Controls -->
 
       <div id="sidebar-section-navigation" class="${python:view.get_section_state('sidebar-section-navigation')}"
-           tal:condition="items">
+           tal:condition="python: items or back">
 
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_navigation">Navigation</span>
@@ -96,8 +97,8 @@
         </div>
 
         <div class="menu-section-content">
-          <tal:item tal:condition="view/get_back">
-            <a href="#" tal:attributes="href view/get_back">
+          <tal:item tal:condition="back">
+            <a href="#" tal:attributes="href back">
               <span class="menu-item-icon glyphicon glyphicon-menu-left"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
             </a>
           </tal:item>
