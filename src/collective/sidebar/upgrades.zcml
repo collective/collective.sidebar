@@ -2,15 +2,25 @@
   xmlns="http://namespaces.zope.org/zope"
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
-  <!-- -*- extra stuff goes here -*- -->
-  <!--<genericsetup:upgradeStep
-    source="*"
-    destination="1001"
-    title="Reload GS profiles"
-    description=""
-    profile="collective.sidebar:default"
-    handler=".upgrades.reload_gs_profile"
-    />-->
+<!-- Upgrade Profiles -->
 
+  <genericsetup:registerProfile
+    name="to_1001"
+    title="Upgrade profile for collective.sidebar 1000 to 1001"
+    directory="profiles/to_1001"
+    description=""
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+<!-- Upgrade Step for 1.0.0a10 -->
+
+  <genericsetup:upgradeStep
+    profile="profile-collective.sidebar:default"
+    source="1000"
+    destination="1001"
+    title="Remove Sidebar Bundles / Resources"
+    description="Remove Sidebar Bundles / Resources"
+    handler="collective.sidebar.upgrades.to_1001"
+    />
 
 </configure>
