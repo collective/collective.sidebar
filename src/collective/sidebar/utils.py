@@ -1,37 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from collective.sidebar import _
 from plone import api
-from zope.i18n import translate
-
-
-def get_translated(text, context, domain='plone', multi_domain=False):
-    """
-    Useful for multi-domain translations.
-    e.g. Fetching Plone default translations.
-    """
-    if context:
-        request = context.request
-        language_id = request.response.headers.get('content-language', None)
-        if language_id:
-            translated = translate(
-                text,
-                domain=domain,
-                target_language=language_id,
-            )
-            if multi_domain:
-                if translated != text:
-                    return translated
-                package_domain = _._domain
-                package_translated = translate(
-                    text,
-                    domain=package_domain,
-                    target_language=language_id,
-                )
-                if package_translated != text:
-                    return package_translated
-            return translated
-    return text
 
 
 def crop(text, count):
