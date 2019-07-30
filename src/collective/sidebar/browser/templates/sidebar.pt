@@ -97,7 +97,7 @@
 
         <div class="menu-section-content">
           <tal:item tal:condition="view/get_back">
-            <a href="#" tal:attributes="href view/get_back">
+            <a class="sidebar-back" href="#" tal:attributes="href view/get_back">
               <span class="menu-item-icon glyphicon glyphicon-menu-left"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
             </a>
           </tal:item>
@@ -289,7 +289,7 @@
 
     </div>
 
-    <script type="text/javascript" tal:define="searchpath python:view.get_search_path(query=True)">
+    <script type="text/javascript" tal:define="searchpath python:view.get_search_path()">
       $('#menu-search').submit(function () {
         var search_val = $('.menu-search-input').val();
         var search_construct = '${searchpath}' + search_val;
