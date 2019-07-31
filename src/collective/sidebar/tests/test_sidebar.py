@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from collective.sidebar.browser.sidebar import get_action_icon
+from collective.sidebar.browser.sidebar import SidebarViewlet
 from collective.sidebar.testing import COLLECTIVE_SIDEBAR_FUNCTIONAL_TESTING
 from plone import api
 from plone.app.testing import login
@@ -17,12 +19,12 @@ class TestSidebarFunctional(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         login(self.portal, SITE_OWNER_NAME)
-        nav_data_view = api.content.get_view(
+        self.nav_data_view = api.content.get_view(
             name='navData',
             context=self.portal,
             request=self.request,
         )
-        self.viewlet = nav_data_view.render_viewlet
+        self.viewlet = self.nav_data_view.render_viewlet
 
     def test_profile_section(self):
         self.viewlet(context=self.portal, request=self.request)
@@ -261,37 +263,164 @@ class TestSidebarFunctional(unittest.TestCase):
         self.assertIn('<span class="menu-item-title">Item3</span>', v_item3)  # noqa
 
     def test_workflows(self):
-        # Click through states and check state titles and urls (unpublished, review, not passing review, published,...)  # noqa
-        pass
+        item1 = api.content.create(
+            type='Document',
+            container=self.portal,
+            id='item1',
+            title=u'Item1',
+            description=u'',
+        )
+        self._check_in_private_state(item1)
+        api.content.transition(obj=self.portal['item1'], transition='publish')
+        self._check_in_published_state(item1)
+        api.content.transition(obj=item1, transition='retract')
+        api.content.transition(obj=self.portal['item1'], transition='submit')
+        self._check_in_pending_state(item1)
+        api.content.transition(obj=item1, transition='retract')
+        self._check_in_private_state(item1)
+        api.content.transition(obj=item1, transition='submit')
+        api.content.transition(obj=item1, transition='publish')
+        api.content.transition(obj=item1, transition='reject')
+        self._check_in_private_state(item1)
+        api.content.transition(obj=item1, transition='publish')
+        self._check_in_published_state(item1)
+
+    def _check_in_published_state(self, item1):
+        self.assertEqual(api.content.get_state(item1), 'published')
+        v = self.viewlet(context=item1, request=self.request)
+        self.assertIn('<span class="menu-item-icon glyphicon glyphicon-record state-published', v)  # noqa
+        self.assertIn('<span class="menu-item-title state-published', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=publish', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=submit', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=reject', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=retract', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_history', v)  # noqa
+
+    def _check_in_pending_state(self, item1):
+        self.assertEqual(api.content.get_state(item1), 'pending')
+        v = self.viewlet(context=item1, request=self.request)
+        self.assertIn('<span class="menu-item-icon glyphicon glyphicon-record state-pending', v)  # noqa
+        self.assertIn('<span class="menu-item-title state-pending', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=publish', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=submit', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=reject', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=retract', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_history', v)  # noqa
+
+    def _check_in_private_state(self, item1):
+        self.assertEqual(api.content.get_state(item1), 'private')
+        v = self.viewlet(context=item1, request=self.request)
+        self.assertIn('<span class="menu-item-icon glyphicon glyphicon-record state-private', v)  # noqa
+        self.assertIn('<span class="menu-item-title state-private', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=publish', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=submit', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=reject', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/item1/content_status_modify?workflow_action=retract', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/item1/content_status_history', v)  # noqa
 
     def test_workflow_colors(self):
-        # Use it or remove it
-        pass
+        view = SidebarViewlet(self.portal, self.request, None, None)
+        self.assertEqual(view.has_workflow_state_color(), 'with-state-color')
 
     def test_sections_collapse(self):
-        # collapse sections
-        pass
+        api.portal.set_registry_record('collective.sidebar.enable_cookies', True)  # noqa
+        api.portal.set_registry_record('collective.sidebar.enable_collapse', True)  # noqa
+        v = self.viewlet(context=self.portal, request=self.request)
+        self.assertNotIn('menu-section collapsed', v)  # noqa
+        self.assertIn('<div id="sidebar-section-site" class="menu-section">', v)  # noqa
+        self.request.set('sections', 'sidebar-section-site')
+        v = self.viewlet(context=self.portal, request=self.request)
+        self.assertIn('<div id="sidebar-section-site" class="menu-section collapsed">', v)  # noqa
 
     def test_actions(self):
-        # Test actions with icons set and not set
-        # Test actions with url set and not set
-        # move this test to test_actions.py
-        pass
+        demo = api.content.create(
+            type='Folder',
+            container=self.portal,
+            id='demo',
+            title=u'Demo',
+            description=u'Test',
+        )
+        v = self.viewlet(context=demo, request=self.request)
+        self.assertIn('<a href="http://nohost/plone/demo/object_cut?_authenticator=', v)  # noqa
+        # These are added in testing/actions.xml:
+        self.assertIn('glyphicon-test', v)
+        self.assertIn('glyphicon-star', v)
+        self.assertIn('Test-Action', v)
+        self.assertIn('No-Url-Action', v)
+        self.assertIn('No-Icon-Action', v)
 
     def test_addable_items(self):
         # Test what can be added to normal folder
-        # Restrict what can be added to a folder and test it!
-        pass
+        demo = api.content.create(
+            type='Folder',
+            container=self.portal,
+            id='demo',
+            title=u'Demo',
+            description=u'Test',
+        )
+        v = self.viewlet(context=demo, request=self.request)
+        self.assertIn('<a href="http://nohost/plone/demo/++add++Image', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/demo/++add++File', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/demo/++add++Collection', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/demo/++add++News Item', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/demo/++add++Folder', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/demo/++add++Document', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/demo/++add++Event', v)  # noqa
+
+        # Restrict what can be added to a folder and test it
+        folder_fti = self.portal.portal_types['Folder']
+        folder_fti.manage_changeProperties(
+            filter_content_types=True, allowed_content_types=[])
+        v = self.viewlet(context=demo, request=self.request)
+        self.assertNotIn('<a href="http://nohost/plone/demo/++add++Image', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/demo/++add++File', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/demo/++add++Collection', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/demo/++add++News Item', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/demo/++add++Folder', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/demo/++add++Document', v)  # noqa
+        self.assertNotIn('<a href="http://nohost/plone/demo/++add++Event', v)  # noqa
+        self.assertNotIn('sidebar-section-add', v)
 
     def test_default_page_and_view_link(self):
-        # test default view link and default page link
-        # on default-pages and non-default pages
-        pass
+        demo = api.content.create(
+            type='Folder',
+            container=self.portal,
+            id='demo',
+            title=u'Demo',
+            description=u'Test',
+        )
+        demo2 = api.content.create(
+            type='Folder',
+            container=self.portal,
+            id='demo2',
+            title=u'Demo2',
+            description=u'Test',
+        )
+        self.portal.setDefaultPage('demo')
+        v = self.viewlet(context=self.portal, request=self.request)
+        self.assertIn('<a href="http://nohost/plone/select_default_view" class="pat-plone-modal">', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/select_default_page" class="pat-plone-modal">', v)  # noqa
+        v = self.viewlet(context=demo, request=self.request)
+        self.assertIn('<a href="http://nohost/plone/select_default_view" class="pat-plone-modal">', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/select_default_page" class="pat-plone-modal">', v)  # noqa
+        v = self.viewlet(context=demo2, request=self.request)
+        self.assertIn('<a href="http://nohost/plone/demo2/select_default_view" class="pat-plone-modal">', v)  # noqa
+        self.assertIn('<a href="http://nohost/plone/demo2/select_default_page" class="pat-plone-modal">', v)  # noqa
 
     def test_action_icon_map(self):
-        # Test that the map is filled and else-case
-        pass
+        self.assertEqual(get_action_icon('cut'), 'glyphicon glyphicon-scissors')  # noqa
+        self.assertEqual(get_action_icon('copy'), 'glyphicon glyphicon-duplicate')  # noqa
+        self.assertEqual(get_action_icon('paste'), 'glyphicon glyphicon-open-file')  # noqa
+        self.assertEqual(get_action_icon('delete'), 'glyphicon glyphicon-trash')  # noqa
+        self.assertEqual(get_action_icon('rename'), 'glyphicon glyphicon-random')  # noqa
+        self.assertEqual(get_action_icon('ical_import_enable'), 'glyphicon glyphicon-calendar')  # noqa
+        self.assertEqual(get_action_icon('ical_import_disable'), 'glyphicon glyphicon-calendar')  # noqa
+        self.assertEqual(get_action_icon('not-defined'), 'glyphicon glyphicon-star')  # noqa
+        self.assertEqual(get_action_icon(None), 'glyphicon glyphicon-star')  # noqa
+        self.assertEqual(get_action_icon(-15), 'glyphicon glyphicon-star')  # noqa
+        self.assertEqual(get_action_icon(True), 'glyphicon glyphicon-star')  # noqa
+        self.assertEqual(get_action_icon(False), 'glyphicon glyphicon-star')  # noqa
 
     def test_sidebar_ajax(self):
-        # according to coverage __call__ is never called???
-        pass
+        self.assertIsNone(self.nav_data_view(None))
+        self.assertIsNotNone(self.nav_data_view(render=True))

@@ -220,11 +220,7 @@ class SidebarViewlet(ViewletBase):
         """
         Return the workflow state for the current context.
         """
-        context_state = getMultiAdapter(
-            (self.context, self.request),
-            name='plone_context_state',
-        )
-        return context_state.workflow_state()
+        return api.content.get_state(self.context, None)
 
     def get_workflow_actions(self):
         """
