@@ -69,7 +69,7 @@ class TestSidebarFunctional(unittest.TestCase):
             description=u'Test',
         )
         # MR is up to fix this
-        #self.assertIn('<a class="sidebar-back" href="http://nohost/plone">', viewlet(context=demo, request=self.request))   # noqa
+        self.assertIn('<a class="sidebar-back" href="http://nohost/plone">', self.viewlet(context=demo, request=self.request))   # noqa
 
         # Go to filled folder -> back button
         link = api.content.create(
