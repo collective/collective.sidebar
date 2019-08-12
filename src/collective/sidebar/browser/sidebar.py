@@ -2,6 +2,7 @@
 
 from collective.sidebar import _
 from collective.sidebar.utils import crop
+from collective.sidebar.utils import get_icon
 from collective.sidebar.utils import get_user
 from plone import api
 from plone.app.content.browser.folderfactories import _allowedTypes
@@ -455,19 +456,14 @@ def get_action_icon(id1):
     """
     Returns icons for action ids
     """
-    icon_map = {
-        'cut': 'glyphicon glyphicon-scissors',
-        'copy': 'glyphicon glyphicon-duplicate',
-        'paste': 'glyphicon glyphicon-open-file',
-        'delete': 'glyphicon glyphicon-trash',
-        'rename': 'glyphicon glyphicon-random',
-        'ical_import_enable': 'glyphicon glyphicon-calendar',
-        'ical_import_disable': 'glyphicon glyphicon-calendar',
-    }
-    if id1 and id1 in icon_map:
-        return icon_map[id1]
+    icon_list = (
+        'cut', 'copy', 'paste', 'delete', 'rename', 'ical_import_enable',
+        'ical_import_disable',)
+
+    if id1 and id1 in icon_list:
+        return get_icon(id1)
     else:
-        return 'glyphicon glyphicon-star'
+        return get_icon('star')
 
 
 class SidebarAJAX(BrowserView):
