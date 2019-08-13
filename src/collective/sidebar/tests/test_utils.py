@@ -14,13 +14,10 @@ class TestSidebarUtilsFunctional(unittest.TestCase):
         from collective.sidebar.utils import crop
         self.assertEqual(crop(u'just text', 6), u'just...')
         self.assertEqual(crop(u'just text', 100), u'just text')
-        self.assertEqual(crop(u'12345678910', 5), u'...')
-        self.assertEqual(crop(u'.sonderzeichen:,;', 15), u'...')
-
-        # I think crop() should be refactored to make these true:
-        # self.assertEqual(crop(u'12345678910', 5), u'12345...')
-        # self.assertEqual(crop(u'.sonderzeichen:,;', 17), u'sonderzeichen...')  # noqa
-        # self.assertEqual(crop(u'This should be:cropping', 20), u'This should be...')  # noqa
+        self.assertEqual(crop(u'.sonderzeichen:,;', 15), u'sonderzeichen...')
+        self.assertEqual(crop(u'.sonderzeichen:,;', 18), u'.sonderzeichen:,;')
+        self.assertEqual(crop(u'12345678910', 5), u'12345...')
+        self.assertEqual(crop(u'This should be:cropping', 20), u'This should be...')  # noqa
 
     def test_get_icon(self):
         from collective.sidebar.utils import get_icon
