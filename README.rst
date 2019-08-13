@@ -82,6 +82,14 @@ Support
 If you are having issues, please let us know. We have a issue tracker located at: https://github.com/collective/collective.sidebar/issues
 
 
+Change Icon Font
+-----------------
+
+When you installed Font Awesome or Fontello, you can change the sidebar to use these icons.
+First choose the icon font in the control panel.
+Then change the sidebar static links in the ZMI or via actions.xml.
+
+
 License
 -------
 
