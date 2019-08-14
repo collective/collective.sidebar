@@ -2,6 +2,7 @@
 
 from collective.sidebar import _
 from collective.sidebar.utils import crop
+from collective.sidebar.utils import get_icon
 from collective.sidebar.utils import get_user
 from plone import api
 from plone.app.content.browser.folderfactories import _allowedTypes
@@ -372,7 +373,7 @@ class SidebarViewlet(ViewletBase):
         results = factories_view.addable_types(include=include)
         results_with_icons = []
         for result in results:
-            result['icon'] = 'menu-item-icon glyphicon glyphicon-plus'
+            result['icon'] = 'menu-item-icon {0}'.format(self.icon('plus'))
             results_with_icons.append(result)
         results = results_with_icons
         constraints = ISelectableConstrainTypes(addContext, None)
@@ -392,7 +393,7 @@ class SidebarViewlet(ViewletBase):
                     ),
                     'action': url,
                     'selected': False,
-                    'icon': 'menu-item-icon glyphicon glyphicon-cog',
+                    'icon': 'menu-item-icon {0}'.format(self.icon('cog')),
                     'id': 'settings',
                     'extra': {
                         'id': 'plone-contentmenu-settings',
@@ -419,7 +420,7 @@ class SidebarViewlet(ViewletBase):
                 ),
                 'action': context.absolute_url() + '/@@folder_factories',
                 'selected': False,
-                'icon': 'menu-item-icon glyphicon glyphicon-cog',
+                'icon': 'menu-item-icon {0}'.format(self.icon('cog')),
                 'id': 'special',
                 'extra': {
                     'id': 'plone-contentmenu-add-to-default-page',
@@ -450,24 +451,22 @@ class SidebarViewlet(ViewletBase):
         else:
             return self.context.absolute_url() + '/select_default_page'
 
+    def icon(self, idx):
+        return get_icon(idx)
 
-def get_action_icon(id1):
+
+def get_action_icon(action_id):
     """
     Returns icons for action ids
     """
-    icon_map = {
-        'cut': 'glyphicon glyphicon-scissors',
-        'copy': 'glyphicon glyphicon-duplicate',
-        'paste': 'glyphicon glyphicon-open-file',
-        'delete': 'glyphicon glyphicon-trash',
-        'rename': 'glyphicon glyphicon-random',
-        'ical_import_enable': 'glyphicon glyphicon-calendar',
-        'ical_import_disable': 'glyphicon glyphicon-calendar',
-    }
-    if id1 and id1 in icon_map:
-        return icon_map[id1]
+    icon_list = (
+        'cut', 'copy', 'paste', 'delete', 'rename', 'ical_import_enable',
+        'ical_import_disable',)
+
+    if action_id and action_id in icon_list:
+        return get_icon(action_id)
     else:
-        return 'glyphicon glyphicon-star'
+        return get_icon('star')
 
 
 class SidebarAJAX(BrowserView):

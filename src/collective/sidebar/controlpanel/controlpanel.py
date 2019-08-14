@@ -62,6 +62,22 @@ class IControlPanel(Interface):
         default=False,
     )
 
+    icon_font = schema.Choice(
+        title=_(u'controlpanel_sidebar_choose_icon_font_title',
+                default=u'Choose Icon Font'),
+        description=_(
+            u'controlpanel_sidebar_choose_icon_font_description',
+            default=(
+                u'When you installed a different icon font, you can tell '
+                u'sidebar here to use it. For Fontello we assume you set '
+                u'"icon" as font name. '
+                u'Caution: This does not install the icon font!')
+        ),
+        values=('Glyphicons', 'Fontello', 'Font Awesome', 'Font Awesome Pro', 'Font Awesome Light', 'Font Awesome Duotone'),  # noqa: 501
+        default='Glyphicons',
+        required=True
+    )
+
 
 class ControlPanelEditForm(RegistryEditForm):
     schema = IControlPanel
