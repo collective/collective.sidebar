@@ -5,7 +5,14 @@ Changelog
 1.0.0b1 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Crop utility functionality improved. #65
+  [sarnold]
+
+- Font pack now selectable in the sidebar settings. #69
+  [sarnold]
+
+- Plone toolbar removed from rendered DOM.
+  [netroxen]
 
 
 1.0.0a10 (2019-08-01)
