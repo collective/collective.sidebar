@@ -32,6 +32,14 @@
       permission="zope2.View"
       />
 
+  <browser:viewletManager
+      name="plone.toolbar"
+      provides="plone.app.layout.viewlets.interfaces.IToolbar"
+      permission="zope2.View"
+      class=".toolbar.ToolbarViewletManager"
+      layer="collective.sidebar.interfaces.ICollectiveSidebarLayer"
+      />
+
   <!-- AJAX -->
 
   <browser:page
