@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-05-23 20:40+0000\n"
+"POT-Creation-Date: 2019-08-14 10:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,6 +70,16 @@ msgstr ""
 #. Default: "Contents"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "contents"
+msgstr ""
+
+#. Default: "When you installed a different icon font, you can tell sidebar here to use it. For Fontello we assume you set \"icon\" as font name. Caution: This does not install the icon font!"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_choose_icon_font_description"
+msgstr ""
+
+#. Default: "Choose Icon Font"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_choose_icon_font_title"
 msgstr ""
 
 #. Default: "When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled."
