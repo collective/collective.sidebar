@@ -2,10 +2,13 @@ Changelog
 =========
 
 
-1.0.0b2 (unreleased)
+1.1.0b2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+Added:
+
+- Added option to trigger the sidebar from left and right side of screen. #30
+  [netroxen
 
 
 1.0.0b1 (2019-08-14)
