@@ -11,7 +11,9 @@
        tal:define="items view/get_items;
                    back view/get_back;
                    token context/@@authenticator/token;
-                   token_arg python:'&amp;_authenticator=' + token"
+                   token_arg python:'&amp;_authenticator=' + token;
+                   sidebar_position python:context.portal_registry['collective.sidebar.sidebar_position']"
+       class="${python:'sidebar-right' if sidebar_position == 'right' else 'sidebar-left'}"
        i18n:domain="collective.sidebar">
 
     <div class="menu">

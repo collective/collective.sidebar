@@ -34,11 +34,26 @@
 
 #portal-navigation {
   height: 100vh;
-  left: 0;
   position: fixed;
   top: 0;
   visibility: hidden;
   z-index: 999;
+
+  &.sidebar-left {
+    left: 0;
+
+    .menu {
+      transform: translate3d(-250px, 0, 0);
+    }
+  }
+
+  &.sidebar-right {
+    right: 0;
+
+    .menu {
+      transform: translate3d(250px, 0, 0);
+    }
+  }
 
   ::-webkit-scrollbar-track {
     background-color: transparent;
@@ -64,7 +79,6 @@
     overflow-y: scroll;
     padding: 30px;
     position: relative;
-    transform: translate3d(-250px, 0, 0);
     width: 250px;
     will-change: transform;
     z-index: 90;
