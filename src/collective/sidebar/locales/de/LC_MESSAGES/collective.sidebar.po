@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-05-23 20:40+0000\n"
+"POT-Creation-Date: 2019-08-30 11:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,16 @@ msgstr "Deinstalliert die Sidebar-Erweiterung"
 msgid "back"
 msgstr "Zurück"
 
+#. Default: "Left"
+#: collective/sidebar/controlpanel/config.py
+msgid "choice_left"
+msgstr "Links"
+
+#. Default: "Right"
+#: collective/sidebar/controlpanel/config.py
+msgid "choice_right"
+msgstr "Rechts"
+
 #. Default: "Collective Sidebar"
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "collective_sidebar_title"
@@ -68,6 +78,16 @@ msgstr "Collective Sidebar"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "contents"
 msgstr "Inhalte"
+
+#. Default: "When a different icon font is installed, you can tell the sidebar to use it. For Fontello we assume you've set \"icon\" as the font prefix. Note: This does not install the icon font!"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_choose_icon_font_description"
+msgstr "Wenn Sie eine andere Icon Font installiert haben, kann diese hier eingestellt werden, damit Sidebar sie nutzt. Für Fontello nehmen wir \"icon\" als font name an. Achtung: Diese Einstellung installiert keine Icon Schriftarten!"
+
+#. Default: "Choose Icon Font"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_choose_icon_font_title"
+msgstr "Icon Font wählen"
 
 #. Default: "When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled."
 #: collective/sidebar/controlpanel/controlpanel.py
@@ -108,6 +128,16 @@ msgstr "Wenn aktiv zeigt die Sidebar immer die oberste Ebene der Navigation."
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_root_nav_title"
 msgstr "Root Level Navigation"
+
+#. Default: "Display the sidebar on the left or right."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_sidebar_position_description"
+msgstr "Zeigen Sie die Sidebar links oder rechts an."
+
+#. Default: "Sidebar Position"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_sidebar_position_title"
+msgstr "Sidebar Position"
 
 #. Default: "Add item to default page"
 #: collective/sidebar/browser/sidebar.py

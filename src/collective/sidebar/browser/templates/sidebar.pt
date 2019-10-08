@@ -9,8 +9,11 @@
 
   <nav id="portal-navigation"
        tal:define="items view/get_items;
+                   back view/get_back;
                    token context/@@authenticator/token;
-                   token_arg python:'&amp;_authenticator=' + token"
+                   token_arg python:'&amp;_authenticator=' + token;
+                   sidebar_position python:context.portal_registry['collective.sidebar.sidebar_position']"
+       class="${python:'sidebar-right' if sidebar_position == 'right' else 'sidebar-left'}"
        i18n:domain="collective.sidebar">
 
     <div class="menu">
@@ -44,15 +47,15 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_site">Site</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-up"></i>
+            <i class="section-up ${python:view.icon('menu-down')}"></i>
+            <i class="section-down ${python:view.icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <tal:item>
             <a href="#" tal:attributes="href python:portal_url + '/plone_control_panel'">
-              <span class="menu-item-icon glyphicon glyphicon-cog"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
+              <span class="menu-item-icon ${python:view.icon('cog')}"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
             </a>
           </tal:item>
         </div>
@@ -66,15 +69,15 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_links">Links</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-up"></i>
+            <i class="section-up ${python:view.icon('menu-down')}"></i>
+            <i class="section-down ${python:view.icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <tal:actions repeat="link links">
             <a tal:attributes="href link/url; title link/title">
-              <span class="menu-item-icon glyphicon ${link/icon}"></span>
+              <span class="menu-item-icon ${python:view.icon(link['icon'])}"></span>
               <span class="menu-item-title" tal:content="link/title"></span>
             </a>
           </tal:actions>
@@ -85,26 +88,26 @@
       <!-- Navigation Controls -->
 
       <div id="sidebar-section-navigation" class="${python:view.get_section_state('sidebar-section-navigation')}"
-           tal:condition="items">
+           tal:condition="python: items or back">
 
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_navigation">Navigation</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-up"></i>
+            <i class="section-up ${python:view.icon('menu-down')}"></i>
+            <i class="section-down ${python:view.icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
-          <tal:item tal:condition="view/get_back">
-            <a href="#" tal:attributes="href view/get_back">
-              <span class="menu-item-icon glyphicon glyphicon-menu-left"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
+          <tal:item tal:condition="back">
+            <a class="sidebar-back" href="#" tal:attributes="href back">
+              <span class="menu-item-icon ${python:view.icon('menu-left')}"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
             </a>
           </tal:item>
 
           <tal:items tal:repeat="item items">
             <a href="#" tal:attributes="title item/title; href item/url;">
-              <span class="menu-item-icon glyphicon glyphicon-menu-right"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
+              <span class="menu-item-icon ${python:view.icon('menu-right')}"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
             </a>
           </tal:items>
         </div>
@@ -119,31 +122,31 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_edit">Edit</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-up"></i>
+            <i class="section-up ${python:view.icon('menu-down')}"></i>
+            <i class="section-down ${python:view.icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <a href="#" tal:attributes="href python:context.absolute_url() + '/view'">
-            <span class="menu-item-icon glyphicon glyphicon-eye-open"></span> <span class="menu-item-title" i18n:translate="view">View</span>
+            <span class="menu-item-icon ${python:view.icon('eye-open')}"></span> <span class="menu-item-title" i18n:translate="view">View</span>
           </a>
 
           <a href="#" tal:attributes="href python:context.absolute_url() + '/edit'">
-            <span class="menu-item-icon glyphicon glyphicon-edit"></span> <span class="menu-item-title" i18n:translate="edit">Edit</span>
+            <span class="menu-item-icon ${python:view.icon('edit')}"></span> <span class="menu-item-title" i18n:translate="edit">Edit</span>
           </a>
 
           <a href="#" tal:attributes="href python:view.get_folder_contents_url()">
-            <span class="menu-item-icon glyphicon glyphicon-folder-open"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
+            <span class="menu-item-icon ${python:view.icon('folder-open')}"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
           </a>
 
           <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
-            <span class="menu-item-icon glyphicon glyphicon-time"></span>
+            <span class="menu-item-icon ${python:view.icon('time')}"></span>
             <span class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
           </a>
 
           <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
-            <span class="menu-item-icon glyphicon glyphicon-user"></span> <span class="menu-item-title" i18n:translate="sharing">Sharing</span>
+            <span class="menu-item-icon ${python:view.icon('share')}"></span> <span class="menu-item-title" i18n:translate="sharing">Sharing</span>
           </a>
         </div>
 
@@ -163,24 +166,24 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_workflow">Workflow</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-up"></i>
+            <i class="section-up ${python:view.icon('menu-down')}"></i>
+            <i class="section-down ${python:view.icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <a href="#" i18n:domain="plone">
-            <span class="menu-item-icon glyphicon glyphicon-record state-${state} ${color_state}"></span> <span class="menu-item-title state-${state} ${color_state}" i18n:translate="">${state_title}</span>
+            <span class="menu-item-icon ${python:view.icon('record')} state-${state} ${color_state}"></span> <span class="menu-item-title state-${state} ${color_state}" i18n:translate="">${state_title}</span>
           </a>
 
           <tal:repeat tal:repeat="action actions">
             <a href="${action/action}" i18n:domain="plone">
-              <span class="menu-item-icon glyphicon glyphicon-transfer"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
+              <span class="menu-item-icon ${python:view.icon('transfer')}"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
             </a>
           </tal:repeat>
 
           <a href="${absolute_url}/content_status_history" tal:condition="actions">
-            <span class="menu-item-icon glyphicon glyphicon-option-horizontal"></span>
+            <span class="menu-item-icon ${python:view.icon('option-horizontal')}"></span>
             <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
           </a>
         </div>
@@ -196,8 +199,8 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_actions">Actions</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-up"></i>
+            <i class="section-up ${python:view.icon('menu-down')}"></i>
+            <i class="section-down ${python:view.icon('menu-up')}"></i>
           </span>
         </div>
 
@@ -224,8 +227,8 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_add">Add</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-up"></i>
+            <i class="section-up ${python:view.icon('menu-down')}"></i>
+            <i class="section-down ${python:view.icon('menu-up')}"></i>
           </span>
         </div>
 
@@ -249,18 +252,18 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_display">Display</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-up"></i>
+            <i class="section-up ${python:view.icon('menu-down')}"></i>
+            <i class="section-down ${python:view.icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <a href="${view/get_default_view_link}" class="pat-plone-modal">
-            <span class="menu-item-icon glyphicon glyphicon-blackboard"></span>
+            <span class="menu-item-icon ${python:view.icon('blackboard')}"></span>
             <span class="menu-item-title" i18n:translate="select_default_view">Default View</span>
           </a>
           <a href="${view/get_default_page_link}" class="pat-plone-modal">
-            <span class="menu-item-icon glyphicon glyphicon-pushpin"></span>
+            <span class="menu-item-icon ${python:view.icon('pushpin')}"></span>
             <span class="menu-item-title" i18n:translate="select_default_page">Default Page</span>
           </a>
         </div>
@@ -274,8 +277,8 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_search">Search</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up glyphicon glyphicon-menu-down"></i>
-            <i class="section-down glyphicon glyphicon-menu-up"></i>
+            <i class="section-up ${python:view.icon('menu-down')}"></i>
+            <i class="section-down ${python:view.icon('menu-up')}"></i>
           </span>
         </div>
 
@@ -289,18 +292,19 @@
 
     </div>
 
-    <script type="text/javascript" tal:define="searchpath python:view.get_search_path(query=True)">
-      $('#menu-search').submit(function() {
+    <script type="text/javascript" tal:define="searchpath python:view.get_search_path()">
+      $('#menu-search').submit(function () {
         var search_val = $('.menu-search-input').val();
         var search_construct = '${searchpath}' + search_val;
         $('#menu-search').attr('action', search_construct);
       });
+
     </script>
 
   </nav>
 
   <tal:condition tal:condition="can_collapse">
-    <script src="++resource++collective.sidebar/sidebar_collapse.js" charset="utf-8"></script>
+    <script src="++resource++collective.sidebar/sidebar.collapse.min.js" charset="utf-8"></script>
   </tal:condition>
 
 </tal:define>

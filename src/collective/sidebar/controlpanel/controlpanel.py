@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from .config import positionVocabulary
 from collective.sidebar import _
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
@@ -17,7 +18,10 @@ class IControlPanel(Interface):
         ),
         description=_(
             u'controlpanel_sidebar_show_root_nav_description',
-            default=(u'When enabled, the sidebar will display the root level navigation.'),  # noqa: 501
+            default=(
+                u'When enabled, the sidebar will display '
+                u'the root level navigation.'
+            ),
         ),
         required=False,
         default=False,
@@ -30,7 +34,10 @@ class IControlPanel(Interface):
         ),
         description=_(
             u'controlpanel_sidebar_show_actions_description',
-            default=(u'Show actions section including object buttons for cut, copy, paste, etc.'),  # noqa: 501
+            default=(
+                u'Show actions section including object '
+                u'buttons for cut, copy, paste, etc.'
+            ),
         ),
         required=False,
         default=True,
@@ -56,10 +63,50 @@ class IControlPanel(Interface):
         ),
         description=_(
             u'controlpanel_sidebar_enable_collapse_description',
-            default=(u'When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled.'),  # noqa: 501
+            default=(
+                u'When enabled, the sidebar sections can be collapsed. '
+                u'This feature is only available when cookies are enabled.'
+            ),
         ),
         required=False,
         default=False,
+    )
+
+    icon_font = schema.Choice(
+        title=_(u'controlpanel_sidebar_choose_icon_font_title',
+                default=u'Choose Icon Font'),
+        description=_(
+            u'controlpanel_sidebar_choose_icon_font_description',
+            default=(
+                u'When a different icon font is installed, you can tell the '
+                u'sidebar to use it. For Fontello we assume you\'ve set '
+                u'\"icon\" as the font prefix. '
+                u'Note: This does not install the icon font!')
+        ),
+        values=(
+            'Glyphicons',
+            'Fontello',
+            'Font Awesome',
+            'Font Awesome Pro',
+            'Font Awesome Light',
+            'Font Awesome Duotone',
+        ),
+        default='Glyphicons',
+        required=True
+    )
+
+    sidebar_position = schema.Choice(
+        title=_(
+            u'controlpanel_sidebar_sidebar_position_title',
+            default='Sidebar Position',
+        ),
+        description=_(
+            u'controlpanel_sidebar_sidebar_position_description',
+            default=u'Display the sidebar on the left or right.',
+        ),
+        vocabulary=positionVocabulary,
+        required=True,
+        default='left',
     )
 
 

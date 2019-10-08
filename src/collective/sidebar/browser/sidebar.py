@@ -3,7 +3,7 @@
 from collective.sidebar import _
 from collective.sidebar.directives import AVATAR_KEY
 from collective.sidebar.utils import crop
-from collective.sidebar.utils import get_translated
+from collective.sidebar.utils import get_icon
 from collective.sidebar.utils import get_user
 from plone import api
 from plone.app.content.browser.folderfactories import _allowedTypes
@@ -125,14 +125,12 @@ class SidebarViewlet(ViewletBase):
         }
         return data
 
-    def get_search_path(self, query=False):
+    def get_search_path(self):
         """
         Return a search URL using the SearchableText attribute.
         """
         portal_url = self.get_portal_url()
-        if query:
-            return '{0}/@@search?SearchableText='.format(portal_url)
-        return '{0}/@@search'.format(portal_url)
+        return '{0}/@@search?SearchableText='.format(portal_url)
 
     def get_navigation_root_url(self):
         """
@@ -140,12 +138,6 @@ class SidebarViewlet(ViewletBase):
         """
         navigation_root = api.portal.get_navigation_root(self.context)
         return navigation_root.absolute_url()
-
-    def get_language(self):
-        """
-        Return the current language.
-        """
-        return api.portal.get_current_language()
 
     def get_back(self):
         """
@@ -232,38 +224,6 @@ class SidebarViewlet(ViewletBase):
                 items.append(data)
         return items
 
-    def get_addable_types(self):
-        """
-        Get addable Content-Types.
-        """
-        context = self.context
-        parent = context.aq_parent
-        context_url = context.absolute_url()
-        parent_url = parent.absolute_url()
-        # Filter for Content-Types
-        title_filter = []
-        factories = api.content.get_view(
-            'plone.contentmenu.factories',
-            self.context,
-            self.request,
-        )
-        addable_types = factories._addableTypesInContext(self.context)
-        data = []
-        for item in addable_types:
-            title = item.id
-            if title in title_filter:
-                pass
-            else:
-                url = context_url
-                try:
-                    if parent.default_page == context.id:
-                        url = parent_url
-                except AttributeError:
-                    pass
-                url = '{0}/++add++{1}'.format(url, title)
-                data.append({'title': get_translated(title, self), 'url': url})
-        return data
-
     def get_folder_contents_url(self):
         """
         Get URL to folder_contents.
@@ -318,11 +278,7 @@ class SidebarViewlet(ViewletBase):
         """
         Return the workflow state for the current context.
         """
-        context_state = getMultiAdapter(
-            (self.context, self.request),
-            name='plone_context_state',
-        )
-        return context_state.workflow_state()
+        return api.content.get_state(self.context, None)
 
     def get_workflow_actions(self):
         """
@@ -410,6 +366,7 @@ class SidebarViewlet(ViewletBase):
         """
         return api.portal.get_registry_record(
             'collective.sidebar.enable_cookies',
+            default=False,
         )
 
     def collapse_enabled(self):
@@ -418,6 +375,7 @@ class SidebarViewlet(ViewletBase):
         """
         return api.portal.get_registry_record(
             'collective.sidebar.enable_collapse',
+            default=False,
         )
 
     def get_section_state(self, section_name=''):
@@ -472,7 +430,7 @@ class SidebarViewlet(ViewletBase):
         results = factories_view.addable_types(include=include)
         results_with_icons = []
         for result in results:
-            result['icon'] = 'menu-item-icon glyphicon glyphicon-plus'
+            result['icon'] = 'menu-item-icon {0}'.format(self.icon('plus'))
             results_with_icons.append(result)
         results = results_with_icons
         constraints = ISelectableConstrainTypes(addContext, None)
@@ -492,7 +450,7 @@ class SidebarViewlet(ViewletBase):
                     ),
                     'action': url,
                     'selected': False,
-                    'icon': 'menu-item-icon glyphicon glyphicon-cog',
+                    'icon': 'menu-item-icon {0}'.format(self.icon('cog')),
                     'id': 'settings',
                     'extra': {
                         'id': 'plone-contentmenu-settings',
@@ -519,7 +477,7 @@ class SidebarViewlet(ViewletBase):
                 ),
                 'action': context.absolute_url() + '/@@folder_factories',
                 'selected': False,
-                'icon': 'menu-item-icon glyphicon glyphicon-cog',
+                'icon': 'menu-item-icon {0}'.format(self.icon('cog')),
                 'id': 'special',
                 'extra': {
                     'id': 'plone-contentmenu-add-to-default-page',
@@ -550,24 +508,22 @@ class SidebarViewlet(ViewletBase):
         else:
             return self.context.absolute_url() + '/select_default_page'
 
+    def icon(self, idx):
+        return get_icon(idx)
 
-def get_action_icon(id1):
+
+def get_action_icon(action_id):
     """
     Returns icons for action ids
     """
-    icon_map = {
-        'cut': 'glyphicon glyphicon-scissors',
-        'copy': 'glyphicon glyphicon-duplicate',
-        'paste': 'glyphicon glyphicon-open-file',
-        'delete': 'glyphicon glyphicon-trash',
-        'rename': 'glyphicon glyphicon-random',
-        'ical_import_enable': 'glyphicon glyphicon-calendar',
-        'ical_import_disable': 'glyphicon glyphicon-calendar',
-    }
-    if id1 and id1 in icon_map:
-        return icon_map[id1]
+    icon_list = (
+        'cut', 'copy', 'paste', 'delete', 'rename', 'ical_import_enable',
+        'ical_import_disable',)
+
+    if action_id and action_id in icon_list:
+        return get_icon(action_id)
     else:
-        return 'glyphicon glyphicon-star'
+        return get_icon('star')
 
 
 class SidebarAJAX(BrowserView):

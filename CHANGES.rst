@@ -2,10 +2,41 @@ Changelog
 =========
 
 
-1.0.0a10 (unreleased)
----------------------
+1.2.0b2 (unreleased)
+--------------------
 
 - Nothing changed yet.
+
+
+1.1.0b2 (2019-08-30)
+--------------------
+
+Added:
+
+- Added option to trigger the sidebar from left and right side of screen. #30
+  [netroxen
+
+
+1.0.0b1 (2019-08-14)
+--------------------
+
+- Crop utility functionality improved. #65
+  [sarnold]
+
+- Font pack now selectable in the sidebar settings. #69
+  [sarnold]
+
+- Plone toolbar removed from rendered DOM.
+  [netroxen]
+
+
+1.0.0a10 (2019-08-01)
+---------------------
+
+Added:
+
+- Added back button to empty folders. #58
+  [sarnold]
 
 
 1.0.0a9 (2019-05-24)
@@ -23,7 +54,7 @@ Changed:
 
 - Removed main_template override from package. #52
   [netroxen]
-  
+
 
 1.0.0a8 (2019-05-09)
 --------------------
