@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collective.sidebar import _
+from collective.sidebar.directives import AVATAR_KEY
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_icon
 from collective.sidebar.utils import get_user
@@ -17,6 +18,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
+from zope.dottedname.resolve import resolve
 
 import pkg_resources
 
@@ -56,15 +58,70 @@ class SidebarViewlet(ViewletBase):
         return sidebar_links
 
     def get_user_data(self):
+        """
+        Returns member data for the currently logged-in user.
+        Can also return custom member object data when toggling the,
+        memberareaCreationFlag option in the ZMI.
+        Note:
+            Custom avatar images are only used when marking a field with
+            the user_avatar directive in the Content-Type schema.
+        """
+        # Set Defaults
         user = get_user()
-        mtool = api.portal.get_tool('portal_membership')
-        portrait = mtool.getPersonalPortrait(id=user[1])
-        user_info = mtool.getMemberInfo(user[1])
+        portal = api.portal.get()
         portal_url = self.get_portal_url()
+        mtool = api.portal.get_tool('portal_membership')
+        dxtool = api.portal.get_tool('portal_types')
+        # Get Default Portrait
+        portrait = mtool.getPersonalPortrait(id=user[1])
+        # Set Default User-Variables
+        user_info = mtool.getMemberInfo(user[1])
+        user_avatar = portrait.absolute_url()
+        user_url = portal_url + '/@@personal-information'
+        # When Custom Member-Creation is Active
+        if mtool.memberareaCreationFlag:
+            # Get Dexterity Type
+            user_dx = dxtool.get(mtool.memberarea_type)
+            custom_schema = user_dx.schema
+            if custom_schema:
+                # Get Dexterity-Schema Interface
+                user_dx_iface = resolve(custom_schema)
+                # Get Marked-Fields from Metadata
+                avatar_fields = user_dx_iface.queryTaggedValue(AVATAR_KEY)
+                avatar_field = None
+                if avatar_fields:
+                    avatar_field = avatar_fields[0][1]
+                if avatar_field:
+                    # Get User-View and Fetch Image
+                    users = api.content.find(
+                        portal_type=mtool.memberarea_type,
+                        context=portal.get(mtool.membersfolder_id),
+                        id=user[1],
+                    )
+                    if users:
+                        images_view = api.content.get_view(
+                            'images',
+                            users[0].getObject(),
+                            self.request,
+                        )
+                        scale = images_view.scale(
+                            avatar_field,
+                            width=256,
+                            height=256,
+                            direction='down',
+                        )
+                        user_avatar = scale.url
+            # Set User-Profile URL
+            user_url = '{0}/{1}/{2}'.format(
+                portal_url,
+                mtool.membersfolder_id,
+                user_info.get('username', ''),
+            )
+        # Concatenate the Data Together
         data = {
             'user_info': user_info,
-            'portrait': portrait.absolute_url(),
-            'user_url': portal_url + '/@@personal-information',
+            'user_avatar': user_avatar,
+            'user_url': user_url,
         }
         return data
 
