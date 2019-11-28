@@ -2,10 +2,13 @@ Changelog
 =========
 
 
-1.2.0b2 (unreleased)
+1.2.0 (unreleased)
 --------------------
 
-- Nothing changed yet.
+Added:
+
+- Added checks to respect global navigation settings #71
+  [santonelli]
 
 
 1.1.0b2 (2019-08-30)
@@ -14,11 +17,13 @@ Changelog
 Added:
 
 - Added option to trigger the sidebar from left and right side of screen. #30
-  [netroxen
+  [netroxen]
 
 
 1.0.0b1 (2019-08-14)
 --------------------
+
+Changed:
 
 - Crop utility functionality improved. #65
   [sarnold]
