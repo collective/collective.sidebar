@@ -122,15 +122,41 @@ class SidebarViewlet(ViewletBase):
             return True
         return False
 
+    def check_displayed_types(self, item):
+        """
+        Check settings if content type should be displayed in navigation.
+        """
+        types = api.portal.get_registry_record(name='plone.displayed_types')
+        if item.portal_type not in types:
+            return True
+
+    def check_filter_on_workflow(self, item):
+        """
+        Check workflow settings if item should be displayed in navigation.
+        """
+        filter = api.portal.get_registry_record(
+            name='plone.filter_on_workflow',
+        )
+        states = api.portal.get_registry_record(
+            name='plone.workflow_states_to_show',
+        )
+        if filter:
+            state = api.content.get_state(obj=item.getObject())
+            if state not in states:
+                return True
+
     def check_item(self, item):
         """
         Check if we want to have the given item in the navigation.
         """
-        context = self.context
+        if self.check_displayed_types(item):
+            return False
+        if self.check_filter_on_workflow(item):
+            return False
         if item.exclude_from_nav:
             return False
         try:
-            if context.default_page == item.id:
+            if self.context.default_page == item.id:
                 return False
         except AttributeError:
             pass
