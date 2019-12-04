@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='collective.sidebar',
-    version='1.2.0',
+    version='1.3.0.dev0',
     description="A sidebar for Plone to consolidate toolbar and navigation.",
     long_description=long_description,
     classifiers=[
