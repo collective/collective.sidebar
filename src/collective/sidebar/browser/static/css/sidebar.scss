@@ -98,6 +98,7 @@ body {
   top: 0;
   visibility: hidden;
   z-index: 999;
+  font-size: 14px;
 
   &.sidebar-left {
     left: 0;
@@ -158,8 +159,12 @@ body {
       text-decoration: none;
     }
 
+    #sidebar-section-profile {
+      margin-bottom: 30px;
+    }
+
     .menu-section {
-      margin-bottom: 15px;
+      margin-bottom: 5px;
 
       .menu-profile {
         .profile-image {
@@ -168,7 +173,7 @@ body {
           background-size: cover;
           border-radius: 50%;
           height: 80px;
-          margin: 0 auto 30px auto;
+          margin: 0 auto 15px auto;
           opacity: 1;
           overflow: hidden;
           transition: opacity 150ms ease-in-out;
@@ -198,7 +203,7 @@ body {
       .menu-section-title {
         font-size: 20px;
         font-weight: 200;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         position: relative;
         text-transform: uppercase;
         cursor: pointer;
@@ -209,7 +214,6 @@ body {
         margin-left: 30px;
         position: relative;
         top: -2px;
-        width: 180px;
       }
 
       .menu-item-icon {
