@@ -98,18 +98,8 @@
           </span>
         </div>
 
-        <div class="menu-section-content">
-          <tal:item tal:condition="back">
-            <a class="sidebar-back" href="#" tal:attributes="href back">
-              <span class="menu-item-icon ${python:view.icon('menu-left')}"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
-            </a>
-          </tal:item>
-
-          <tal:items tal:repeat="item items">
-            <a href="#" tal:attributes="title item/title; href item/url;">
-              <span class="menu-item-icon ${python:view.icon('menu-right')}"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
-            </a>
-          </tal:items>
+        <div id="navigation-wrapper">
+          <tal:navigation replace="structure context/@@navigation"/>
         </div>
 
       </div>

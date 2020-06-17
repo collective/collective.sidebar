@@ -151,6 +151,14 @@ icon_dict = {
         'Font Awesome Light': 'fal fa-angle-right',
         'Font Awesome Duotone': 'fad fa-angle-right',
     },
+    'menu-show': {
+        'Glyphicons': 'glyphicon glyphicon-triangle-right',
+        'Fontello': 'icon right-open',
+        'Font Awesome': 'fas fa-angle-double-right',
+        'Font Awesome Pro': 'far fa-angle-double-right',
+        'Font Awesome Light': 'fal fa-angle-double-right',
+        'Font Awesome Duotone': 'fad fa-angle-double-right',
+    },
     'cog': {
         'Glyphicons': 'glyphicon glyphicon-cog',
         'Fontello': 'icon cog',

@@ -16,6 +16,14 @@
       name="collective.sidebar"
       />
 
+  <browser:page
+      for="*"
+      name="navigation"
+      class=".sidebar.NavigationView"
+      permission="zope2.View"
+      layer="collective.sidebar.interfaces.ICollectiveSidebarLayer"
+      />
+
   <browser:viewlet
       name="sidebar"
       manager="plone.app.layout.viewlets.interfaces.IMainNavigation"

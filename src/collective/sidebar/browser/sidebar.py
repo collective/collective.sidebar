@@ -21,6 +21,128 @@ from zope.component import queryMultiAdapter
 import pkg_resources
 
 
+class NavigationView(BrowserView):
+
+    template = ViewPageTemplateFile('templates/navigation.pt')
+
+    def __call__(self):
+        return self.template()
+
+    def check_displayed_types(self, item):
+        """
+        Check settings if content type should be displayed in navigation.
+        """
+        types = api.portal.get_registry_record(name='plone.displayed_types')
+        if item.portal_type not in types:
+            return True
+
+    def check_filter_on_workflow(self, item):
+        """
+        Check workflow settings if item should be displayed in navigation.
+        """
+        filter = api.portal.get_registry_record(
+            name='plone.filter_on_workflow',
+        )
+        states = api.portal.get_registry_record(
+            name='plone.workflow_states_to_show',
+        )
+        if filter:
+            state = api.content.get_state(obj=item.getObject())
+            if state not in states:
+                return True
+
+    def check_item(self, item):
+        """
+        Check if we want to have the given item in the navigation.
+        """
+        if self.check_displayed_types(item):
+            return False
+        if self.check_filter_on_workflow(item):
+            return False
+        if item.exclude_from_nav:
+            return False
+        try:
+            if self.context.default_page == item.id:
+                return False
+        except AttributeError:
+            pass
+        return True
+
+    def icon(self, idx):
+        return get_icon(idx)
+
+    def get_back(self):
+        """
+        Get link to parent.
+        """
+        context = self.context
+        portal = api.portal.get()
+        parent = context.aq_parent
+        root_nav = api.portal.get_registry_record(
+            name='collective.sidebar.root_nav',
+            default=False,
+        )
+        if context == portal or context.portal_type == 'LRF' or root_nav:
+            return None
+        try:
+            if parent.default_page == context.id:
+                if parent == api.portal.get_navigation_root(context):
+                    return None
+                return parent.aq_parent.absolute_url()
+        except AttributeError:
+            pass
+        return parent.absolute_url()
+
+    def get_show(self):
+        """
+        Get link to current folder.
+        """
+        if self.get_back() and IFolderish.providedBy(self.context):
+            data = {
+                'title': self.context.Title(),
+                'title_cropped': crop(self.context.Title(), 100),
+                'url': self.context.absolute_url(),
+                'type': 'link-folder',
+            }
+            return data
+
+    def get_items(self):
+        """
+        Get folder contents and return.
+        """
+        context = self.context
+        root_nav = api.portal.get_registry_record(
+            name='collective.sidebar.root_nav',
+            default=False,
+        )
+        if root_nav:
+            context = api.portal.get_navigation_root(context)
+        contents = []
+        if IFolderish.providedBy(context):
+            contents = context.getFolderContents()
+        else:
+            try:
+                parent = context.aq_parent
+                contents = parent.getFolderContents()
+            except Exception:
+                pass
+        items = []
+        for item in contents:
+            if self.check_item(item):
+                item_type = 'link-item'
+                if item.is_folderish:
+                    item_type = 'link-folder'
+                data = {
+                    'title': item.Title,
+                    'title_cropped': crop(item.Title, 100),
+                    'url': item.getURL(),
+                    'type': item_type,
+                }
+                items.append(data)
+        return items
+
+
+
 class SidebarViewlet(ViewletBase):
     index = ViewPageTemplateFile('templates/sidebar.pt')
 
