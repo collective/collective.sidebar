@@ -603,6 +603,20 @@ class SidebarViewlet(ViewletBase):
         return get_icon(idx)
 
 
+    def get_navigation_class(self):
+        """
+        Check if dynamic navigation is enabled
+        """
+        dynamic = api.portal.get_registry_record(
+            name='collective.sidebar.dynamic_navigation',
+            default=False,
+        )
+        if dynamic:
+            return 'navigation-dynamic'
+        else:
+            return 'navigation-static'
+
+
 def get_action_icon(action_id):
     """
     Returns icons for action ids

@@ -109,13 +109,16 @@
       $('body').attr('data-with-sidebar', '');
     });
 
-  });
+    if($('.navigation-dynamic').length){
 
-  $(document).on('click', '.link-folder', function(e){
-    e.preventDefault();
-    var target = $(this).attr('href')+'/@@navigation .menu-section-content';
-    $('#navigation-wrapper').load(target);
+      $(document).on('click', '.link-folder', function(e){
+        e.preventDefault();
+        var target = $(this).attr('href')+'/@@navigation .menu-section-content';
+        $('#navigation-wrapper').load(target);
+      });  
+    
+    }
+  
   });
-
 
 })(jQuery); // End of use strict

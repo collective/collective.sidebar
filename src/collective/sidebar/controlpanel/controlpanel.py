@@ -26,6 +26,19 @@ class IControlPanel(Interface):
         required=False,
         default=False,
     )
+    
+    dynamic_navigation = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_dynamic_navigation_title',
+            default='Enable dynamic Navigation',
+        ),
+        description=_(
+            u'controlpanel_sidebar_dynamic_navigation_description',
+            default=(u'Enable dynamic navigation inside sidebar.'),
+        ),
+        required=False,
+        default=True,
+    )
 
     enable_actions = schema.Bool(
         title=_(

@@ -98,7 +98,7 @@
           </span>
         </div>
 
-        <div id="navigation-wrapper">
+        <div id="navigation-wrapper" class="navigation-static" tal:attributes="class view/get_navigation_class">
           <tal:navigation replace="structure context/@@navigation"/>
         </div>
 
@@ -288,13 +288,8 @@
         var search_construct = '${searchpath}' + search_val;
         $('#menu-search').attr('action', search_construct);
       });
-
     </script>
 
   </nav>
-
-  <tal:condition tal:condition="can_collapse">
-    <script src="++resource++collective.sidebar/sidebar.collapse.min.js" charset="utf-8"></script>
-  </tal:condition>
 
 </tal:define>
