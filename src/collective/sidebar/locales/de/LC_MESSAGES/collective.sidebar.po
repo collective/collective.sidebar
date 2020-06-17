@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-08-30 11:43+0000\n"
+"POT-Creation-Date: 2020-06-17 22:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,11 +54,6 @@ msgstr "Abmelden"
 msgid "Uninstalls the collective.sidebar add-on."
 msgstr "Deinstalliert die Sidebar-Erweiterung"
 
-#. Default: "Back"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "back"
-msgstr "Zurück"
-
 #. Default: "Left"
 #: collective/sidebar/controlpanel/config.py
 msgid "choice_left"
@@ -79,7 +74,7 @@ msgstr "Collective Sidebar"
 msgid "contents"
 msgstr "Inhalte"
 
-#. Default: "When a different icon font is installed, you can tell the sidebar to use it. For Fontello we assume you've set \"icon\" as the font prefix. Note: This does not install the icon font!"
+#. Default: "When a different icon font is installed, you can tell the sidebar to use it. For Fontello we assume you have set \"icon\" as the font prefix. Note: This does not install the icon font!"
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_choose_icon_font_description"
 msgstr "Wenn Sie eine andere Icon Font installiert haben, kann diese hier eingestellt werden, damit Sidebar sie nutzt. Für Fontello nehmen wir \"icon\" als font name an. Achtung: Diese Einstellung installiert keine Icon Schriftarten!"
@@ -88,6 +83,16 @@ msgstr "Wenn Sie eine andere Icon Font installiert haben, kann diese hier einges
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_choose_icon_font_title"
 msgstr "Icon Font wählen"
+
+#. Default: "Enable dynamic navigation inside sidebar."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_dynamic_navigation_description"
+msgstr "Aktivieren für eine dynamische Navigation innerhalb der Sidebar."
+
+#. Default: "Enable dynamic Navigation"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_dynamic_navigation_title"
+msgstr "Dynamische Navigation aktivieren"
 
 #. Default: "When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled."
 #: collective/sidebar/controlpanel/controlpanel.py
