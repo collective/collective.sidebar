@@ -5,6 +5,7 @@ from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_icon
 from collective.sidebar.utils import get_user
 from plone import api
+from plone.api.exc import InvalidParameterError
 from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.protect.utils import addTokenToUrl
@@ -387,7 +388,7 @@ class SidebarViewlet(ViewletBase):
         )
         if locking_info and locking_info.is_locked_for_current_user():
             return []
-        wf_tool = api.get_tool('portal_workflow')
+        wf_tool = api.portal.get_tool('portal_workflow')
         workflowActions = wf_tool.listActionInfos(object=context)
         for action in workflowActions:
             if action['category'] != 'workflow':
@@ -420,7 +421,12 @@ class SidebarViewlet(ViewletBase):
                     'submenu': None,
                 })
         url = context.absolute_url()
-        pw = api.get_tool('portal_placeful_workflow')
+
+        try:
+            pw = api.portal.get_tool('portal_placeful_workflow')
+        except InvalidParameterError:
+            pw = None
+
         if pw is not None:
             permission = 'ManageWorkflowPolicies'
             if api.user.has_permission(permission, obj=self.context):
