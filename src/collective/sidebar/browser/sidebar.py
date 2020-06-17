@@ -9,8 +9,6 @@ from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.protect.utils import addTokenToUrl
 from Products.CMFCore.interfaces import IFolderish
-from Products.CMFCore.utils import _checkPermission
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.Five import BrowserView
@@ -140,7 +138,6 @@ class NavigationView(BrowserView):
                 }
                 items.append(data)
         return items
-
 
 
 class SidebarViewlet(ViewletBase):
@@ -390,7 +387,7 @@ class SidebarViewlet(ViewletBase):
         )
         if locking_info and locking_info.is_locked_for_current_user():
             return []
-        wf_tool = getToolByName(context, 'portal_workflow')
+        wf_tool = api.get_tool('portal_workflow')
         workflowActions = wf_tool.listActionInfos(object=context)
         for action in workflowActions:
             if action['category'] != 'workflow':
@@ -423,9 +420,10 @@ class SidebarViewlet(ViewletBase):
                     'submenu': None,
                 })
         url = context.absolute_url()
-        pw = getToolByName(context, 'portal_placeful_workflow', None)
+        pw = api.get_tool('portal_placeful_workflow')
         if pw is not None:
-            if _checkPermission(ManageWorkflowPolicies, context):
+            permission = 'ManageWorkflowPolicies'
+            if api.user.has_permission(permission, obj=self.context):
                 results.append({
                     'title': _(u'workflow_policy', default=u'Policy...'),
                     'description': '',
@@ -602,7 +600,6 @@ class SidebarViewlet(ViewletBase):
     def icon(self, idx):
         return get_icon(idx)
 
-
     def get_navigation_class(self):
         """
         Check if dynamic navigation is enabled
@@ -622,8 +619,14 @@ def get_action_icon(action_id):
     Returns icons for action ids
     """
     icon_list = (
-        'cut', 'copy', 'paste', 'delete', 'rename', 'ical_import_enable',
-        'ical_import_disable',)
+        'cut',
+        'copy',
+        'paste',
+        'delete',
+        'rename',
+        'ical_import_enable',
+        'ical_import_disable',
+    )
 
     if action_id and action_id in icon_list:
         return get_icon(action_id)
