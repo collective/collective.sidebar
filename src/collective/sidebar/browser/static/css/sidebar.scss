@@ -1,36 +1,3 @@
-/* Screen Sizes */
-$screen-xxxs-max: 319px;
-$screen-xxs-min: 320px;
-$screen-xxs-max: 479px;
-$screen-xs-min: 480px;
-$screen-xs-max: 767px;
-$screen-sm-min: 768px;
-$screen-sm-max: 991px;
-$screen-md-min: 992px;
-$screen-md-max: 1199px;
-$screen-lg-min: 1200px;
-
-// Default Colors
-$sidebar-black: #2F3334;
-$sidebar-white: #FAFAFA;
-$sidebar-smoke: #F1F1F1;
-
-.without-state-color {
-  color: #000000 !important;
-}
-
-.sidebar-black {
-  color: $sidebar-black;
-}
-
-.sidebar-white {
-  color: $sidebar-white;
-}
-
-.sidebar-smoke {
-  color: $sidebar-smoke;
-}
-
 /* Vendor */
 @mixin vendor($property, $value) {
      -moz-#{$property}: $value;
@@ -40,7 +7,6 @@ $sidebar-smoke: #F1F1F1;
           #{$property}: $value;
 }
 
-/* General */
 body {
   overflow-x: hidden;
 
@@ -67,44 +33,18 @@ body {
   }
 }
 
-.userrole-authenticated {
-  #portal-navigation {
-    .menu {
-      .menu-section {
-        .section-handle {
-          font-size: 10px;
-          padding: 5px;
-          margin-right: 10px;
-          vertical-align: text-bottom;
-          display: inline-block;
-          border-radius: 4px;
-        }
-
-        .menu-section-content, .section-up {display: inline-block}
-        .section-down {display: none}
-
-        &.collapsed {
-          .menu-section-content, .section-up {display: none}
-          .section-down {display: inline-block}
-        }
-      }
-    }
-  }
-}
-
 #portal-navigation {
   height: 100vh;
   position: fixed;
   top: 0;
   visibility: hidden;
   z-index: 999;
-  font-size: 14px;
 
   &.sidebar-left {
     left: 0;
 
     .menu {
-      transform: translate3d(-250px, 0, 0);
+      transform: translate3d(-300px, 0, 0);
     }
   }
 
@@ -112,7 +52,7 @@ body {
     right: 0;
 
     .menu {
-      transform: translate3d(250px, 0, 0);
+      transform: translate3d(300px, 0, 0);
     }
   }
 
@@ -134,39 +74,29 @@ body {
   }
 
   .menu {
-    background-color: $sidebar-white;
+    background-color: #FAFAFA;
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
     padding: 30px;
     position: relative;
-    width: 250px;
+    width: 300px;
     will-change: transform;
     z-index: 90;
+    line-height: 1;
 
     @include vendor(transition, all 0.6s ease);
 
-    a,
-    a:hover,
-    a:focus,
-    a:active,
-    a:visited {
-      color: $sidebar-black;
-      display: block;
-      font-weight: 400;
-      margin-bottom: 15px;
-      min-height: 30px;
-      text-decoration: none;
-    }
 
     #sidebar-section-profile {
       margin-bottom: 30px;
     }
 
     .menu-section {
-      margin-bottom: 5px;
+      margin-bottom: 25px;
 
       .menu-profile {
+
         .profile-image {
           background-position: center;
           background-repeat: no-repeat;
@@ -184,9 +114,9 @@ body {
           text-align: center;
 
           .profile-name {
-            background-color: $sidebar-smoke;
+            background-color: #F1F1F1;
             border-radius: 8px;
-            color: $sidebar-black;
+            color: #2F3334;
             font-size: 18px;
             font-weight: 300;
             padding: 4px;
@@ -200,8 +130,21 @@ body {
         }
       }
 
+      a,
+      a:hover,
+      a:focus,
+      a:active,
+      a:visited {
+        color: #2F3334;
+        display: block;
+        font-weight: 400;
+        margin-bottom: 10px;
+        min-height: 30px;
+        text-decoration: none;
+      }  
+
       .menu-section-title {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 200;
         margin-bottom: 20px;
         position: relative;
@@ -209,20 +152,53 @@ body {
         cursor: pointer;
       }
 
+      .menu-section-content {
+        padding-left: 2px
+      }
+
       .menu-item-title {
         display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;      
         margin-left: 30px;
+        padding-bottom: 3px;
         position: relative;
-        top: -2px;
       }
 
       .menu-item-icon {
-        background-position: left;
         display: block;
         float: left;
         height: 100%;
         text-align: left;
         width: 30px;
+      }
+
+      .menu-search-input {
+        width: 100%;
+      }
+
+    }
+  }
+}
+
+.userrole-authenticated {
+  #portal-navigation {
+    .menu {
+      .menu-section {
+        .section-handle {
+          font-size: 10px;
+          padding: 5px;
+          position: relative;
+          top: -2px;
+        }
+
+        .section-down {display: none}
+
+        &.collapsed {
+          .menu-section-content, .section-up {display: none}
+          .section-down {display: inline-block}
+        }
       }
     }
   }
@@ -240,7 +216,7 @@ body[data-with-sidebar='true'],
 }
 
 #portal-navigation-cover {
-  background: $sidebar-black;
+  background: #2F3334;
   height: 100%;
   left: 0;
   opacity: 0;
@@ -266,3 +242,4 @@ body[data-with-sidebar='true'],
     visibility: visible;
   }
 }
+
