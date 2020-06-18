@@ -1,8 +1,1 @@
-<!-- Sidebar Updater -->
-<script type="text/javascript" src="++resource++collective.sidebar/mockup-patterns-structureupdater.min.js"></script>
-
-<!-- Sidebar -->
-<link rel="stylesheet" href="++resource++collective.sidebar/css/sidebar.min.css">
-<script type="text/javascript" src="++resource++collective.sidebar/js/sidebar.min.js"></script>
-
 <div id="portal-navigation-cover"></div>
