@@ -5,8 +5,30 @@ Changelog
 1.3.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+Added:
 
+- Added dynamic navigation inside sidebar #27
+  [santonelli]
+
+Changed:
+
+- Changed to use npm scripts to compile SCSS and JS.
+  [santonelli]
+
+- Reduced font size and margings.
+  [santonelli]
+
+- Changed to activate all features (collapsible secitons) by default.
+  [santonelli]
+
+- Code cleanup to respekt flake8.
+  [santonelli]
+
+Bugfixes:
+
+- Hide upgrade steps from installer.
+  [santonelli]
+  
 
 1.2.0 (2019-12-04)
 ------------------

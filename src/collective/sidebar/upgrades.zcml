@@ -12,6 +12,14 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+  <genericsetup:registerProfile
+    name="to_1300"
+    title="Upgrade profile for collective.sidebar 1001 to 1300"
+    directory="profiles/to_1300"
+    description=""
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
 <!-- Upgrade Step for 1.0.0a10 -->
 
   <genericsetup:upgradeStep
@@ -21,6 +29,15 @@
     title="Remove Sidebar Bundles / Resources"
     description="Remove Sidebar Bundles / Resources"
     handler="collective.sidebar.upgrades.to_1001"
+    />
+
+  <genericsetup:upgradeStep
+    profile="profile-collective.sidebar:default"
+    source="1001"
+    destination="1300"
+    title="Add registry settings"
+    description="Add registry settings"
+    handler="collective.sidebar.upgrades.to_1300"
     />
 
 </configure>

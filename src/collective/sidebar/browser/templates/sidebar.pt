@@ -7,6 +7,8 @@
                         collapsible view/collapse_enabled;
                         can_collapse python:cookies and collapsible and not anonymous">
 
+  <div id="portal-navigation-cover"></div>
+
   <nav id="portal-navigation"
        tal:define="items view/get_items;
                    back view/get_back;
@@ -98,18 +100,8 @@
           </span>
         </div>
 
-        <div class="menu-section-content">
-          <tal:item tal:condition="back">
-            <a class="sidebar-back" href="#" tal:attributes="href back">
-              <span class="menu-item-icon ${python:view.icon('menu-left')}"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
-            </a>
-          </tal:item>
-
-          <tal:items tal:repeat="item items">
-            <a href="#" tal:attributes="title item/title; href item/url;">
-              <span class="menu-item-icon ${python:view.icon('menu-right')}"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
-            </a>
-          </tal:items>
+        <div id="navigation-wrapper" class="navigation-static" tal:attributes="class view/get_navigation_class">
+          <tal:navigation replace="structure context/@@navigation"/>
         </div>
 
       </div>
@@ -298,13 +290,8 @@
         var search_construct = '${searchpath}' + search_val;
         $('#menu-search').attr('action', search_construct);
       });
-
     </script>
 
   </nav>
-
-  <tal:condition tal:condition="can_collapse">
-    <script src="++resource++collective.sidebar/sidebar.collapse.min.js" charset="utf-8"></script>
-  </tal:condition>
 
 </tal:define>

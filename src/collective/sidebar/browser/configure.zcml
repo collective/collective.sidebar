@@ -16,19 +16,19 @@
       name="collective.sidebar"
       />
 
+  <browser:page
+      for="*"
+      name="navigation"
+      class=".sidebar.NavigationView"
+      permission="zope2.View"
+      layer="collective.sidebar.interfaces.ICollectiveSidebarLayer"
+      />
+
   <browser:viewlet
       name="sidebar"
       manager="plone.app.layout.viewlets.interfaces.IMainNavigation"
       layer="collective.sidebar.interfaces.ICollectiveSidebarLayer"
       class=".sidebar.SidebarViewlet"
-      permission="zope2.View"
-      />
-
-  <browser:viewlet
-      name="cover"
-      manager="plone.app.layout.viewlets.interfaces.IPortalTop"
-      layer="collective.sidebar.interfaces.ICollectiveSidebarLayer"
-      class=".sidebar.CoverViewlet"
       permission="zope2.View"
       />
 

@@ -1,0 +1,21 @@
+<div class="menu-section-content" tal:define="items view/get_items; back view/get_back; show view/get_show;">
+
+  <tal:item tal:condition="back">
+    <a class="link-back link-folder" href="#" tal:attributes="href back">
+      <span class="menu-item-icon ${python:view.icon('menu-left')}"></span> <span class="menu-item-title" i18n:translate="back">Back</span>
+    </a>
+  </tal:item>
+
+  <tal:item tal:condition="show" tal:define="item show">
+    <a class="link-show link-item" href="#" tal:attributes="title item/title; href item/url;">
+      <span class="menu-item-icon ${python:view.icon('menu-right')}"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
+    </a>
+  </tal:item>
+
+  <tal:items tal:repeat="item items">
+    <a class="" href="#" tal:attributes="title item/title; href item/url; class item/type;">
+      <span class="menu-item-icon ${python:view.icon('menu-right')}"></span> <span class="menu-item-title" tal:content="item/title_cropped"></span>
+    </a>
+  </tal:items>
+
+</div>

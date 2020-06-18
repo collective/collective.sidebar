@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-08-30 11:43+0000\n"
+"POT-Creation-Date: 2020-06-17 22:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,11 +57,6 @@ msgstr ""
 msgid "Uninstalls the collective.sidebar add-on."
 msgstr ""
 
-#. Default: "Back"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "back"
-msgstr ""
-
 #. Default: "Left"
 #: collective/sidebar/controlpanel/config.py
 msgid "choice_left"
@@ -82,7 +77,7 @@ msgstr ""
 msgid "contents"
 msgstr ""
 
-#. Default: "When a different icon font is installed, you can tell the sidebar to use it. For Fontello we assume you've set \"icon\" as the font prefix. Note: This does not install the icon font!"
+#. Default: "When a different icon font is installed, you can tell the sidebar to use it. For Fontello we assume you have set \"icon\" as the font prefix. Note: This does not install the icon font!"
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_choose_icon_font_description"
 msgstr ""
@@ -90,6 +85,16 @@ msgstr ""
 #. Default: "Choose Icon Font"
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_choose_icon_font_title"
+msgstr ""
+
+#. Default: "Enable dynamic navigation inside sidebar."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_dynamic_navigation_description"
+msgstr ""
+
+#. Default: "Enable dynamic Navigation"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_dynamic_navigation_title"
 msgstr ""
 
 #. Default: "When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled."

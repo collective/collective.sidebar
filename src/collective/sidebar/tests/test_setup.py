@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from plone import api
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from collective.sidebar.interfaces import ICollectiveSidebarLayer
 from collective.sidebar.testing import COLLECTIVE_SIDEBAR_INTEGRATION_TESTING  # noqa
+from plone.browserlayer import utils
+from Products.CMFPlone.utils import get_installer
 
 import unittest
 
@@ -16,21 +16,16 @@ class TestSetup(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.installer = get_installer(self.portal)
 
     def test_product_installed(self):
-        """Test if collective.sidebar is installed."""
-        self.assertTrue(self.installer.isProductInstalled(
+        """Test if plonetheme.siguv is installed."""
+        self.assertTrue(self.installer.is_product_installed(
             'collective.sidebar'))
 
     def test_browserlayer(self):
         """Test that ICollectiveSidebarLayer is registered."""
-        from collective.sidebar.interfaces import (
-            ICollectiveSidebarLayer)
-        from plone.browserlayer import utils
-        self.assertIn(
-            ICollectiveSidebarLayer,
-            utils.registered_layers())
+        self.assertIn(ICollectiveSidebarLayer, utils.registered_layers())
 
 
 class TestUninstall(unittest.TestCase):
@@ -38,23 +33,30 @@ class TestUninstall(unittest.TestCase):
     layer = COLLECTIVE_SIDEBAR_INTEGRATION_TESTING
 
     def setUp(self):
+        """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
-        roles_before = api.user.get_roles(TEST_USER_ID)
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.installer.uninstallProducts(['collective.sidebar'])
-        setRoles(self.portal, TEST_USER_ID, roles_before)
+        self.installer = get_installer(self.portal)
+
+    def test_product_installed(self):
+        """Test if plonetheme.siguv is installed."""
+        self.assertTrue(
+            self.installer.is_product_installed('collective.sidebar'))
+
+    def test_browserlayer(self):
+        """Test that ICollectiveSidebarLayer is registered."""
+        self.assertIn(ICollectiveSidebarLayer, utils.registered_layers())
 
     def test_product_uninstalled(self):
-        """Test if collective.sidebar is cleanly uninstalled."""
-        self.assertFalse(self.installer.isProductInstalled(
-            'collective.sidebar'))
+        """Test if plonetheme.siguv is cleanly uninstalled."""
+        self.assertTrue(
+            self.installer.is_product_installed('collective.sidebar'))
+        self.installer.uninstall_product('collective.sidebar')
+        self.assertFalse(
+            self.installer.is_product_installed('collective.sidebar'))
 
     def test_browserlayer_removed(self):
-        """Test that ICollectiveSidebarLayer is removed."""
-        from collective.sidebar.interfaces import \
-            ICollectiveSidebarLayer
-        from plone.browserlayer import utils
-        self.assertNotIn(
-            ICollectiveSidebarLayer,
-            utils.registered_layers())
+        """Test that IPlonethemeSiguvLayer is removed."""
+        self.assertTrue(
+            self.installer.is_product_installed('collective.sidebar'))
+        self.installer.uninstall_product('collective.sidebar')
+        self.assertNotIn(ICollectiveSidebarLayer, utils.registered_layers())

@@ -27,6 +27,19 @@ class IControlPanel(Interface):
         default=False,
     )
 
+    dynamic_navigation = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_dynamic_navigation_title',
+            default='Enable dynamic Navigation',
+        ),
+        description=_(
+            u'controlpanel_sidebar_dynamic_navigation_description',
+            default=(u'Enable dynamic navigation inside sidebar.'),
+        ),
+        required=False,
+        default=True,
+    )
+
     enable_actions = schema.Bool(
         title=_(
             u'controlpanel_sidebar_show_actions_title',
@@ -53,7 +66,7 @@ class IControlPanel(Interface):
             default=u'Enable cookies for sidebar features.',
         ),
         required=False,
-        default=False,
+        default=True,
     )
 
     enable_collapse = schema.Bool(
@@ -69,7 +82,7 @@ class IControlPanel(Interface):
             ),
         ),
         required=False,
-        default=False,
+        default=True,
     )
 
     icon_font = schema.Choice(
@@ -79,9 +92,9 @@ class IControlPanel(Interface):
             u'controlpanel_sidebar_choose_icon_font_description',
             default=(
                 u'When a different icon font is installed, you can tell the '
-                u'sidebar to use it. For Fontello we assume you\'ve set '
+                u'sidebar to use it. For Fontello we assume you have set '
                 u'\"icon\" as the font prefix. '
-                u'Note: This does not install the icon font!')
+                u'Note: This does not install the icon font!'),
         ),
         values=(
             'Glyphicons',
@@ -92,7 +105,7 @@ class IControlPanel(Interface):
             'Font Awesome Duotone',
         ),
         default='Glyphicons',
-        required=True
+        required=True,
     )
 
     sidebar_position = schema.Choice(

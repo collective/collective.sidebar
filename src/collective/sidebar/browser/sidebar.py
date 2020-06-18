@@ -5,12 +5,11 @@ from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_icon
 from collective.sidebar.utils import get_user
 from plone import api
+from plone.api.exc import InvalidParameterError
 from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.protect.utils import addTokenToUrl
 from Products.CMFCore.interfaces import IFolderish
-from Products.CMFCore.utils import _checkPermission
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.Five import BrowserView
@@ -19,6 +18,127 @@ from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
 
 import pkg_resources
+
+
+class NavigationView(BrowserView):
+
+    template = ViewPageTemplateFile('templates/navigation.pt')
+
+    def __call__(self):
+        return self.template()
+
+    def check_displayed_types(self, item):
+        """
+        Check settings if content type should be displayed in navigation.
+        """
+        types = api.portal.get_registry_record(name='plone.displayed_types')
+        if item.portal_type not in types:
+            return True
+
+    def check_filter_on_workflow(self, item):
+        """
+        Check workflow settings if item should be displayed in navigation.
+        """
+        filter = api.portal.get_registry_record(
+            name='plone.filter_on_workflow',
+        )
+        states = api.portal.get_registry_record(
+            name='plone.workflow_states_to_show',
+        )
+        if filter:
+            state = api.content.get_state(obj=item.getObject())
+            if state not in states:
+                return True
+
+    def check_item(self, item):
+        """
+        Check if we want to have the given item in the navigation.
+        """
+        if self.check_displayed_types(item):
+            return False
+        if self.check_filter_on_workflow(item):
+            return False
+        if item.exclude_from_nav:
+            return False
+        try:
+            if self.context.default_page == item.id:
+                return False
+        except AttributeError:
+            pass
+        return True
+
+    def icon(self, idx):
+        return get_icon(idx)
+
+    def get_back(self):
+        """
+        Get link to parent.
+        """
+        context = self.context
+        portal = api.portal.get()
+        parent = context.aq_parent
+        root_nav = api.portal.get_registry_record(
+            name='collective.sidebar.root_nav',
+            default=False,
+        )
+        if context == portal or context.portal_type == 'LRF' or root_nav:
+            return None
+        try:
+            if parent.default_page == context.id:
+                if parent == api.portal.get_navigation_root(context):
+                    return None
+                return parent.aq_parent.absolute_url()
+        except AttributeError:
+            pass
+        return parent.absolute_url()
+
+    def get_show(self):
+        """
+        Get link to current folder.
+        """
+        if self.get_back() and IFolderish.providedBy(self.context):
+            data = {
+                'title': self.context.Title(),
+                'title_cropped': crop(self.context.Title(), 100),
+                'url': self.context.absolute_url(),
+                'type': 'link-folder',
+            }
+            return data
+
+    def get_items(self):
+        """
+        Get folder contents and return.
+        """
+        context = self.context
+        root_nav = api.portal.get_registry_record(
+            name='collective.sidebar.root_nav',
+            default=False,
+        )
+        if root_nav:
+            context = api.portal.get_navigation_root(context)
+        contents = []
+        if IFolderish.providedBy(context):
+            contents = context.getFolderContents()
+        else:
+            try:
+                parent = context.aq_parent
+                contents = parent.getFolderContents()
+            except Exception:
+                pass
+        items = []
+        for item in contents:
+            if self.check_item(item):
+                item_type = 'link-item'
+                if item.is_folderish:
+                    item_type = 'link-folder'
+                data = {
+                    'title': item.Title,
+                    'title_cropped': crop(item.Title, 100),
+                    'url': item.getURL(),
+                    'type': item_type,
+                }
+                items.append(data)
+        return items
 
 
 class SidebarViewlet(ViewletBase):
@@ -268,7 +388,7 @@ class SidebarViewlet(ViewletBase):
         )
         if locking_info and locking_info.is_locked_for_current_user():
             return []
-        wf_tool = getToolByName(context, 'portal_workflow')
+        wf_tool = api.portal.get_tool('portal_workflow')
         workflowActions = wf_tool.listActionInfos(object=context)
         for action in workflowActions:
             if action['category'] != 'workflow':
@@ -301,9 +421,15 @@ class SidebarViewlet(ViewletBase):
                     'submenu': None,
                 })
         url = context.absolute_url()
-        pw = getToolByName(context, 'portal_placeful_workflow', None)
+
+        try:
+            pw = api.portal.get_tool('portal_placeful_workflow')
+        except InvalidParameterError:
+            pw = None
+
         if pw is not None:
-            if _checkPermission(ManageWorkflowPolicies, context):
+            permission = 'ManageWorkflowPolicies'
+            if api.user.has_permission(permission, obj=self.context):
                 results.append({
                     'title': _(u'workflow_policy', default=u'Policy...'),
                     'description': '',
@@ -376,10 +502,29 @@ class SidebarViewlet(ViewletBase):
             buttons = actions.get('object_buttons', list())
             for action in buttons:
                 if not action.get('icon', None):
-                    action.icon = get_action_icon(action.get('id', None))
+                    action.icon = self.get_action_icon(action.get('id', None))
                 if action.get('url', None):
                     action.url = addTokenToUrl(action.get('url'), self.request)
         return buttons
+
+    def get_action_icon(self, action_id):
+        """
+        Returns icons for action ids
+        """
+        icon_list = (
+            'cut',
+            'copy',
+            'paste',
+            'delete',
+            'rename',
+            'ical_import_enable',
+            'ical_import_disable',
+        )
+
+        if action_id and action_id in icon_list:
+            return get_icon(action_id)
+        else:
+            return get_icon('star')
 
     def get_addable_items(self):
         """
@@ -480,19 +625,18 @@ class SidebarViewlet(ViewletBase):
     def icon(self, idx):
         return get_icon(idx)
 
-
-def get_action_icon(action_id):
-    """
-    Returns icons for action ids
-    """
-    icon_list = (
-        'cut', 'copy', 'paste', 'delete', 'rename', 'ical_import_enable',
-        'ical_import_disable',)
-
-    if action_id and action_id in icon_list:
-        return get_icon(action_id)
-    else:
-        return get_icon('star')
+    def get_navigation_class(self):
+        """
+        Check if dynamic navigation is enabled
+        """
+        dynamic = api.portal.get_registry_record(
+            name='collective.sidebar.dynamic_navigation',
+            default=False,
+        )
+        if dynamic:
+            return 'navigation-dynamic'
+        else:
+            return 'navigation-static'
 
 
 class SidebarAJAX(BrowserView):
@@ -507,7 +651,3 @@ class SidebarAJAX(BrowserView):
     def render_viewlet(self, context, request):
         navigation = SidebarViewlet(context, request, None, None)
         return navigation.render()
-
-
-class CoverViewlet(SidebarViewlet):
-    index = ViewPageTemplateFile('templates/cover.pt')

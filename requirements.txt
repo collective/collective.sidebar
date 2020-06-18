@@ -1,2 +1,2 @@
-setuptools==38.2.4
-zc.buildout==2.10.0
+# keep Plone version in sync with buildout.cfg
+-r https://dist.plone.org/release/5.2.0/requirements.txt

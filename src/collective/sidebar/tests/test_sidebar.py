@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-from collective.sidebar.browser.sidebar import get_action_icon
 from collective.sidebar.browser.sidebar import SidebarViewlet
 from collective.sidebar.testing import COLLECTIVE_SIDEBAR_FUNCTIONAL_TESTING
 from plone import api
@@ -58,7 +56,7 @@ class TestSidebarFunctional(unittest.TestCase):
 
     def test_back_button(self):
         # Go to portal_root -> no back button
-        self.assertNotIn('<a class="sidebar-back"', self.viewlet(context=self.portal, request=self.request))  # noqa
+        self.assertNotIn('<a class="link-back link-folder"', self.viewlet(context=self.portal, request=self.request))  # noqa
 
         # Go to empty folder -> back button
         demo = api.content.create(
@@ -69,7 +67,7 @@ class TestSidebarFunctional(unittest.TestCase):
             description=u'Test',
         )
         # MR is up to fix this
-        self.assertIn('<a class="sidebar-back" href="http://nohost/plone">', self.viewlet(context=demo, request=self.request))   # noqa
+        self.assertIn('<a class="link-back link-folder" href="http://nohost/plone">', self.viewlet(context=demo, request=self.request))   # noqa
 
         # Go to filled folder -> back button
         link = api.content.create(
@@ -79,10 +77,10 @@ class TestSidebarFunctional(unittest.TestCase):
             title=u'Test',
             remoteUrl='${portal_url}/test_rendering',
         )
-        self.assertIn('<a class="sidebar-back" href="http://nohost/plone"', self.viewlet(context=demo, request=self.request))  # noqa
+        self.assertIn('<a class="link-back link-folder" href="http://nohost/plone"', self.viewlet(context=demo, request=self.request))  # noqa
 
         # Go to item in folder -> back button
-        self.assertIn('<a class="sidebar-back" href="http://nohost/plone/demo"', self.viewlet(context=link, request=self.request))  # noqa
+        self.assertIn('<a class="link-back link-folder" href="http://nohost/plone/demo"', self.viewlet(context=link, request=self.request))  # noqa
 
         # Go to default page on front page -> no back button
         page = api.content.create(
@@ -92,7 +90,7 @@ class TestSidebarFunctional(unittest.TestCase):
             title=u'Test Page',
         )
         self.portal.setDefaultPage('test-page')
-        self.assertNotIn('<a class="sidebar-back"', self.viewlet(context=page, request=self.request))  # noqa
+        self.assertNotIn('<a class="link-back link-folder"', self.viewlet(context=page, request=self.request))  # noqa
 
         # Go to default page on folder -> back button
         page2 = api.content.create(
@@ -102,7 +100,7 @@ class TestSidebarFunctional(unittest.TestCase):
             title=u'Test Page2',
         )
         demo.setDefaultPage('test-page2')
-        self.assertIn('<a class="sidebar-back" href="http://nohost/plone">', self.viewlet(context=page2, request=self.request))  # noqa
+        self.assertIn('<a class="link-back link-folder" href="http://nohost/plone">', self.viewlet(context=page2, request=self.request))  # noqa
 
     def test_content_can_be_added(self):
         demo = api.content.create(
@@ -232,7 +230,6 @@ class TestSidebarFunctional(unittest.TestCase):
         self.assertNotIn('<span class="menu-item-title">Item2</span>', v_portal)  # noqa
         self.assertNotIn('<span class="menu-item-title">Item3</span>', v_portal)  # noqa
 
-        self.assertNotIn('<span class="menu-item-title">Folder1</span>', v_folder1)  # noqa
         self.assertIn('<span class="menu-item-title">Folder2</span>', v_folder1)  # noqa
         self.assertIn('<span class="menu-item-title">Item1</span>', v_folder1)  # noqa
         self.assertIn('<span class="menu-item-title">Item2</span>', v_folder1)  # noqa
@@ -251,7 +248,6 @@ class TestSidebarFunctional(unittest.TestCase):
         self.assertNotIn('<span class="menu-item-title">Item3</span>', v_item2)  # noqa
 
         self.assertNotIn('<span class="menu-item-title">Folder1</span>', v_folder2)  # noqa
-        self.assertNotIn('<span class="menu-item-title">Folder2</span>', v_folder2)  # noqa
         self.assertNotIn('<span class="menu-item-title">Item1</span>', v_folder2)  # noqa
         self.assertNotIn('<span class="menu-item-title">Item2</span>', v_folder2)  # noqa
         self.assertIn('<span class="menu-item-title">Item3</span>', v_folder2)  # noqa
@@ -406,20 +402,6 @@ class TestSidebarFunctional(unittest.TestCase):
         v = self.viewlet(context=demo2, request=self.request)
         self.assertIn('<a href="http://nohost/plone/demo2/select_default_view" class="pat-plone-modal">', v)  # noqa
         self.assertIn('<a href="http://nohost/plone/demo2/select_default_page" class="pat-plone-modal">', v)  # noqa
-
-    def test_action_icon_map(self):
-        self.assertEqual(get_action_icon('cut'), 'glyphicon glyphicon-scissors')  # noqa
-        self.assertEqual(get_action_icon('copy'), 'glyphicon glyphicon-duplicate')  # noqa
-        self.assertEqual(get_action_icon('paste'), 'glyphicon glyphicon-open-file')  # noqa
-        self.assertEqual(get_action_icon('delete'), 'glyphicon glyphicon-trash')  # noqa
-        self.assertEqual(get_action_icon('rename'), 'glyphicon glyphicon-random')  # noqa
-        self.assertEqual(get_action_icon('ical_import_enable'), 'glyphicon glyphicon-calendar')  # noqa
-        self.assertEqual(get_action_icon('ical_import_disable'), 'glyphicon glyphicon-calendar')  # noqa
-        self.assertEqual(get_action_icon('not-defined'), 'glyphicon glyphicon-star')  # noqa
-        self.assertEqual(get_action_icon(None), 'glyphicon glyphicon-star')  # noqa
-        self.assertEqual(get_action_icon(-15), 'glyphicon glyphicon-star')  # noqa
-        self.assertEqual(get_action_icon(True), 'glyphicon glyphicon-star')  # noqa
-        self.assertEqual(get_action_icon(False), 'glyphicon glyphicon-star')  # noqa
 
     def test_sidebar_ajax(self):
         self.assertIsNone(self.nav_data_view(None))
