@@ -66,7 +66,7 @@ class IControlPanel(Interface):
             default=u'Enable cookies for sidebar features.',
         ),
         required=False,
-        default=False,
+        default=True,
     )
 
     enable_collapse = schema.Bool(
@@ -82,7 +82,7 @@ class IControlPanel(Interface):
             ),
         ),
         required=False,
-        default=False,
+        default=True,
     )
 
     icon_font = schema.Choice(
