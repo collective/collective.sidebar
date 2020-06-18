@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-from collective.sidebar.browser.sidebar import get_action_icon
 from collective.sidebar.browser.sidebar import SidebarViewlet
 from collective.sidebar.testing import COLLECTIVE_SIDEBAR_FUNCTIONAL_TESTING
 from plone import api
@@ -404,20 +402,6 @@ class TestSidebarFunctional(unittest.TestCase):
         v = self.viewlet(context=demo2, request=self.request)
         self.assertIn('<a href="http://nohost/plone/demo2/select_default_view" class="pat-plone-modal">', v)  # noqa
         self.assertIn('<a href="http://nohost/plone/demo2/select_default_page" class="pat-plone-modal">', v)  # noqa
-
-    def test_action_icon_map(self):
-        self.assertEqual(get_action_icon('cut'), 'glyphicon glyphicon-scissors')  # noqa
-        self.assertEqual(get_action_icon('copy'), 'glyphicon glyphicon-duplicate')  # noqa
-        self.assertEqual(get_action_icon('paste'), 'glyphicon glyphicon-open-file')  # noqa
-        self.assertEqual(get_action_icon('delete'), 'glyphicon glyphicon-trash')  # noqa
-        self.assertEqual(get_action_icon('rename'), 'glyphicon glyphicon-random')  # noqa
-        self.assertEqual(get_action_icon('ical_import_enable'), 'glyphicon glyphicon-calendar')  # noqa
-        self.assertEqual(get_action_icon('ical_import_disable'), 'glyphicon glyphicon-calendar')  # noqa
-        self.assertEqual(get_action_icon('not-defined'), 'glyphicon glyphicon-star')  # noqa
-        self.assertEqual(get_action_icon(None), 'glyphicon glyphicon-star')  # noqa
-        self.assertEqual(get_action_icon(-15), 'glyphicon glyphicon-star')  # noqa
-        self.assertEqual(get_action_icon(True), 'glyphicon glyphicon-star')  # noqa
-        self.assertEqual(get_action_icon(False), 'glyphicon glyphicon-star')  # noqa
 
     def test_sidebar_ajax(self):
         self.assertIsNone(self.nav_data_view(None))
