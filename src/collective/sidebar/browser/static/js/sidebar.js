@@ -114,7 +114,9 @@
       $(document).on('click', '.link-folder', function(e){
         e.preventDefault();
         var target = $(this).attr('href')+'/@@navigation .menu-section-content';
+        $('#navigation-wrapper').hide();
         $('#navigation-wrapper').load(target);
+        $('#navigation-wrapper').fadeIn('500');
       });  
     
     }
