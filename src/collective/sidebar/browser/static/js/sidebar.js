@@ -73,6 +73,18 @@
     };
   };
 
+  function showSidebar() {
+    //$('#portal-navigation-cover').addClass('active');
+    $('#portal-navigation-cover').fadeIn('500');
+    $('body').attr('data-with-sidebar', 'true');    
+  }
+
+  function hideSidebar() {
+    $('#portal-navigation-cover').fadeOut('500');
+    $('body').attr('data-with-sidebar', 'false');    
+  }
+
+
   $(document).ready(function () {
 
     // Burger Icon
@@ -81,16 +93,16 @@
     // Mouse
     $('body').mousemove(function (event) {
       var nav = $('#portal-navigation');
-      var offset = 10;
+      var offset = 30;
       if (nav.hasClass('sidebar-left')) {
         var nearby = nearTo(nav, offset, 'left', event);
         if (nearby) {
-          $('body').attr('data-with-sidebar', 'true');
+          showSidebar();
         };
       } else {
         var nearby = nearTo(nav, offset, 'right', event);
         if (nearby) {
-          $('body').attr('data-with-sidebar', 'true');
+          showSidebar();
         };
       };
     });
@@ -99,14 +111,14 @@
 
     $('#portaltab-burger-menu').click(function (e) {
       e.preventDefault();
-      $('body').attr('data-with-sidebar', 'true');
+      showSidebar();
     });
 
     // Sidebar Cover
 
     $('#portal-navigation-cover').click(function (e) {
       e.preventDefault();
-      $('body').attr('data-with-sidebar', '');
+      hideSidebar();
     });
 
     if($('.navigation-dynamic').length){

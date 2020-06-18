@@ -7,6 +7,8 @@
                         collapsible view/collapse_enabled;
                         can_collapse python:cookies and collapsible and not anonymous">
 
+  <div id="portal-navigation-cover"></div>
+
   <nav id="portal-navigation"
        tal:define="items view/get_items;
                    back view/get_back;

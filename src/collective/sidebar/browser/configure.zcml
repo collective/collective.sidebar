@@ -32,14 +32,6 @@
       permission="zope2.View"
       />
 
-  <browser:viewlet
-      name="cover"
-      manager="plone.app.layout.viewlets.interfaces.IPortalTop"
-      layer="collective.sidebar.interfaces.ICollectiveSidebarLayer"
-      class=".sidebar.CoverViewlet"
-      permission="zope2.View"
-      />
-
   <browser:viewletManager
       name="plone.toolbar"
       provides="plone.app.layout.viewlets.interfaces.IToolbar"

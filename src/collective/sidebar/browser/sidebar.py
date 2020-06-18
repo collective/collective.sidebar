@@ -651,7 +651,3 @@ class SidebarAJAX(BrowserView):
     def render_viewlet(self, context, request):
         navigation = SidebarViewlet(context, request, None, None)
         return navigation.render()
-
-
-class CoverViewlet(SidebarViewlet):
-    index = ViewPageTemplateFile('templates/cover.pt')
