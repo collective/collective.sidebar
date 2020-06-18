@@ -502,10 +502,29 @@ class SidebarViewlet(ViewletBase):
             buttons = actions.get('object_buttons', list())
             for action in buttons:
                 if not action.get('icon', None):
-                    action.icon = get_action_icon(action.get('id', None))
+                    action.icon = self.get_action_icon(action.get('id', None))
                 if action.get('url', None):
                     action.url = addTokenToUrl(action.get('url'), self.request)
         return buttons
+
+    def get_action_icon(self, action_id):
+        """
+        Returns icons for action ids
+        """
+        icon_list = (
+            'cut',
+            'copy',
+            'paste',
+            'delete',
+            'rename',
+            'ical_import_enable',
+            'ical_import_disable',
+        )
+
+        if action_id and action_id in icon_list:
+            return get_icon(action_id)
+        else:
+            return get_icon('star')
 
     def get_addable_items(self):
         """
@@ -618,26 +637,6 @@ class SidebarViewlet(ViewletBase):
             return 'navigation-dynamic'
         else:
             return 'navigation-static'
-
-
-def get_action_icon(action_id):
-    """
-    Returns icons for action ids
-    """
-    icon_list = (
-        'cut',
-        'copy',
-        'paste',
-        'delete',
-        'rename',
-        'ical_import_enable',
-        'ical_import_disable',
-    )
-
-    if action_id and action_id in icon_list:
-        return get_icon(action_id)
-    else:
-        return get_icon('star')
 
 
 class SidebarAJAX(BrowserView):
