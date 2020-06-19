@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from collective.sidebar import _
-from collective.sidebar.controlpanel.config import fontVocabulary
-from collective.sidebar.controlpanel.config import positionVocabulary
+from collective.sidebar.controlpanel.config import IconFontVocabulary
+from collective.sidebar.controlpanel.config import PositionVocabulary
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.z3cform import layout
@@ -97,8 +97,8 @@ class IControlPanel(Interface):
                 u'\"icon\" as the font prefix. '
                 u'Note: This does not install the icon font!'),
         ),
-        vocabulary=fontVocabulary,
-        default='Bootstrap',
+        vocabulary=IconFontVocabulary,
+        default='Glyphicons',
         required=True,
     )
 
@@ -111,7 +111,7 @@ class IControlPanel(Interface):
             u'controlpanel_sidebar_sidebar_position_description',
             default=u'Display the sidebar on the left or right.',
         ),
-        vocabulary=positionVocabulary,
+        vocabulary=PositionVocabulary,
         required=True,
         default='left',
     )

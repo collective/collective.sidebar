@@ -10,7 +10,7 @@ positionTerms = [
     SimpleTerm(value=u'right', title=_(u'choice_right', default=u'Right')),
 ]
 
-positionVocabulary = SimpleVocabulary(positionTerms)
+PositionVocabulary = SimpleVocabulary(positionTerms)
 
 
 fonts = [
@@ -23,4 +23,4 @@ fonts = [
     SimpleTerm(value=u'Font Awesome Duotone', title=u'Font Awesome Duotone'),
 ]
 
-fontVocabulary = SimpleVocabulary(fonts)
+IconFontVocabulary = SimpleVocabulary(fonts)
