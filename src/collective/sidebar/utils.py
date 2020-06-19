@@ -41,14 +41,19 @@ def get_icon(icon):
     )
 
     if icon in ICONS:
-        values = ICONS[icon]
-        if icon_font in values:
-            icon = values[icon_font]
+        icons_dict = ICONS[icon]
+        if icon_font in icons_dict:
+            # selected icon font is available
+            icon = icons_dict[icon_font]
         else:
             # selected icon font is not in our icon set
-            icon = 'bi bi-chevron-right'
+            icon = icons_dict['Glyphicons']
     else:
-        # requested icon is not in our icon set
-        icon = 'bi bi-chevron-right'
+        # icon is not in ICONS dict but we have a icon_font
+        icons_dict = ICONS['menu-right']
+        if icon_font in icons_dict:
+            icon = icons_dict[icon_font]
+        else:
+            icon = 'glyphicon glyphicon-menu-right'
 
     return icon
