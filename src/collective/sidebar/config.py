@@ -3,15 +3,6 @@
 package = 'collective.sidebar'
 
 ICONS = {
-    '__prefix__': {
-        'Bootstrap': 'bi',
-        'Glyphicons': 'glyphicon',
-        'Fontello': 'icon',
-        'Font Awesome': 'fas',
-        'Font Awesome Pro': 'far',
-        'Font Awesome Light': 'fal',
-        'Font Awesome Duotone': 'fad',
-    },
     'cut': {
         'Bootstrap': 'bi bi-file-minus',
         'Glyphicons': 'glyphicon glyphicon-scissors',
@@ -58,7 +49,7 @@ ICONS = {
         'Font Awesome Duotone': 'fad fa-random',
     },
     'ical_import_enable': {
-        'Bootstrap': '',
+        'Bootstrap': 'bi bi-calendar2-plus',
         'Glyphicons': 'glyphicon glyphicon-calendar',
         'Fontello': 'icon calendar',
         'Font Awesome': 'far fa-calendar',
@@ -67,7 +58,7 @@ ICONS = {
         'Font Awesome Duotone': 'fad fa-calendar',
     },
     'ical_import_disable': {
-        'Bootstrap': 'bi bi-calendar3',
+        'Bootstrap': 'bi bi-calendar2-minus',
         'Glyphicons': 'glyphicon glyphicon-calendar',
         'Fontello': 'icon calendar',
         'Font Awesome': 'far fa-calendar',
@@ -148,7 +139,7 @@ ICONS = {
         'Font Awesome Duotone': 'fad fa-eye',
     },
     'edit': {
-        'Bootstrap': 'bi pencil-square',
+        'Bootstrap': 'bi bi-pencil-square',
         'Glyphicons': 'glyphicon glyphicon-edit',
         'Fontello': 'icon edit',
         'Font Awesome': 'far fa-edit',
@@ -184,7 +175,7 @@ ICONS = {
         'Font Awesome Duotone': 'fad fa-user',
     },
     'share': {
-        'Bootstrap': 'bi bi-arrow-up-right-square',
+        'Bootstrap': 'bi bi-arrow-90deg-right',
         'Glyphicons': 'glyphicon glyphicon-user',
         'Fontello': 'icon share',
         'Font Awesome': 'fas fa-share-alt',
@@ -220,7 +211,7 @@ ICONS = {
         'Font Awesome Duotone': 'fad fa-toolbox',
     },
     'blackboard': {
-        'Bootstrap': 'bi bi-pip-fill',
+        'Bootstrap': 'bi bi-pip',
         'Glyphicons': 'glyphicon glyphicon-blackboard',
         'Fontello': 'icon blackboard',
         'Font Awesome': 'fas fa-chalkboard',
@@ -246,5 +237,4 @@ ICONS = {
         'Font Awesome Light': 'fal fa-plus',
         'Font Awesome Duotone': 'fad fa-plus',
     },
-
 }

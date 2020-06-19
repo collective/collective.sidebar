@@ -39,9 +39,16 @@ def get_icon(icon):
         name='collective.sidebar.icon_font',
         default='Glyphicons',
     )
-    text = '{a} {b}'.format(a=ICONS['__prefix__'][icon_font], b=icon)
+
     if icon in ICONS:
         values = ICONS[icon]
         if icon_font in values:
-            text = values[icon_font]
-    return text
+            icon = values[icon_font]
+        else:
+            # selected icon font is not in our icon set
+            icon = 'bi bi-chevron-right'
+    else:
+        # requested icon is not in our icon set
+        icon = 'bi bi-chevron-right'
+
+    return icon

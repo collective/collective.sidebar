@@ -67,8 +67,8 @@ class NavigationView(BrowserView):
             pass
         return True
 
-    def icon(self, idx):
-        return get_icon(idx)
+    def get_icon(self, icon):
+        return get_icon(icon)
 
     def get_back(self):
         """
@@ -170,9 +170,8 @@ class SidebarViewlet(ViewletBase):
         """
         Return sidebar links from portal_actions.
         """
-        cx = self.context
-        filtered = cx.portal_actions.listFilteredActionsFor(cx)
-        sidebar_links = filtered.get('sidebar_links', [])
+        links = self.context.portal_actions.listFilteredActionsFor(self.context)  # noqa: 501
+        sidebar_links = links.get('sidebar_links', [])
         return sidebar_links
 
     def get_user_data(self):
@@ -485,12 +484,6 @@ class SidebarViewlet(ViewletBase):
                     return 'menu-section collapsed'
         return 'menu-section'
 
-    def has_actions(self):
-        """
-        Checks whether there are actions to display
-        """
-        return len(self.get_actions()) > 0
-
     def get_actions(self):
         """
         Returns registred object_actions like cut, copy, paste, ...
@@ -502,29 +495,10 @@ class SidebarViewlet(ViewletBase):
             buttons = actions.get('object_buttons', list())
             for action in buttons:
                 if not action.get('icon', None):
-                    action.icon = self.get_action_icon(action.get('id', None))
+                    action.icon = self.get_icon(action.get('id', None))
                 if action.get('url', None):
                     action.url = addTokenToUrl(action.get('url'), self.request)
         return buttons
-
-    def get_action_icon(self, action_id):
-        """
-        Returns icons for action ids
-        """
-        icon_list = (
-            'cut',
-            'copy',
-            'paste',
-            'delete',
-            'rename',
-            'ical_import_enable',
-            'ical_import_disable',
-        )
-
-        if action_id and action_id in icon_list:
-            return get_icon(action_id)
-        else:
-            return get_icon('star')
 
     def get_addable_items(self):
         """
@@ -544,7 +518,7 @@ class SidebarViewlet(ViewletBase):
         results = factories_view.addable_types(include=include)
         results_with_icons = []
         for result in results:
-            result['icon'] = 'menu-item-icon {0}'.format(self.icon('plus'))
+            result['icon'] = 'menu-item-icon {0}'.format(self.get_icon('plus'))
             results_with_icons.append(result)
         results = results_with_icons
         constraints = ISelectableConstrainTypes(addContext, None)
@@ -564,7 +538,7 @@ class SidebarViewlet(ViewletBase):
                     ),
                     'action': url,
                     'selected': False,
-                    'icon': 'menu-item-icon {0}'.format(self.icon('cog')),
+                    'icon': 'menu-item-icon {0}'.format(self.get_icon('cog')),
                     'id': 'settings',
                     'extra': {
                         'id': 'plone-contentmenu-settings',
@@ -591,7 +565,7 @@ class SidebarViewlet(ViewletBase):
                 ),
                 'action': context.absolute_url() + '/@@folder_factories',
                 'selected': False,
-                'icon': 'menu-item-icon {0}'.format(self.icon('cog')),
+                'icon': 'menu-item-icon {0}'.format(self.get_icon('cog')),
                 'id': 'special',
                 'extra': {
                     'id': 'plone-contentmenu-add-to-default-page',
@@ -622,8 +596,8 @@ class SidebarViewlet(ViewletBase):
         else:
             return self.context.absolute_url() + '/select_default_page'
 
-    def icon(self, idx):
-        return get_icon(idx)
+    def get_icon(self, icon):
+        return get_icon(icon)
 
     def get_navigation_class(self):
         """

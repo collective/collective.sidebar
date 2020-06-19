@@ -98,7 +98,7 @@ class IControlPanel(Interface):
                 u'Note: This does not install the icon font!'),
         ),
         vocabulary=fontVocabulary,
-        default='Glyphicons',
+        default='Bootstrap',
         required=True,
     )
 
