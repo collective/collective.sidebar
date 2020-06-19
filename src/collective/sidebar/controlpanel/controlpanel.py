@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from .config import positionVocabulary
 from collective.sidebar import _
+from collective.sidebar.controlpanel.config import fontVocabulary
+from collective.sidebar.controlpanel.config import positionVocabulary
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.z3cform import layout
@@ -96,14 +97,7 @@ class IControlPanel(Interface):
                 u'\"icon\" as the font prefix. '
                 u'Note: This does not install the icon font!'),
         ),
-        values=(
-            'Glyphicons',
-            'Fontello',
-            'Font Awesome',
-            'Font Awesome Pro',
-            'Font Awesome Light',
-            'Font Awesome Duotone',
-        ),
+        vocabulary=fontVocabulary,
         default='Glyphicons',
         required=True,
     )
