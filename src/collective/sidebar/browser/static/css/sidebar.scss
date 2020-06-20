@@ -79,7 +79,6 @@ body {
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-    padding: 30px;
     position: relative;
     width: 300px;
     will-change: transform;
@@ -90,11 +89,16 @@ body {
 
 
     #sidebar-section-profile {
-      margin-bottom: 30px;
+      padding: 20px;
+      padding-bottom: 10px;
+    }
+
+    #sidebar-section-search .menu-section-content {
+      padding: 20px;
     }
 
     .menu-section {
-      margin-bottom: 25px;
+      margin-bottom: 5px;
 
       .menu-profile {
 
@@ -139,27 +143,31 @@ body {
         color: #2F3334;
         display: block;
         text-decoration: none;
-        padding: 10px 2px;
+        padding: 10px 20px;
         outline: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+
+        &:last-child {
+          border: none;
+        }
+
+        &.link-item {
+          .menu-item-nav {
+            display: none;
+          }
+        }
       }
 
       .menu-section-title {
         font-size: 18px;
         font-weight: 200;
-        margin-bottom: 12px;
+        margin-bottom: 2px;
         position: relative;
         text-transform: uppercase;
         cursor: pointer;
-      }
-
-      .menu-item-title {
-        display: block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-left: 25px;
-        padding-bottom: 3px;
-        position: relative;
+        padding: 10px 20px;
+        background-color: #eee;
       }
 
       .menu-item-icon {
@@ -168,6 +176,31 @@ body {
         height: 100%;
         text-align: center;
       }
+
+      .menu-item-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 25px;
+        padding-bottom: 3px;
+        position: relative;
+        display: block;
+        width: 210px;
+      }
+
+      .menu-item-nav {
+        display: block;
+        float: right;
+        height: 100%;
+        text-align: center;
+        color: #ccc;
+        position: absolute;
+        top: 2px;
+        right: 0;
+        padding: 10px 15px;
+      }
+
+
 
       .menu-search-input {
         width: 100%;
