@@ -14,7 +14,7 @@
       <property name="description" i18n:translate=""></property>
       <property name="url_expr">string:${portal_url}</property>
       <property name="link_target"></property>
-      <property name="icon_expr">string:bi bi-house</property>
+      <property name="icon_expr">string:glyphicon glyphicon-home</property>
       <property name="available_expr"></property>
       <property name="permissions">
         <element value="View" />
@@ -27,7 +27,7 @@
       <property name="description" i18n:translate=""></property>
       <property name="url_expr">string:${portal_url}/login</property>
       <property name="link_target"></property>
-      <property name="icon_expr">string:bi bi-box-arrow-in-right</property>
+      <property name="icon_expr">string:glyphicon glyphicon-log-in</property>
       <property name="available_expr">python:member is None</property>
       <property name="permissions">
         <element value="View" />
@@ -40,7 +40,7 @@
       <property name="description" i18n:translate=""></property>
       <property name="url_expr">string:${portal_url}/logout</property>
       <property name="link_target"></property>
-      <property name="icon_expr">string:bi bi-box-arrow-right</property>
+      <property name="icon_expr">string:glyphicon glyphicon-log-out</property>
       <property name="available_expr">python:member is not None</property>
       <property name="permissions">
         <element value="View" />
