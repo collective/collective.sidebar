@@ -338,9 +338,11 @@ class TestSidebarFunctional(unittest.TestCase):
         )
         v = self.viewlet(context=demo, request=self.request)
         self.assertIn('<a href="http://nohost/plone/demo/object_cut?_authenticator=', v)  # noqa
-        # These are added in testing/actions.xml:
+        # These actions are added in profiles/testing/actions.xml:
+        # Test action with icon
         self.assertIn('glyphicon-test', v)
-        self.assertIn('glyphicon-star', v)
+        # Action without icon
+        self.assertIn('glyphicon-menu-right', v)
         self.assertIn('Test-Action', v)
         self.assertIn('No-Url-Action', v)
         self.assertIn('No-Icon-Action', v)

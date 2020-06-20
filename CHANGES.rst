@@ -10,6 +10,9 @@ Added:
 - Added dynamic navigation inside sidebar #27
   [santonelli]
 
+- Add option for Bootstrap icons. #74
+  [santonelli]
+
 Changed:
 
 - Changed to use npm scripts to compile SCSS and JS.
@@ -22,6 +25,9 @@ Changed:
   [santonelli]
 
 - Code cleanup to respekt flake8.
+  [santonelli]
+
+- Improved icon handling.
   [santonelli]
 
 Bugfixes:

@@ -6,7 +6,7 @@
    <property name="title" i18n:translate="">Test-Action</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:$object_url/test_action</property>
-   <property name="icon_expr">string:glyphicon-test</property>
+   <property name="icon_expr">string:glyphicon glyphicon-test</property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="View"/>
@@ -17,7 +17,7 @@
    <property name="title" i18n:translate="">No-Url-Action</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr"></property>
-   <property name="icon_expr">string:glyphicon-home</property>
+   <property name="icon_expr">string:glyphicon glyphicon-home</property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="View"/>

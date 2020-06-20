@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <!-- Main Menu -->
+      <!-- Admin Links -->
 
       <div id="sidebar-section-site" class="${python:view.get_section_state('sidebar-section-site')}"
            tal:condition="view/can_manage_portal">
@@ -49,20 +49,22 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_site">Site</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up ${python:view.icon('menu-down')}"></i>
-            <i class="section-down ${python:view.icon('menu-up')}"></i>
+            <i class="section-up ${python:view.get_icon('menu-down')}"></i>
+            <i class="section-down ${python:view.get_icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <tal:item>
             <a href="#" tal:attributes="href python:portal_url + '/plone_control_panel'">
-              <span class="menu-item-icon ${python:view.icon('cog')}"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
+              <span class="menu-item-icon ${python:view.get_icon('cog')}"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
             </a>
           </tal:item>
         </div>
 
       </div>
+
+      <!-- Static Links -->
 
       <div tal:define="links view/get_static_links"
            id="sidebar-section-links" class="${python:view.get_section_state('sidebar-section-links')}"
@@ -71,15 +73,15 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_links">Links</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up ${python:view.icon('menu-down')}"></i>
-            <i class="section-down ${python:view.icon('menu-up')}"></i>
+            <i class="section-up ${python:view.get_icon('menu-down')}"></i>
+            <i class="section-down ${python:view.get_icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <tal:actions repeat="link links">
             <a tal:attributes="href link/url; title link/title">
-              <span class="menu-item-icon ${python:view.icon(link['icon'])}"></span>
+              <span class="menu-item-icon ${python:link['icon']}"></span>
               <span class="menu-item-title" tal:content="link/title"></span>
             </a>
           </tal:actions>
@@ -95,8 +97,8 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_navigation">Navigation</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up ${python:view.icon('menu-down')}"></i>
-            <i class="section-down ${python:view.icon('menu-up')}"></i>
+            <i class="section-up ${python:view.get_icon('menu-down')}"></i>
+            <i class="section-down ${python:view.get_icon('menu-up')}"></i>
           </span>
         </div>
 
@@ -114,31 +116,31 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_edit">Edit</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up ${python:view.icon('menu-down')}"></i>
-            <i class="section-down ${python:view.icon('menu-up')}"></i>
+            <i class="section-up ${python:view.get_icon('menu-down')}"></i>
+            <i class="section-down ${python:view.get_icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <a href="#" tal:attributes="href python:context.absolute_url() + '/view'">
-            <span class="menu-item-icon ${python:view.icon('eye-open')}"></span> <span class="menu-item-title" i18n:translate="view">View</span>
+            <span class="menu-item-icon ${python:view.get_icon('eye-open')}"></span> <span class="menu-item-title" i18n:translate="view">View</span>
           </a>
 
           <a href="#" tal:attributes="href python:context.absolute_url() + '/edit'">
-            <span class="menu-item-icon ${python:view.icon('edit')}"></span> <span class="menu-item-title" i18n:translate="edit">Edit</span>
+            <span class="menu-item-icon ${python:view.get_icon('edit')}"></span> <span class="menu-item-title" i18n:translate="edit">Edit</span>
           </a>
 
           <a href="#" tal:attributes="href python:view.get_folder_contents_url()">
-            <span class="menu-item-icon ${python:view.icon('folder-open')}"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
+            <span class="menu-item-icon ${python:view.get_icon('folder-open')}"></span> <span class="menu-item-title" i18n:translate="contents">Contents</span>
           </a>
 
           <a href="#" tal:attributes="href python:context.absolute_url() + '/@@historyview'">
-            <span class="menu-item-icon ${python:view.icon('time')}"></span>
+            <span class="menu-item-icon ${python:view.get_icon('time')}"></span>
             <span class="menu-item-title" tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
           </a>
 
           <a href="#" tal:attributes="href python:context.absolute_url() + '/@@sharing'">
-            <span class="menu-item-icon ${python:view.icon('share')}"></span> <span class="menu-item-title" i18n:translate="sharing">Sharing</span>
+            <span class="menu-item-icon ${python:view.get_icon('share')}"></span> <span class="menu-item-title" i18n:translate="sharing">Sharing</span>
           </a>
         </div>
 
@@ -158,24 +160,24 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_workflow">Workflow</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up ${python:view.icon('menu-down')}"></i>
-            <i class="section-down ${python:view.icon('menu-up')}"></i>
+            <i class="section-up ${python:view.get_icon('menu-down')}"></i>
+            <i class="section-down ${python:view.get_icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <a href="#" i18n:domain="plone">
-            <span class="menu-item-icon ${python:view.icon('record')} state-${state} ${color_state}"></span> <span class="menu-item-title state-${state} ${color_state}" i18n:translate="">${state_title}</span>
+            <span class="menu-item-icon ${python:view.get_icon('record')} state-${state} ${color_state}"></span> <span class="menu-item-title state-${state} ${color_state}" i18n:translate="">${state_title}</span>
           </a>
 
           <tal:repeat tal:repeat="action actions">
             <a href="${action/action}" i18n:domain="plone">
-              <span class="menu-item-icon ${python:view.icon('transfer')}"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
+              <span class="menu-item-icon ${python:view.get_icon('transfer')}"></span> <span class="menu-item-title" i18n:translate="">${action/title}</span>
             </a>
           </tal:repeat>
 
           <a href="${absolute_url}/content_status_history" tal:condition="actions">
-            <span class="menu-item-icon ${python:view.icon('option-horizontal')}"></span>
+            <span class="menu-item-icon ${python:view.get_icon('option-horizontal')}"></span>
             <span class="menu-item-title" i18n:translate="sidebar_workflow_advanced">Advanced</span>
           </a>
         </div>
@@ -186,13 +188,13 @@
 
       <div tal:define="actions view/get_actions"
            id="sidebar-section-actions" class="${python:view.get_section_state('sidebar-section-actions')}"
-           tal:condition="python:view.is_actions_enabled() and view.can_edit() and view.has_actions()">
+           tal:condition="python:view.is_actions_enabled() and view.can_edit() and actions">
 
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_actions">Actions</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up ${python:view.icon('menu-down')}"></i>
-            <i class="section-down ${python:view.icon('menu-up')}"></i>
+            <i class="section-up ${python:view.get_icon('menu-down')}"></i>
+            <i class="section-down ${python:view.get_icon('menu-up')}"></i>
           </span>
         </div>
 
@@ -219,8 +221,8 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_add">Add</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up ${python:view.icon('menu-down')}"></i>
-            <i class="section-down ${python:view.icon('menu-up')}"></i>
+            <i class="section-up ${python:view.get_icon('menu-down')}"></i>
+            <i class="section-down ${python:view.get_icon('menu-up')}"></i>
           </span>
         </div>
 
@@ -244,18 +246,18 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_display">Display</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up ${python:view.icon('menu-down')}"></i>
-            <i class="section-down ${python:view.icon('menu-up')}"></i>
+            <i class="section-up ${python:view.get_icon('menu-down')}"></i>
+            <i class="section-down ${python:view.get_icon('menu-up')}"></i>
           </span>
         </div>
 
         <div class="menu-section-content">
           <a href="${view/get_default_view_link}" class="pat-plone-modal">
-            <span class="menu-item-icon ${python:view.icon('blackboard')}"></span>
+            <span class="menu-item-icon ${python:view.get_icon('blackboard')}"></span>
             <span class="menu-item-title" i18n:translate="select_default_view">Default View</span>
           </a>
           <a href="${view/get_default_page_link}" class="pat-plone-modal">
-            <span class="menu-item-icon ${python:view.icon('pushpin')}"></span>
+            <span class="menu-item-icon ${python:view.get_icon('pushpin')}"></span>
             <span class="menu-item-title" i18n:translate="select_default_page">Default Page</span>
           </a>
         </div>
@@ -269,8 +271,8 @@
         <div class="menu-section-title">
           <span i18n:translate="navigation_heading_search">Search</span>
           <span class="section-handle" tal:condition="can_collapse">
-            <i class="section-up ${python:view.icon('menu-down')}"></i>
-            <i class="section-down ${python:view.icon('menu-up')}"></i>
+            <i class="section-up ${python:view.get_icon('menu-down')}"></i>
+            <i class="section-down ${python:view.get_icon('menu-up')}"></i>
           </span>
         </div>
 

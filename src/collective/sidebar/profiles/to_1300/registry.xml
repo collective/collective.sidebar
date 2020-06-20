@@ -13,13 +13,6 @@
     <value key="last_compilation">2020-06-18 18:00:00</value>
   </records>
 
-  <record name="collective.sidebar.dynamic_navigation">
-    <field type="plone.registry.field.Bool">
-      <title>Enable dynamic Navigation</title>
-      <description>Enable dynamic navigation inside sidebar.</description>
-      <required>False</required>
-    </field>
-    <value>True</value>
-  </record>
+  <records interface="collective.sidebar.controlpanel.controlpanel.IControlPanel" prefix="collective.sidebar" />
 
 </registry>
