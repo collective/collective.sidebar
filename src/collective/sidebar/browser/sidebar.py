@@ -4,6 +4,7 @@ from collective.sidebar import _
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_icon
 from collective.sidebar.utils import get_user
+from hashlib import md5
 from plone import api
 from plone.api.exc import InvalidParameterError
 from plone.app.content.browser.folderfactories import _allowedTypes
@@ -14,6 +15,7 @@ from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from urllib.parse import urlencode
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
 
@@ -173,6 +175,20 @@ class SidebarViewlet(ViewletBase):
         links = self.context.portal_actions.listFilteredActionsFor(self.context)  # noqa: 501
         sidebar_links = links.get('sidebar_links', [])
         return sidebar_links
+
+    def get_gravatar(self, email):
+        """
+        Return image url by given email
+        """
+        email = email.lower().encode('utf-8')
+        size = 80
+        default = api.portal.get().absolute_url() + '/defaultUser.png'
+        params = urlencode({
+            'd': default,
+            's': str(size),
+        })
+        url = 'https://www.gravatar.com/avatar/' + md5(email) + '?' + params
+        return url
 
     def get_user_data(self):
         user = get_user()
