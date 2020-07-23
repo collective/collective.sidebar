@@ -5,7 +5,10 @@ Changelog
 1.4.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+Changed:
+
+- New modernized design due to dynamic navigation features.
+  [santonelli]
 
 
 1.3.0 (2020-06-20)
