@@ -105,6 +105,16 @@ class NavigationView(BrowserView):
             }
             return data
 
+    def contains_items(self, item):
+        """
+        Check if navigation will return items for folder
+        """
+        items = item.getObject().getFolderContents()
+        for item in items:
+            if self.check_item(item):
+                return True
+        return False
+
     def get_items(self):
         """
         Get folder contents and return.
@@ -129,7 +139,7 @@ class NavigationView(BrowserView):
         for item in contents:
             if self.check_item(item):
                 item_type = 'link-item'
-                if item.is_folderish:
+                if item.is_folderish and self.contains_items(item):
                     item_type = 'link-folder'
                 data = {
                     'title': item.Title,
