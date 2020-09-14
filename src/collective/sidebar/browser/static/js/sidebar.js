@@ -87,9 +87,6 @@
 
   $(document).ready(function () {
 
-    // Burger Icon
-    $('#portal-globalnav').prepend('<li id=\"portaltab-burger-menu\"><i class=\"glyphicon glyphicon-menu-hamburger\" /></li>');
-
     // Mouse
     $('body').mousemove(function (event) {
       var nav = $('#portal-navigation');
@@ -109,7 +106,7 @@
 
     // Burger
 
-    $('#portaltab-burger-menu').click(function (e) {
+    $('#burger-menu, #sidebar-menu, #navigation-menu').click(function (e) {
       e.preventDefault();
       showSidebar();
     });
