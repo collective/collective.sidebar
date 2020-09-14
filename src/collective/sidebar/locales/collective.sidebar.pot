@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-06-17 22:05+0000\n"
+"POT-Creation-Date: 2020-09-14 20:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,7 @@ msgid "Collective Sidebar (collective.sidebar) - Uninstall"
 msgstr ""
 
 #: collective/sidebar/profiles/default/actions.xml
+#: collective/sidebar/profiles/to_1300/actions.xml
 msgid "Home"
 msgstr ""
 
@@ -46,10 +47,12 @@ msgid "Installs the collective.sidebar:testing profile."
 msgstr ""
 
 #: collective/sidebar/profiles/default/actions.xml
+#: collective/sidebar/profiles/to_1300/actions.xml
 msgid "Login"
 msgstr ""
 
 #: collective/sidebar/profiles/default/actions.xml
+#: collective/sidebar/profiles/to_1300/actions.xml
 msgid "Logout"
 msgstr ""
 
@@ -215,6 +218,21 @@ msgstr ""
 #. Default: "Settings"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "navigation_link_settings"
+msgstr ""
+
+#. Default: "Search"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "search_aria_label"
+msgstr ""
+
+#. Default: "Search"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "search_button_submit"
+msgstr ""
+
+#. Default: "Type and enter"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "search_placeholder"
 msgstr ""
 
 #. Default: "Default Page"

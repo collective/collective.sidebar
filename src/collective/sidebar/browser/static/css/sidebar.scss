@@ -200,12 +200,15 @@ body {
         padding: 10px 15px;
       }
 
-
-
-      .menu-search-input {
-        width: 100%;
+      #menu-search {
+        input[type="search"] {
+          width: 100%;
+        }  
+        button {
+          width: 100%;
+          display: none;
+        }  
       }
-
     }
   }
 }

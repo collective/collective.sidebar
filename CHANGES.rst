@@ -10,6 +10,12 @@ Changed:
 - New modernized design due to dynamic navigation features.
   [santonelli]
 
+- Updated buildout to Plone 5.2.2
+  [santonelli]
+
+- Add improvements for accessibility
+  [santonelli]
+
 
 1.3.0 (2020-06-20)
 ------------------

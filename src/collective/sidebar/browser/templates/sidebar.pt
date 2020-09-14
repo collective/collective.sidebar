@@ -277,8 +277,9 @@
         </div>
 
         <div class="menu-section-content">
-          <form action="" id="menu-search" method="post">
-            <input class="menu-search-input" type="text" value="">
+          <form action="" id="menu-search" role="search" method="post">
+            <input type="search" name="search" value="" placeholder="Type and enter" aria-label="Search" i18n:attributes="placeholder search_placeholder; aria-label search_aria_label">
+            <button type="submit" i18n:translate="search_button_submit">Search</button>
           </form>
         </div>
 
