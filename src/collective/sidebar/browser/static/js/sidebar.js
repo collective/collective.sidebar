@@ -74,7 +74,6 @@
   };
 
   function showSidebar() {
-    //$('#portal-navigation-cover').addClass('active');
     $('#portal-navigation-cover').fadeIn('500');
     $('body').attr('data-with-sidebar', 'true');    
   }
@@ -106,7 +105,7 @@
 
     // Burger
 
-    $('#burger-menu, #sidebar-menu, #navigation-menu').click(function (e) {
+    $('#burger-menu, #navigation-menu, #sidebar-menu, #sidebar-handle').click(function (e) {
       e.preventDefault();
       showSidebar();
     });
