@@ -38,6 +38,7 @@ def setup_sdm(portal):
     from Products.Sessions.SessionDataManager import SessionDataManager
     from Products.TemporaryFolder.TemporaryFolder import MountedTemporaryFolder
     from Products.Transience.Transience import TransientObjectContainer
+
     import transaction
 
     bidmgr = BrowserIdManager(idmgr_name)
