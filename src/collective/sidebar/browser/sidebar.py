@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collective.sidebar import _
+from collective.sidebar.interfaces import INavigationEndpoint
 from collective.sidebar.utils import crop
 from collective.sidebar.utils import get_icon
 from collective.sidebar.utils import get_user
@@ -124,18 +125,27 @@ class NavigationView(BrowserView):
             name='collective.sidebar.root_nav',
             default=False,
         )
+
+        # root level navigation is enabled in settings
         if root_nav:
             context = api.portal.get_navigation_root(context)
-        contents = []
+
+        # context is folderish, list content
         if IFolderish.providedBy(context):
-            contents = context.getFolderContents()
+            # context is an endpoint, list parents content
+            if INavigationEndpoint.providedBy(context):
+                context = context.aq_parent
         else:
-            try:
-                parent = context.aq_parent
-                contents = parent.getFolderContents()
-            except Exception:
-                pass
-        items = []
+            # context is an item, list parents content
+            context = context.aq_parent
+
+        contents = list()
+        try:
+            contents = context.getFolderContents()
+        except Exception:
+            pass
+
+        items = list()
         for item in contents:
             if self.check_item(item):
                 item_type = 'link-item'

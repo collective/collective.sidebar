@@ -16,6 +16,8 @@
       name="collective.sidebar"
       />
 
+  <interface interface="collective.sidebar.interfaces.INavigationEndpoint" />
+
   <browser:page
       for="*"
       name="navigation"
