@@ -26,7 +26,7 @@
     "js-compile-main": "uglifyjs src/collective/sidebar/browser/static/js/sidebar.js --compress --mangle --output src/collective/sidebar/browser/static/js/sidebar.min.js",
     "lint": "npm-run-all --parallel css-lint",
     "dist": "npm-run-all --parallel css js",
-    "watch": "nodemon --watch src/collective/sidebar/browser/static/css/  --watch src/collective/sidebar/browser/static/js/sidebar.js --ext scss,js --exec \"npm run css js\""
+    "watch": "nodemon --watch src/collective/sidebar/browser/static/css/  --watch src/collective/sidebar/browser/static/js/sidebar.js --ext scss,js --exec \"npm run dist\""
   },
   "devDependencies": {
     "clean-css-cli": "^4.3.0",

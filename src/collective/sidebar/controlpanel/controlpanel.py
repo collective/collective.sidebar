@@ -116,6 +116,19 @@ class IControlPanel(Interface):
         default='left',
     )
 
+    mouse = schema.Bool(
+        title=_(
+            u'controlpanel_mouse_title',
+            default='Mouse activated',
+        ),
+        description=_(
+            u'controlpanel_mouse_description',
+            default=(u'When enabled, the sidebar will be opened by mouse.'),
+        ),
+        required=False,
+        default=True,
+    )
+
 
 class ControlPanelEditForm(RegistryEditForm):
     schema = IControlPanel

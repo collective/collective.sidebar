@@ -87,21 +87,26 @@
   $(document).ready(function () {
 
     // Mouse
-    $('body').mousemove(function (event) {
-      var nav = $('#portal-navigation');
-      var offset = 30;
-      if (nav.hasClass('sidebar-left')) {
-        var nearby = nearTo(nav, offset, 'left', event);
-        if (nearby) {
-          showSidebar();
+
+    var mouse_activated = $('#portal-navigation').data('sidebar-mouse');
+
+    if (mouse_activated) {
+      $('body').mousemove(function (event) {
+        var nav = $('#portal-navigation');
+        var offset = 30;
+        if (nav.hasClass('sidebar-left')) {
+          var nearby = nearTo(nav, offset, 'left', event);
+          if (nearby) {
+            showSidebar();
+          };
+        } else {
+          var nearby = nearTo(nav, offset, 'right', event);
+          if (nearby) {
+            showSidebar();
+          };
         };
-      } else {
-        var nearby = nearTo(nav, offset, 'right', event);
-        if (nearby) {
-          showSidebar();
-        };
-      };
-    });
+      });  
+    }
 
     // Burger
 

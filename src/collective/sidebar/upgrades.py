@@ -28,3 +28,8 @@ def to_1001(context):
 def to_1300(context):
     context.runAllImportStepsFromProfile('profile-collective.sidebar:to_1300')
     logger.info('Added collective.sidebar registry records')
+
+
+def to_1400(context):
+    context.runAllImportStepsFromProfile('profile-collective.sidebar:to_1400')
+    logger.info('Added collective.sidebar registry records')

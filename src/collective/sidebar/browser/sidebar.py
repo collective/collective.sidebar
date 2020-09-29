@@ -164,6 +164,26 @@ class NavigationView(BrowserView):
 class SidebarViewlet(ViewletBase):
     index = ViewPageTemplateFile('templates/sidebar.pt')
 
+    def get_mouse_activated(self):
+        """Pass in values to be used in JavaScript
+        """
+        mouse = api.portal.get_registry_record(
+            name='collective.sidebar.mouse',
+            default=True,
+        )
+        if mouse:
+            return 'true'
+        else:
+            return 'false'
+
+    def get_sidebar_position(self):
+        position = api.portal.get_registry_record(
+            name='collective.sidebar.sidebar_position',
+            default='left',
+        )
+        css_class = 'sidebar-' + position
+        return css_class
+
     def _contentCanBeAdded(self, addContext, request):
         """
         Find out if content can be added either by local constraints on the

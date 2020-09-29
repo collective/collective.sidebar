@@ -14,6 +14,7 @@ class HiddenProfiles(object):
             'collective.sidebar:uninstall',
             'collective.sidebar:to_1001',
             'collective.sidebar:to_1300',
+            'collective.sidebar:to_1400',
         ]
 
 
