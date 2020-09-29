@@ -16,6 +16,9 @@ Changed:
 - Add improvements for accessibility
   [santonelli]
 
+- Add setting for opening the Sidebar by moving the mouse to the edge.
+  [santonelli]
+
 
 1.3.0 (2020-06-20)
 ------------------
