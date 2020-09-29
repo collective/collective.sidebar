@@ -64,5 +64,3 @@ I enter valid credentials
 I am logged in
   Wait until page contains  You are now logged in
   Page should contain  You are now logged in
-  Click Element  portaltab-burger-menu
-  Page should contain element  sidebar-section-site
