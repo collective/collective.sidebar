@@ -129,6 +129,7 @@ class IControlPanel(Interface):
         default=True,
     )
 
+
 class ControlPanelEditForm(RegistryEditForm):
     schema = IControlPanel
     schema_prefix = 'collective.sidebar'

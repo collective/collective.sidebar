@@ -9,6 +9,7 @@ class ICollectiveSidebarLayer(IDefaultBrowserLayer):
     """Marker interface that defines a browser layer.
     """
 
+
 class INavigationEndpoint(Interface):
     """A marker interface for signaling a navigation endpoint.
     """
