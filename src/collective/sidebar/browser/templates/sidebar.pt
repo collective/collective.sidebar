@@ -10,10 +10,11 @@
   <div id="portal-navigation-cover"></div>
 
   <nav id="portal-navigation"
-       class="${view/get_sidebar_position}"
-       tal:define="items view/get_items;
-                   back view/get_back;"
-       i18n:domain="collective.sidebar">
+      class="${view/get_sidebar_position}"
+      tal:define="items view/get_items;
+                  back view/get_back;"
+      data-sidebar-mouse="${view/get_mouse_activated}"
+      i18n:domain="collective.sidebar">
 
     <div class="menu">
 

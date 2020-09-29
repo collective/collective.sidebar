@@ -16,7 +16,7 @@ Changed:
 - Add improvements for accessibility
   [santonelli]
 
-- Add setting for opening the Sidebar by moving the mouse to the edge.
+- Add setting for opening the Sidebar by moving the mouse to the edge. #81
   [santonelli]
 
 
