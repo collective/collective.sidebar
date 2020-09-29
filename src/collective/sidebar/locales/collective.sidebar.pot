@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-09-14 20:59+0000\n"
+"POT-Creation-Date: 2020-09-29 15:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,6 +78,16 @@ msgstr ""
 #. Default: "Contents"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "contents"
+msgstr ""
+
+#. Default: "When enabled, the sidebar will be opened by mouse."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_description"
+msgstr ""
+
+#. Default: "Mouse activated"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_title"
 msgstr ""
 
 #. Default: "When a different icon font is installed, you can tell the sidebar to use it. For Fontello we assume you have set \"icon\" as the font prefix. Note: This does not install the icon font!"
