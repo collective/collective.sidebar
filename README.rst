@@ -36,13 +36,20 @@ Features
 Examples
 --------
 
-- TBD
+- https://plonetheme.tokyo
+- https://www.operun.de
 
 
 Documentation
 -------------
 
 Full documentation for end users can be found in the "docs" folder.
+
+
+Credits
+-------
+
+This theme is developed and maintained by `operun Digital Solutions <https://www.operun.de>`_.
 
 
 Translations
