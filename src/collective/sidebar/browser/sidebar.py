@@ -10,6 +10,7 @@ from plone.api.exc import InvalidParameterError
 from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.protect.utils import addTokenToUrl
+from Products.CMFCore import permissions
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
@@ -267,7 +268,7 @@ class SidebarViewlet(ViewletBase):
         """
         Check if the user can modify content.
         """
-        permission = 'cmf.ModifyPortalContent'
+        permission = permissions.ModifyPortalContent
         if api.user.has_permission(permission, obj=self.context):
             return True
         return False
@@ -276,7 +277,7 @@ class SidebarViewlet(ViewletBase):
         """
         Check is user can manage the portal.
         """
-        permission = 'cmf.ManagePortal'
+        permission = permissions.ManagePortal
         if api.user.has_permission(permission, obj=self.context):
             return True
         return False
