@@ -7,16 +7,24 @@ Changelog
 
 Changed:
 
+- Removed burger menu from navigation.
+  [santonelli]
+
 - New modernized design due to dynamic navigation features.
   [santonelli]
 
-- Updated buildout to Plone 5.2.2
+- Updated collective.sidebar package buildout to Plone 5.2.2.
   [santonelli]
 
 - Add improvements for accessibility
   [santonelli]
 
 - Add setting for opening the Sidebar by moving the mouse to the edge. #81
+  [santonelli]
+
+Bugfixes:
+
+- Fix permission check to show edit buttons.
   [santonelli]
 
 
