@@ -27,6 +27,9 @@ Bugfixes:
 - Fix permission check to show edit buttons.
   [santonelli]
 
+- Disable dynamic navigation when root level navigation is enabled.
+  [santonelli]
+
 
 1.3.0 (2020-06-20)
 ------------------

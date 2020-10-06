@@ -644,10 +644,18 @@ class SidebarViewlet(ViewletBase):
         """
         Check if dynamic navigation is enabled
         """
+        root_nav = api.portal.get_registry_record(
+            name='collective.sidebar.root_nav',
+            default=False,
+        )
         dynamic = api.portal.get_registry_record(
             name='collective.sidebar.dynamic_navigation',
             default=False,
         )
+
+        if root_nav:
+            return 'navigation-static'
+
         if dynamic:
             return 'navigation-dynamic'
         else:
