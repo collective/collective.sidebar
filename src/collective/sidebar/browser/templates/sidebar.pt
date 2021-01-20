@@ -54,7 +54,7 @@
 
         <div class="menu-section-content">
           <tal:item>
-            <a href="#" tal:attributes="href python:portal_url + '/plone_control_panel'">
+            <a href="#" tal:attributes="href python:portal_url + '/@@overview-controlpanel'">
               <span class="menu-item-icon ${python:view.get_icon('cog')}"></span> <span class="menu-item-title" i18n:translate="navigation_link_settings">Settings</span>
             </a>
           </tal:item>
