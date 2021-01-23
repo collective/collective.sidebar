@@ -228,13 +228,6 @@ class SidebarViewlet(ViewletBase):
         }
         return data
 
-    def get_search_path(self):
-        """
-        Return a search URL using the SearchableText attribute.
-        """
-        portal_url = self.get_portal_url()
-        return '{0}/@@search?SearchableText='.format(portal_url)
-
     def get_navigation_root_url(self):
         """
         Return navigation root URL based on the language.

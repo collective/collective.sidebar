@@ -5,7 +5,10 @@ Changelog
 1.5.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+Bugfixes:
+
+- Fix search in sidebar. Remove unused js and py code.
+  [santonelli]
 
 
 1.4.0 (2020-10-06)

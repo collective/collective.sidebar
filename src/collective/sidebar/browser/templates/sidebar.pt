@@ -275,8 +275,8 @@
         </div>
 
         <div class="menu-section-content">
-          <form action="" id="menu-search" role="search" method="post">
-            <input type="search" name="search" value="" placeholder="Type and enter" aria-label="Search" i18n:attributes="placeholder search_placeholder; aria-label search_aria_label">
+          <form action="${context/portal_url}/@@search" id="menu-search" role="search" method="post">
+            <input type="search" name="SearchableText" value="" placeholder="Type and enter" aria-label="Search" i18n:attributes="placeholder search_placeholder; aria-label search_aria_label">
             <button type="submit" i18n:translate="search_button_submit">Search</button>
           </form>
         </div>
@@ -284,14 +284,6 @@
       </div>
 
     </div>
-
-    <script type="text/javascript" tal:define="searchpath python:view.get_search_path()">
-      $('#menu-search').submit(function () {
-        var search_val = $('.menu-search-input').val();
-        var search_construct = '${searchpath}' + search_val;
-        $('#menu-search').attr('action', search_construct);
-      });
-    </script>
 
   </nav>
 
