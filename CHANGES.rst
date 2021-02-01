@@ -5,7 +5,18 @@ Changelog
 1.5.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+Changed:
+
+- Add translation for navigation back link
+  [santonelli]
+
+Bugfixes:
+
+- Fix link to control panel.
+  [santonelli]
+
+- Fix search field.
+  [santonelli]
 
 
 1.4.0 (2020-10-06)
