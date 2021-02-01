@@ -16,6 +16,9 @@ Bugfixes:
   [santonelli]
 
 - Fix search field.
+Bugfixes:
+
+- Fix search in sidebar. Remove unused js and py code.
   [santonelli]
 
 
