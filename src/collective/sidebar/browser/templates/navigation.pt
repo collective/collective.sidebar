@@ -1,9 +1,9 @@
-<div class="menu-section-content" tal:define="items view/get_items; back view/get_back; show view/get_show;">
+<div class="menu-section-content" tal:define="items view/get_items; back view/get_back; show view/get_show;" i18n:domain="collective.sidebar">
 
   <tal:item tal:condition="back">
     <a class="link-back link-folder" href="#" tal:attributes="href back">
       <span class="menu-item-icon ${python:view.get_icon('menu-left')}"></span>
-      <span class="menu-item-title" i18n:translate="back">Back</span>
+      <span class="menu-item-title" i18n:translate="navigation_back">Back</span>
     </a>
   </tal:item>
 

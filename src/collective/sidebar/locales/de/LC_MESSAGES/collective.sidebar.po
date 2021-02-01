@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-09-29 15:46+0000\n"
+"POT-Creation-Date: 2021-02-01 16:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,6 +176,11 @@ msgstr "Bearbeiten"
 #: collective/sidebar/browser/sidebar.py
 msgid "folder_add_settings"
 msgstr "Einschränkungen"
+
+#. Default: "Back"
+#: collective/sidebar/browser/templates/navigation.pt
+msgid "navigation_back"
+msgstr "Zurück"
 
 #. Default: "Actions"
 #: collective/sidebar/browser/templates/sidebar.pt
