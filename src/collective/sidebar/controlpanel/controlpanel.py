@@ -129,6 +129,19 @@ class IControlPanel(Interface):
         default=True,
     )
 
+    mouse_area = schema.Int(
+        title=_(
+            u'controlpanel_mouse_area_title',
+            default='Mouse Activation Area',
+        ),
+        description=_(
+            u'controlpanel_mouse_area_description',
+            default=(u'Enter the number of pixels to activate the sidebar.'),
+        ),
+        required=False,
+        default=30,
+    )
+
 
 class ControlPanelEditForm(RegistryEditForm):
     schema = IControlPanel

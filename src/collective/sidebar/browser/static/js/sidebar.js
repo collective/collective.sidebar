@@ -89,11 +89,12 @@
     // Mouse
 
     var mouse_activated = $('#portal-navigation').data('sidebar-mouse');
+    var mouse_area = $('#portal-navigation').data('sidebar-mouse-area');
 
     if (mouse_activated) {
       $('body').mousemove(function (event) {
         var nav = $('#portal-navigation');
-        var offset = 30;
+        var offset = mouse_area;
         if (nav.hasClass('sidebar-left')) {
           var nearby = nearTo(nav, offset, 'left', event);
           if (nearby) {

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-02-01 16:54+0000\n"
+"POT-Creation-Date: 2021-02-01 17:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,6 +76,16 @@ msgstr "Collective Sidebar"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "contents"
 msgstr "Inhalte"
+
+#. Default: "Enter the number of pixels to activate the sidebar."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_area_description"
+msgstr "Geben Sie in Pixel an wie breit der Bereich zur Aktivierung der Sidebar sein soll."
+
+#. Default: "Mouse Activation Area"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_area_title"
+msgstr "Bereich zur Aktivierung"
 
 #. Default: "When enabled, the sidebar will be opened by mouse."
 #: collective/sidebar/controlpanel/controlpanel.py

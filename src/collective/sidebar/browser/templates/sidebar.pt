@@ -14,6 +14,7 @@
       tal:define="items view/get_items;
                   back view/get_back;"
       data-sidebar-mouse="${view/get_mouse_activated}"
+      data-sidebar-mouse-area="${view/get_mouse_area}"
       i18n:domain="collective.sidebar">
 
     <div class="menu">

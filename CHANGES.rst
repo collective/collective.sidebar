@@ -5,6 +5,12 @@ Changelog
 1.5.0 (unreleased)
 ------------------
 
+Added:
+
+- Added mouse activation area.
+  [santonelli]
+
+
 Changed:
 
 - Add translation for navigation back link

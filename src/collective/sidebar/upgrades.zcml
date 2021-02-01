@@ -28,6 +28,14 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+  <genericsetup:registerProfile
+    name="to_1500"
+    title="Upgrade profile for collective.sidebar 1400 to 1500"
+    directory="profiles/to_1500"
+    description=""
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
 <!-- Upgrade Step for 1.0.0a10 -->
 
   <genericsetup:upgradeStep
@@ -55,6 +63,15 @@
     title="Add registry settings"
     description="Add registry settings"
     handler="collective.sidebar.upgrades.to_1400"
+    />
+
+  <genericsetup:upgradeStep
+    profile="profile-collective.sidebar:default"
+    source="1400"
+    destination="1500"
+    title="Add registry settings"
+    description="Add registry settings"
+    handler="collective.sidebar.upgrades.to_1500"
     />
 
 </configure>

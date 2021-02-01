@@ -15,6 +15,7 @@ class HiddenProfiles(object):
             'collective.sidebar:to_1001',
             'collective.sidebar:to_1300',
             'collective.sidebar:to_1400',
+            'collective.sidebar:to_1500',
         ]
 
 

@@ -177,6 +177,15 @@ class SidebarViewlet(ViewletBase):
         else:
             return 'false'
 
+    def get_mouse_area(self):
+        """Pass in values to be used in JavaScript
+        """
+        mouse_area = api.portal.get_registry_record(
+            name='collective.sidebar.mouse_area',
+            default=30,
+        )
+        return str(mouse_area)
+
     def get_sidebar_position(self):
         position = api.portal.get_registry_record(
             name='collective.sidebar.sidebar_position',
