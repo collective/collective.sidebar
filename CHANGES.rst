@@ -13,7 +13,10 @@ Added:
 
 Changed:
 
-- Add translation for navigation back link
+- Add translation for navigation back link.
+  [santonelli]
+
+- Update buildout to 5.2.3
   [santonelli]
 
 Bugfixes:
@@ -22,6 +25,7 @@ Bugfixes:
   [santonelli]
 
 - Fix search field.
+
 Bugfixes:
 
 - Fix search in sidebar. Remove unused js and py code.
