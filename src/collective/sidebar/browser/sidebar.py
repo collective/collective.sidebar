@@ -141,9 +141,11 @@ class NavigationView(BrowserView):
             context = context.aq_parent
 
         contents = list()
+
+        # Can not remember what edgecase we catch here.
         try:
             contents = context.getFolderContents()
-        except Exception:
+        except Exception:  # noqa: 902
             pass
 
         items = list()
@@ -339,10 +341,11 @@ class SidebarViewlet(ViewletBase):
         if IFolderish.providedBy(context):
             contents = context.getFolderContents()
         else:
+            # Can not remember what edgecase we catch here.
             try:
                 parent = context.aq_parent
                 contents = parent.getFolderContents()
-            except Exception:
+            except Exception:  # noqa: 902
                 pass
         items = []
         for item in contents:
