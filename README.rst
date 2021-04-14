@@ -25,19 +25,22 @@ A sidebar for Plone to consolidate toolbar and navigation.
 Features
 --------
 
-- Replaces the default Plone toolbar
-- Inherits structureupdater pattern
-- Includes workflow state management
+- Responsive mobile first Sidebar for Plone
+- Toolbar and navigation in one place
+- Dynamic navigation without reload
+- Drop in replacement for Plone toolbar
 - Includes site navigation
+- Includes add, edit and display functions
+- Includes workflow state management
 - Includes quick access to the user profile
-- Includes configurable persistent site links through the ZMI
+- Includes configurable persistent site links via actions
 
 
-Examples
---------
+Demo
+----
 
-- https://plonetheme.tokyo
-- https://www.operun.de
+- https://plonetheme.tokyo/
+- https://www.operun.de/
 
 
 Documentation
@@ -49,7 +52,7 @@ Full documentation for end users can be found in the "docs" folder.
 Credits
 -------
 
-This theme is developed and maintained by `operun Digital Solutions <https://www.operun.de>`_.
+This package is developed and maintained by `operun Digital Solutions <https://www.operun.de>`_. Check out other `projects <https://www.operun.de/projekte>`_ we developed based on the `Enterprise Content Management System <https://www.operun.de/produkte/enterprise-content-management-system>`_ Plone.
 
 
 Translations
@@ -74,6 +77,13 @@ Install collective.sidebar by adding it to your buildout::
 
 
 and then running ``bin/buildout``...
+
+
+Versions
+--------
+
+- Version 1.x works with Plone 5.2
+- Version 2.x works with Plone 6
 
 
 Contribute
