@@ -126,6 +126,9 @@ class NavigationView(BrowserView):
             name='collective.sidebar.root_nav',
             default=False,
         )
+        view_types = api.portal.get_registry_record(
+            name='plone.types_use_view_action_in_listings'
+        )
 
         # root level navigation is enabled in settings
         if root_nav:
@@ -152,12 +155,15 @@ class NavigationView(BrowserView):
         for item in contents:
             if self.check_item(item):
                 item_type = 'link-item'
+                url = item.getURL()
+                if item.portal_type in view_types:
+                    url = url + '/view'
                 if item.is_folderish and self.contains_items(item):
                     item_type = 'link-folder'
                 data = {
                     'title': item.Title,
                     'title_cropped': crop(item.Title, 100),
-                    'url': item.getURL(),
+                    'url': url,
                     'type': item_type,
                 }
                 items.append(data)

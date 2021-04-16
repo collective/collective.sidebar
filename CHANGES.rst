@@ -5,7 +5,10 @@ Changelog
 1.6.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+Bugfixes:
+
+- Check if navigation item needs view action.
+  [santonelli]
 
 
 1.5.0 (2021-04-15)
@@ -15,7 +18,6 @@ Added:
 
 - Added mouse activation area.
   [santonelli]
-
 
 Changed:
 
