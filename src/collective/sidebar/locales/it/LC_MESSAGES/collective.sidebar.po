@@ -1,0 +1,302 @@
+# Italian translation for collective.sidebar
+# Lele Gaifax <lele@metapensiero.it>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: collective.sidebar\n"
+"POT-Creation-Date: 2021-02-01 17:33+0000\n"
+"PO-Revision-Date: 2021-04-30 16:24+0200\n"
+"Last-Translator: Lele Gaifax <lele@metapensiero.it>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: collective.sidebar\n"
+
+#: collective/sidebar/profiles/default/controlpanel.xml
+msgid "Collective Sidebar"
+msgstr "Collective Sidebar"
+
+#: collective/sidebar/configure.zcml
+msgid "Collective Sidebar (collective.sidebar)"
+msgstr "Collective Sidebar (collective.sidebar)"
+
+#: collective/sidebar/configure.zcml
+msgid "Collective Sidebar (collective.sidebar) - Testing"
+msgstr "Collective Sidebar (collective.sidebar) - Testing"
+
+#: collective/sidebar/configure.zcml
+msgid "Collective Sidebar (collective.sidebar) - Uninstall"
+msgstr "Collective Sidebar (collective.sidebar) - Uninstall"
+
+#: collective/sidebar/profiles/default/actions.xml
+#: collective/sidebar/profiles/to_1300/actions.xml
+msgid "Home"
+msgstr "Home"
+
+#: collective/sidebar/configure.zcml
+msgid "Installs the collective.sidebar add-on."
+msgstr "Installa collective.sidebar."
+
+#: collective/sidebar/configure.zcml
+msgid "Installs the collective.sidebar:testing profile."
+msgstr "Installa il profilo collective.sidebar:testing."
+
+#: collective/sidebar/profiles/default/actions.xml
+#: collective/sidebar/profiles/to_1300/actions.xml
+msgid "Login"
+msgstr "Autenticazione"
+
+#: collective/sidebar/profiles/default/actions.xml
+#: collective/sidebar/profiles/to_1300/actions.xml
+msgid "Logout"
+msgstr "Esci"
+
+#: collective/sidebar/configure.zcml
+msgid "Uninstalls the collective.sidebar add-on."
+msgstr "Disintalla collective.sidebar."
+
+#. Default: "Left"
+#: collective/sidebar/controlpanel/config.py
+msgid "choice_left"
+msgstr "Sinistra"
+
+#. Default: "Right"
+#: collective/sidebar/controlpanel/config.py
+msgid "choice_right"
+msgstr "Destra"
+
+#. Default: "Collective Sidebar"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "collective_sidebar_title"
+msgstr "Collective Sidebar"
+
+#. Default: "Contents"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "contents"
+msgstr "Contenuti"
+
+#. Default: "Enter the number of pixels to activate the sidebar."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_area_description"
+msgstr "Inserisci il numero di pixel per attivare la sidebar."
+
+#. Default: "Mouse Activation Area"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_area_title"
+msgstr "Area di attivazione con il mouse"
+
+#. Default: "When enabled, the sidebar will be opened by mouse."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_description"
+msgstr "Se abilitato, la sidebar si aprirà con il mouse."
+
+#. Default: "Mouse activated"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_title"
+msgstr "Mouse attivato"
+
+#. Default: "When a different icon font is installed, you can tell the sidebar to use it. For Fontello we assume you have set \"icon\" as the font prefix. Note: This does not install the icon font!"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_choose_icon_font_description"
+msgstr ""
+"Quando è installato un font di icone, puoi selezionarlo affinché venga usato "
+"nella sidebar. Per Fontello si assume sia impostato \"icon\" come prefisso "
+"del font. Nota: questo non installa il font di icone!"
+
+#. Default: "Choose Icon Font"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_choose_icon_font_title"
+msgstr "Scegli il font con le icone"
+
+#. Default: "Enable dynamic navigation inside sidebar."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_dynamic_navigation_description"
+msgstr "Abilita la navigazione dinamica nella sidebar."
+
+#. Default: "Enable dynamic Navigation"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_dynamic_navigation_title"
+msgstr "Abilita navigazione dinamica"
+
+#. Default: "When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_collapse_description"
+msgstr ""
+"Se abilitato, le sezioni della sidebar saranno collassabili. Questa "
+"funzionalità è disponibile solo quando sono abilitati anche i cookie."
+
+#. Default: "Collapsible Sections"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_collapse_title"
+msgstr "Sezioni collassabili"
+
+#. Default: "Enable cookies for sidebar features."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_cookies_description"
+msgstr "Abilita i cookie per alcune funzionalità della sidebar."
+
+#. Default: "Enable Cookies"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_cookies_title"
+msgstr "Abilita i cookie"
+
+#. Default: "Show actions section including object buttons for cut, copy, paste, etc."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_actions_description"
+msgstr ""
+"Mostra la sezione con le azioni inclusi i pulsanti per il taglia, copia, "
+"incolla, ecc."
+
+#. Default: "Show Actions Section"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_actions_title"
+msgstr "Sezione azioni di visualizzazione"
+
+#. Default: "When enabled, the sidebar will display the root level navigation."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_root_nav_description"
+msgstr "Se abilitato, la sidebar mostrerà il livello di navigazione principale."
+
+#. Default: "Root Level Navigation"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_root_nav_title"
+msgstr ""
+
+#. Default: "Display the sidebar on the left or right."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_sidebar_position_description"
+msgstr "Mostra la sidebar sulla sinistra o sulla destra."
+
+#. Default: "Sidebar Position"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_sidebar_position_title"
+msgstr "Posizione della sidebar"
+
+#. Default: "Add item to default page"
+#: collective/sidebar/browser/sidebar.py
+msgid "default_page_folder"
+msgstr "Aggiungi elemento alla pagina di default"
+
+#. Default: "If the default page is also a folder, add items to it from here."
+#: collective/sidebar/browser/sidebar.py
+msgid "desc_default_page_folder"
+msgstr "Se la pagina di default è una cartella, aggiungi elementi anche da qui."
+
+#. Default: "Edit"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "edit"
+msgstr "Modifica"
+
+#. Default: "Restrictions"
+#: collective/sidebar/browser/sidebar.py
+msgid "folder_add_settings"
+msgstr "Restrizioni"
+
+#. Default: "Back"
+#: collective/sidebar/browser/templates/navigation.pt
+msgid "navigation_back"
+msgstr "Indietro"
+
+#. Default: "Actions"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_actions"
+msgstr "Azioni"
+
+#. Default: "Add"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_add"
+msgstr "Aggiungi"
+
+#. Default: "Display"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_display"
+msgstr "Visualizzazione"
+
+#. Default: "Edit"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_edit"
+msgstr "Modifica"
+
+#. Default: "Links"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_links"
+msgstr "Collegamenti"
+
+#. Default: "Navigation"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_navigation"
+msgstr "Navigazione"
+
+#. Default: "Search"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_search"
+msgstr "Cerca"
+
+#. Default: "Site"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_site"
+msgstr ""
+
+#. Default: "Workflow"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_workflow"
+msgstr "Workflow"
+
+#. Default: "Settings"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_link_settings"
+msgstr "Impostazioni"
+
+#. Default: "Search"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "search_aria_label"
+msgstr "Cerca"
+
+#. Default: "Search"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "search_button_submit"
+msgstr "Cerca"
+
+#. Default: "Type and enter"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "search_placeholder"
+msgstr "Cosa vuoi cercare?"
+
+#. Default: "Default Page"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "select_default_page"
+msgstr "Pagina di default"
+
+#. Default: "Default View"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "select_default_view"
+msgstr "Vista di default"
+
+#. Default: "Sharing"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "sharing"
+msgstr "Condivisione"
+
+#. Default: "Advanced"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "sidebar_workflow_advanced"
+msgstr "Avanzate"
+
+#. Default: "Configure which content types can be added here"
+#: collective/sidebar/browser/sidebar.py
+msgid "title_configure_addable_content_types"
+msgstr "Configura quali tipi di contenuto possono essere aggiunti qui"
+
+#. Default: "View"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "view"
+msgstr "Visualizza"
+
+#. Default: "Policy..."
+#: collective/sidebar/browser/sidebar.py
+msgid "workflow_policy"
+msgstr "Politica workflow…"
