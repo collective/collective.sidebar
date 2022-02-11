@@ -5,6 +5,16 @@ Changelog
 1.6.0 (unreleased)
 ------------------
 
+Added:
+
+- Nothing added yet.
+  [santonelli]
+
+Changed:
+
+- Update buildout to Plone 5.2.7
+  [santonelli]
+
 Bugfixes:
 
 - Check if navigation item needs view action.
