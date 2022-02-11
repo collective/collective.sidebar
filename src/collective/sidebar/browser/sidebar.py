@@ -127,7 +127,7 @@ class NavigationView(BrowserView):
             default=False,
         )
         view_types = api.portal.get_registry_record(
-            name='plone.types_use_view_action_in_listings'
+            name='plone.types_use_view_action_in_listings',
         )
 
         # root level navigation is enabled in settings
