@@ -2,15 +2,6 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
    This text does not appear on pypi or github. It is a comment.
 
-.. image:: https://travis-ci.org/collective/collective.sidebar.svg?branch=master
-    :target: https://travis-ci.org/collective/collective.sidebar
-
-.. image:: https://coveralls.io/repos/github/collective/collective.sidebar/badge.svg?branch=master
-    :target: https://coveralls.io/github/collective/collective.sidebar?branch=master
-
-.. image:: https://badge.fury.io/py/collective.sidebar.svg
-    :target: https://badge.fury.io/py/collective.sidebar
-
 
 ==================
 collective.sidebar
@@ -21,6 +12,39 @@ A sidebar for Plone to consolidate toolbar and navigation.
 .. image:: https://raw.githubusercontent.com/collective/collective.sidebar/master/docs/screenshot.png
     :target: https://raw.githubusercontent.com/collective/collective.sidebar/master/docs/screenshot.png
 
+
+Mostly Harmless
+---------------
+
+.. build status
+
+.. image:: https://img.shields.io/github/workflow/status/collective/collective.sidebar/Build/master?label=Build
+   :target: https://github.com/collective/collective.sidebar/actions/workflows/build.yml
+   :alt: Build Status
+
+.. coverage
+
+.. image:: https://coveralls.io/repos/github/collective/collective.sidebar/badge.svg?branch=master
+    :target: https://coveralls.io/github/collective/collective.sidebar?branch=master
+    :alt: Code Coverage
+
+.. pypi version
+
+.. image:: https://img.shields.io/pypi/v/collective.sidebar.svg?label=PyPI
+    :target: https://pypi.python.org/pypi/collective.sidebar/
+    :alt: Latest Version
+
+.. supported python versions
+
+.. image:: https://img.shields.io/pypi/pyversions/collective.sidebar.svg?label=Python
+    :target: https://pypi.python.org/pypi/collective.sidebar/
+    :alt: Supported Python Versions
+
+.. licence
+
+.. image:: https://img.shields.io/pypi/l/collective.sidebar.svg?label=Licence
+    :target: https://pypi.python.org/pypi/collective.sidebar/
+    :alt: License
 
 Features
 --------

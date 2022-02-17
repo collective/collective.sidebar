@@ -6,6 +6,7 @@
 *.EGG
 *.egg-info
 *.EGG-INFO
+*.lcov
 *.log
 *.mo
 *.py?

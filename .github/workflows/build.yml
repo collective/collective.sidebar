@@ -1,0 +1,57 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Build
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                plone-version:
+                  - 'Plone 5.2'
+                python-version: [3.7, 3.8, 3.9]
+        steps:
+            - uses: actions/checkout@v2
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                  python-version: ${{ matrix.python-version }}
+            - name: Install system libraries
+              run: sudo apt-get install libxml2-dev libxslt1-dev libjpeg-dev xvfb
+            - uses: actions/cache@v2
+              with:
+                  path: |
+                    ~/buildout-cache
+                    ~/extends
+                    ~/.cache/pip
+                  key: ${{ runner.os }}-${{ matrix.python-version }}-${{ matrix.plone-version }}-${{ hashFiles('**/*.cfg') }}
+            - name: Setup buildout cache
+              run: |
+                  mkdir -p ~/buildout-cache/{eggs,downloads}
+                  mkdir ~/.buildout
+                  echo "[buildout]" > $HOME/.buildout/default.cfg
+                  echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
+                  echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
+            - name: Bootstrap buildout
+              run: |
+                ./bootstrap.sh
+            - name: Run tests
+              run: |
+                  bin/test
+            - name: Create coverage
+              run: |
+                  bin/createcoverage
+                  bin/coverage lcov -i
+            - name: Coveralls
+              uses: coverallsapp/github-action@master
+              with:
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+                path-to-lcov: coverage.lcov
