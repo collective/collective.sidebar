@@ -44,7 +44,6 @@ lib64
 log.html
 output.xml
 pip-selfcheck.json
-package-lock.json
 pyvenv.cfg
 report.html
 
