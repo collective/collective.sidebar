@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-02-01 17:33+0000\n"
+"POT-Creation-Date: 2022-09-16 12:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,16 +58,6 @@ msgstr ""
 
 #: collective/sidebar/configure.zcml
 msgid "Uninstalls the collective.sidebar add-on."
-msgstr ""
-
-#. Default: "Left"
-#: collective/sidebar/controlpanel/config.py
-msgid "choice_left"
-msgstr ""
-
-#. Default: "Right"
-#: collective/sidebar/controlpanel/config.py
-msgid "choice_right"
 msgstr ""
 
 #. Default: "Collective Sidebar"
@@ -130,16 +120,6 @@ msgstr ""
 msgid "controlpanel_sidebar_enable_collapse_title"
 msgstr ""
 
-#. Default: "Enable cookies for sidebar features."
-#: collective/sidebar/controlpanel/controlpanel.py
-msgid "controlpanel_sidebar_enable_cookies_description"
-msgstr ""
-
-#. Default: "Enable Cookies"
-#: collective/sidebar/controlpanel/controlpanel.py
-msgid "controlpanel_sidebar_enable_cookies_title"
-msgstr ""
-
 #. Default: "Show actions section including object buttons for cut, copy, paste, etc."
 #: collective/sidebar/controlpanel/controlpanel.py
 msgid "controlpanel_sidebar_show_actions_description"
@@ -190,8 +170,24 @@ msgstr ""
 msgid "folder_add_settings"
 msgstr ""
 
+#. Default: "Left (in LTR)"
+#: collective/sidebar/controlpanel/config.py
+msgid "left_in_ltr"
+msgstr ""
+
+#. Default: "Login"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "login"
+msgstr ""
+
+#. Default: "Logout"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "logout"
+msgstr ""
+
 #. Default: "Back"
 #: collective/sidebar/browser/templates/navigation.pt
+#: collective/sidebar/browser/templates/navigation_simple.pt
 msgid "navigation_back"
 msgstr ""
 
@@ -230,9 +226,9 @@ msgstr ""
 msgid "navigation_heading_search"
 msgstr ""
 
-#. Default: "Site"
+#. Default: "Site actions"
 #: collective/sidebar/browser/templates/sidebar.pt
-msgid "navigation_heading_site"
+msgid "navigation_heading_site_actions"
 msgstr ""
 
 #. Default: "Workflow"
@@ -240,14 +236,14 @@ msgstr ""
 msgid "navigation_heading_workflow"
 msgstr ""
 
-#. Default: "Settings"
+#. Default: "Profile"
 #: collective/sidebar/browser/templates/sidebar.pt
-msgid "navigation_link_settings"
+msgid "profile"
 msgstr ""
 
-#. Default: "Search"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "search_aria_label"
+#. Default: "Right (in LTR)"
+#: collective/sidebar/controlpanel/config.py
+msgid "right_in_ltr"
 msgstr ""
 
 #. Default: "Search"
@@ -255,7 +251,7 @@ msgstr ""
 msgid "search_button_submit"
 msgstr ""
 
-#. Default: "Type and enter"
+#. Default: "Type and hit enter"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "search_placeholder"
 msgstr ""
@@ -270,14 +266,14 @@ msgstr ""
 msgid "select_default_view"
 msgstr ""
 
+#. Default: "Settings"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "settings"
+msgstr ""
+
 #. Default: "Sharing"
 #: collective/sidebar/browser/templates/sidebar.pt
 msgid "sharing"
-msgstr ""
-
-#. Default: "Advanced"
-#: collective/sidebar/browser/templates/sidebar.pt
-msgid "sidebar_workflow_advanced"
 msgstr ""
 
 #. Default: "Configure which content types can be added here"
