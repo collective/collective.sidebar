@@ -28,7 +28,7 @@
 
   <browser:viewlet
       name="sidebar"
-      manager="plone.app.layout.viewlets.interfaces.IMainNavigation"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
       layer="collective.sidebar.interfaces.ICollectiveSidebarLayer"
       class=".sidebar.SidebarViewlet"
       permission="zope2.View"
