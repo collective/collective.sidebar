@@ -57,19 +57,6 @@ class IControlPanel(Interface):
         default=True,
     )
 
-    enable_cookies = schema.Bool(
-        title=_(
-            u'controlpanel_sidebar_enable_cookies_title',
-            default='Enable Cookies',
-        ),
-        description=_(
-            u'controlpanel_sidebar_enable_cookies_description',
-            default=u'Enable cookies for sidebar features.',
-        ),
-        required=False,
-        default=True,
-    )
-
     enable_collapse = schema.Bool(
         title=_(
             u'controlpanel_sidebar_enable_collapse_title',
@@ -113,7 +100,7 @@ class IControlPanel(Interface):
         ),
         vocabulary=PositionVocabulary,
         required=True,
-        default='left',
+        default='start',
     )
 
     mouse = schema.Bool(

@@ -197,10 +197,9 @@ class SidebarViewlet(ViewletBase):
     def get_sidebar_position(self):
         position = api.portal.get_registry_record(
             name='collective.sidebar.sidebar_position',
-            default='left',
+            default='start',
         )
-        css_class = 'sidebar-' + position
-        return css_class
+        return position
 
     def _contentCanBeAdded(self, addContext, request):
         """
@@ -224,6 +223,14 @@ class SidebarViewlet(ViewletBase):
         """
         return api.portal.get().absolute_url()
 
+    def get_site_actions(self):
+        """
+        Return site actions.
+        """
+        links = self.context.portal_actions.listFilteredActionsFor(self.context)  # noqa: 501
+        site_actions = links.get('site_actions', [])
+        return site_actions
+
     def get_static_links(self):
         """
         Return sidebar links from portal_actions.
@@ -244,6 +251,29 @@ class SidebarViewlet(ViewletBase):
             'user_url': portal_url + '/@@personal-information',
         }
         return data
+
+    def get_current_user(self):
+        """Return currently logged in user"""
+        user = api.user.get_current()
+        return user
+
+    def get_username(self):
+        """Return username oder user's fullname"""
+        user = self.get_current_user()
+        member_tool = api.portal.get_tool('portal_membership')
+        username = user.id
+        fullname = member_tool.getProperty('fullname')
+        if fullname:
+            username = fullname
+        return username
+
+    def get_portrait_url(self):
+        member_tool = api.portal.get_tool('portal_membership')
+        user = api.user.get_current()
+        user_id = user.id
+        portrait = member_tool.getPersonalPortrait(id=user_id)
+        portrait_url = portrait.absolute_url()
+        return portrait_url
 
     def get_navigation_root_url(self):
         """
@@ -504,15 +534,6 @@ class SidebarViewlet(ViewletBase):
         return api.portal.get_registry_record(
             name='collective.sidebar.enable_actions',
             default=True,
-        )
-
-    def cookies_enabled(self):
-        """
-        Should cookie support be enabled
-        """
-        return api.portal.get_registry_record(
-            'collective.sidebar.enable_cookies',
-            default=False,
         )
 
     def collapse_enabled(self):
