@@ -1,250 +1,26 @@
-/* Vendor */
-@mixin vendor($property, $value) {
-     -moz-#{$property}: $value;
-      -ms-#{$property}: $value;
-       -o-#{$property}: $value;
-  -webkit-#{$property}: $value;
-          #{$property}: $value;
-}
-
-body {
-  overflow-x: hidden;
-
-  &.plone-toolbar-left {
-    padding-left: 0;
-  }
-
-  #edit-zone {
-    display: none;
-  }
-
-  &.plone-toolbar-left-expanded,
-  &.plone-toolbar-left-default {
-    padding-left: 0 !important;
-  }
+:root{
+  --plone-toolbar-width: 0 !important;
 }
 
 #portal-navigation {
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  visibility: hidden;
-  z-index: 999;
-  font-weight: normal;
 
-  &.sidebar-left {
-    left: 0;
+  width: 300px;
 
-    .menu {
-      transform: translate3d(-300px, 0, 0);
-    }
+  .plone-icon {
+    vertical-align: -0.125rem;
   }
 
-  &.sidebar-right {
-    right: 0;
-
-    .menu {
-      transform: translate3d(300px, 0, 0);
-    }
+  .toggle-icon {
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
   }
 
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-    border: 0;
-    display: none;
+  .sidebar-heading[aria-expanded="true"] {
+    .toggle-icon { transform: rotate(90deg); }
   }
 
-  ::-webkit-scrollbar {
-    background-color: transparent;
-    display: none;
-    width: auto;
+  .scrollarea {
+    overflow-y: auto;
   }
 
-  ::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    display: none;
-  }
-
-  .menu {
-    background-color: #FAFAFA;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    position: relative;
-    width: 300px;
-    will-change: transform;
-    z-index: 90;
-    line-height: 1;
-
-    @include vendor(transition, all 0.6s ease);
-
-
-    #sidebar-section-profile {
-      padding: 20px;
-      padding-bottom: 10px;
-    }
-
-    #sidebar-section-search .menu-section-content {
-      padding: 20px;
-    }
-
-    .menu-section {
-      margin-bottom: 5px;
-
-      .menu-profile {
-
-        .profile-image {
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-          border-radius: 50%;
-          height: 80px;
-          margin: 0 auto 15px auto;
-          opacity: 1;
-          overflow: hidden;
-          transition: opacity 150ms ease-in-out;
-          width: 80px;
-        }
-
-        .profile-info {
-          text-align: center;
-
-          .profile-name {
-            background-color: #F1F1F1;
-            border-radius: 8px;
-            color: #2F3334;
-            font-size: 18px;
-            font-weight: 300;
-            padding: 4px;
-          }
-        }
-
-        &:hover {
-          .profile-image {
-            opacity: 0.5;
-          }
-        }
-      }
-
-      a,
-      a:hover,
-      a:focus,
-      a:active,
-      a:visited {
-        color: #2F3334;
-        display: block;
-        text-decoration: none;
-        padding: 10px 20px;
-        outline: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-
-        &:last-child {
-          border: none;
-        }
-
-        &.link-item {
-          .menu-item-nav {
-            display: none;
-          }
-        }
-      }
-
-      .menu-section-title {
-        font-size: 18px;
-        font-weight: 200;
-        margin-bottom: 2px;
-        position: relative;
-        text-transform: uppercase;
-        cursor: pointer;
-        padding: 10px 20px;
-        background-color: #eee;
-      }
-
-      .menu-item-icon {
-        display: block;
-        float: left;
-        height: 100%;
-        text-align: center;
-      }
-
-      .menu-item-title {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-left: 25px;
-        padding-bottom: 3px;
-        position: relative;
-        display: block;
-        width: 210px;
-      }
-
-      .menu-item-nav {
-        display: block;
-        float: right;
-        height: 100%;
-        text-align: center;
-        color: #ccc;
-        position: absolute;
-        top: 2px;
-        right: 0;
-        padding: 10px 15px;
-      }
-
-      #menu-search {
-        input[type="search"] {
-          width: 100%;
-        }  
-        button {
-          width: 100%;
-          display: none;
-        }  
-      }
-    }
-  }
-}
-
-.userrole-authenticated {
-  #portal-navigation {
-    .menu {
-      .menu-section {
-        .section-handle {
-          font-size: 10px;
-          padding: 5px;
-          position: relative;
-          vertical-align: middle;
-        }
-
-        .section-down {display: none}
-
-        &.collapsed {
-          .menu-section-content, .section-up {display: none}
-          .section-down {display: inline-block}
-        }
-      }
-    }
-  }
-}
-
-body[data-with-sidebar='true'],
-.with-sidebar {
-  #portal-navigation {
-    visibility: visible;
-
-    .menu {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-}
-
-#portal-navigation-cover {
-  background: #2F3334;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: fixed;
-  z-index: 50;
-  display: none;
-  opacity: 50%;
 }
