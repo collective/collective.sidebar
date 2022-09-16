@@ -1,25 +1,30 @@
-<div class="menu-section-content" tal:define="items view/get_items; back view/get_back; show view/get_show;" i18n:domain="collective.sidebar">
+<ul class="nav nav-pills flex-column mb-auto" tal:define="icons python:context.restrictedTraverse('@@iconresolver'); items view/get_items; back view/get_back; show view/get_show;" i18n:domain="collective.sidebar">
 
-  <tal:item tal:condition="back">
-    <a class="link-back link-folder" href="#" tal:attributes="href back">
-      <span class="menu-item-icon ${python:view.get_icon('menu-left')}"></span>
-      <span class="menu-item-title" i18n:translate="navigation_back">Back</span>
+  <!-- Navigational link back to the parent folder -->
+
+  <li tal:condition="back">
+    <a href="${back}" class="nav-link link-dark link-back link-folder">
+      <tal:icon tal:replace="structure python:icons.tag('chevron-left', tag_class='me-1')" />
+      <span i18n:translate="navigation_back">Back</span>
     </a>
-  </tal:item>
+  </li>
 
-  <tal:item tal:condition="show" tal:define="item show">
-    <a class="link-show link-item" href="#" tal:attributes="title item/title; href item/url;">
-      <span class="menu-item-icon ${python:view.get_icon('option-horizontal')}"></span>
-      <span class="menu-item-title" tal:content="item/title_cropped"></span>
+  <!-- Link to show current item if it's folderish -->
+
+  <li tal:condition="show">
+    <a href="${show/url}" class="nav-link link-dark link-show link-item">
+      <tal:icon tal:replace="structure python:icons.tag('link', tag_class='me-1')" />
+      ${show/title_cropped}
     </a>
-  </tal:item>
+  </li>
 
-  <tal:items tal:repeat="item items">
-    <a class="" href="#" tal:attributes="title item/title; href item/url; class item/type;">
-      <span class="menu-item-icon ${python:view.get_icon('menu-right')}"></span>
-      <span class="menu-item-title" tal:content="item/title_cropped"></span>
-      <span class="menu-item-nav ${python:view.get_icon('menu-right')}"></span>
+  <!-- Actual links to items in folder -->
+
+  <li tal:repeat="item items">
+    <a href="${item/url}" class="nav-link link-dark ${item/type}">
+      <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-1')" />
+      ${item/title}
     </a>
-  </tal:items>
+  </li>
 
-</div>
+</ul>
