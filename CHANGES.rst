@@ -2,22 +2,52 @@ Changelog
 =========
 
 
-1.6.0 (unreleased)
+2.0.0 (unreleased)
 ------------------
 
 Added:
 
-- Nothing added yet.
+- Add site actions to top of sidebar.
   [santonelli]
 
 Changed:
 
-- Update buildout to Plone 5.2.7
+- Update buildout to Plone 6.
+  [santonelli]
+  
+- Move Sidebar viewlet to IPortalHeader.
   [santonelli]
 
+- Remove more than 200 lines of custom CSS.
+  [santonelli]
+  
+- Remove half of custom JavaScript code.
+  [santonelli]
+  
+- Make use of Plone 6 Classic UI icon story.
+  [santonelli]
+  
+- Use Bootstrap 5 Markup for styling.
+  [santonelli]
+  
+- Use Bootstrap Icons by default.
+  [santonelli]
+  
+- Use Bootstrap's offcanvas component.
+  [santonelli]
+  
+- Use Bootstrap's collapse component to show/hide sections.
+  [santonelli]
+  
+- Replace cookies by local storage to save state of shown/hidden sections.
+  [santonelli]
+  
+- Remove dependency to structureupdater pattern.
+  [santonelli]
+  
 Bugfixes:
 
-- Check if navigation item needs view action.
+- Nothing fixed yet.
   [santonelli]
 
 
