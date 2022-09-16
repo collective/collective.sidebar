@@ -5,8 +5,8 @@
 		"sidebar.scss"
 	],
 	"sourcesContent": [
-		":root{\n  --plone-toolbar-width: 0 !important;\n}\n\n#portal-navigation {\n\n  width: 300px;\n\n  .plone-icon {\n    vertical-align: -0.125rem;\n  }\n\n  .toggle-icon {\n    transition: transform .35s ease;\n    transform-origin: .5em 50%;\n  }\n\n  .sidebar-heading[aria-expanded=\"true\"] {\n    .toggle-icon { transform: rotate(90deg); }\n  }\n\n  .scrollarea {\n    overflow-y: auto;\n  }\n\n}\n"
+		":root{\n  --plone-toolbar-width: 0 !important;\n}\n\n#portal-sidebar {\n\n  width: 300px;\n\n  .plone-icon {\n    vertical-align: -0.125rem;\n  }\n\n  .toggle-icon {\n    transition: transform .35s ease;\n    transform-origin: .5em 50%;\n  }\n\n  .sidebar-heading[aria-expanded=\"true\"] {\n    .toggle-icon { transform: rotate(90deg); }\n  }\n\n  .scrollarea {\n    overflow-y: auto;\n  }\n\n}\n"
 	],
 	"names": [],
-	"mappings": "AAAA,AAAA,KAAK,CAAA;EACH,qBAAqB,CAAA,aAAC;CACvB;;AAED,AAAA,kBAAkB,CAAC;EAEjB,KAAK,EAAE,KAAK;CAmBb;;AArBD,AAIE,kBAJgB,CAIhB,WAAW,CAAC;EACV,cAAc,EAAE,SAAS;CAC1B;;AANH,AAQE,kBARgB,CAQhB,YAAY,CAAC;EACX,UAAU,EAAE,mBAAmB;EAC/B,gBAAgB,EAAE,QAAQ;CAC3B;;AAXH,AAcI,kBAdc,CAahB,gBAAgB,CAAA,AAAA,aAAC,CAAc,MAAM,AAApB,EACf,YAAY,CAAC;EAAE,SAAS,EAAE,aAAa;CAAI;;AAd/C,AAiBE,kBAjBgB,CAiBhB,WAAW,CAAC;EACV,UAAU,EAAE,IAAI;CACjB"
+	"mappings": "AAAA,AAAA,KAAK,CAAA;EACH,qBAAqB,CAAA,aAAC;CACvB;;AAED,AAAA,eAAe,CAAC;EAEd,KAAK,EAAE,KAAK;CAmBb;;AArBD,AAIE,eAJa,CAIb,WAAW,CAAC;EACV,cAAc,EAAE,SAAS;CAC1B;;AANH,AAQE,eARa,CAQb,YAAY,CAAC;EACX,UAAU,EAAE,mBAAmB;EAC/B,gBAAgB,EAAE,QAAQ;CAC3B;;AAXH,AAcI,eAdW,CAab,gBAAgB,CAAA,AAAA,aAAC,CAAc,MAAM,AAApB,EACf,YAAY,CAAC;EAAE,SAAS,EAAE,aAAa;CAAI;;AAd/C,AAiBE,eAjBa,CAiBb,WAAW,CAAC;EACV,UAAU,EAAE,IAAI;CACjB"
 }

@@ -7,7 +7,7 @@
                         can_collapse python:collapsible;
                         icons python:context.restrictedTraverse('@@iconresolver');" i18n:domain="collective.sidebar">
 
-  <div class="offcanvas offcanvas-${view/get_sidebar_position}" tabindex="-1" id="portal-navigation" aria-labelledby="offcanvasExampleLabel" tal:define="items view/get_items; back view/get_back;" data-sidebar-mouse="${view/get_mouse_activated}" data-sidebar-mouse-area="${view/get_mouse_area}">
+  <div class="offcanvas offcanvas-${view/get_sidebar_position}" tabindex="-1" id="portal-sidebar" aria-labelledby="offcanvasExampleLabel" tal:define="items view/get_items; back view/get_back;" data-sidebar-mouse="${view/get_mouse_activated}" data-sidebar-mouse-area="${view/get_mouse_area}">
 
     <div class="offcanvas-body pt-4">
 

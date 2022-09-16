@@ -6,7 +6,7 @@
     // Burger elements to open Sidebar
 
     var burger = '#burger-menu, #navigation-menu, #sidebar-menu, #sidebar-handle'
-    var sidebar_element = document.getElementById('portal-navigation');
+    var sidebar_element = document.getElementById('portal-sidebar');
     var sidebar = new bootstrap.Offcanvas(sidebar_element);
 
     var showSidebarEvent = function (event) {
@@ -38,8 +38,8 @@
 
     // Mouse
 
-    var mouse_activated = $('#portal-navigation').data('sidebar-mouse');
-    var offset = $('#portal-navigation').data('sidebar-mouse-area');
+    var mouse_activated = $('#portal-sidebar').data('sidebar-mouse');
+    var offset = $('#portal-sidebar').data('sidebar-mouse-area');
 
     if (mouse_activated) {
       $('body').mousemove(function (event) {
