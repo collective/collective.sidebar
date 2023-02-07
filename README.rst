@@ -85,6 +85,7 @@ Translations
 This product has been translated into:
 
 - German (thanks, santonelli)
+- Czech (thanks, olda-a)
 
 
 Installation

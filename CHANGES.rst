@@ -10,6 +10,9 @@ Added:
 - Add site actions to top of sidebar.
   [santonelli]
 
+- Add Czech translation.
+  [olda-a]
+
 Changed:
 
 - Update buildout to Plone 6.

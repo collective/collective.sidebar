@@ -1,0 +1,291 @@
+# Czech translation for collective.sidebar
+# Olda Auda <o.auda@icloud.com>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: collective.sidebar\n"
+"POT-Creation-Date: 2022-09-16 12:00+0000\n"
+"PO-Revision-Date: 2023-02-07 10:00+0000\n"
+"Last-Translator: Olda Auda <o.auda@icloud.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Language-Code: cs\n"
+"Language-Name: Czech\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: collective.sidebar\n"
+
+#: collective/sidebar/profiles/default/controlpanel.xml
+msgid "Collective Sidebar"
+msgstr "Collective Sidebar"
+
+#: collective/sidebar/configure.zcml
+msgid "Collective Sidebar (collective.sidebar)"
+msgstr "Collective Sidebar (collective.sidebar)"
+
+#: collective/sidebar/configure.zcml
+msgid "Collective Sidebar (collective.sidebar) - Testing"
+msgstr "Collective Sidebar (collective.sidebar) - Testing"
+
+#: collective/sidebar/configure.zcml
+msgid "Collective Sidebar (collective.sidebar) - Uninstall"
+msgstr "Collective Sidebar (collective.sidebar) - Uninstall"
+
+#: collective/sidebar/profiles/default/actions.xml
+#: collective/sidebar/profiles/to_1300/actions.xml
+msgid "Home"
+msgstr "Home"
+
+#: collective/sidebar/configure.zcml
+msgid "Installs the collective.sidebar add-on."
+msgstr "Instaluje collective.sidebar."
+
+#: collective/sidebar/configure.zcml
+msgid "Installs the collective.sidebar:testing profile."
+msgstr "Instaluje collective.sidebar:testing profil."
+
+#: collective/sidebar/profiles/default/actions.xml
+#: collective/sidebar/profiles/to_1300/actions.xml
+msgid "Login"
+msgstr "Přihlášení"
+
+#: collective/sidebar/profiles/default/actions.xml
+#: collective/sidebar/profiles/to_1300/actions.xml
+msgid "Logout"
+msgstr "Odhlášení"
+
+#: collective/sidebar/configure.zcml
+msgid "Uninstalls the collective.sidebar add-on."
+msgstr "Odinstaluje collective.sidebar."
+
+#. Default: "Collective Sidebar"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "collective_sidebar_title"
+msgstr "Collective Sidebar"
+
+#. Default: "Contents"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "contents"
+msgstr "Obsah"
+
+#. Default: "Enter the number of pixels to activate the sidebar."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_area_description"
+msgstr "Zadejte počet pixelů pro aktivaci sidebaru."
+
+#. Default: "Mouse Activation Area"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_area_title"
+msgstr "Oblast aktivace myší"
+
+#. Default: "When enabled, the sidebar will be opened by mouse."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_description"
+msgstr "Pokud je povoleno, sidebar se zobrazí pomocí najetí myší."
+
+#. Default: "Mouse activated"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_mouse_title"
+msgstr "Aktivace myší"
+
+#. Default: "When a different icon font is installed, you can tell the sidebar to use it. For Fontello we assume you have set \"icon\" as the font prefix. Note: This does not install the icon font!"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_choose_icon_font_description"
+msgstr "Když je nainstalován odlišný font, je možné nastavit, aby jej sidebar použil. Pro Fontello předpokládáme, že je nastaven front prefix jako \"icon\". Poznámka: Toto nenainstaluje icon font!"
+
+#. Default: "Choose Icon Font"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_choose_icon_font_title"
+msgstr "Zvolte icon font."
+
+#. Default: "Enable dynamic navigation inside sidebar."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_dynamic_navigation_description"
+msgstr "Povolit dynamickou navigaci v rámci sidebaru."
+
+#. Default: "Enable dynamic Navigation"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_dynamic_navigation_title"
+msgstr "Povolit dynamickou navigaci"
+
+#. Default: "When enabled, the sidebar sections can be collapsed. This feature is only available when cookies are enabled."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_collapse_description"
+msgstr "Když povoleno, sekce sidebaru mohou být sbaleny. Tato vlastnost je k dispizici pouze s povolenými cookies."
+
+#. Default: "Collapsible Sections"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_enable_collapse_title"
+msgstr "Sbalitelné sekce"
+
+#. Default: "Show actions section including object buttons for cut, copy, paste, etc."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_actions_description"
+msgstr "Zobrazit sekci Akce včetně tlačítek pro vyjmout, kopírovat, vložit atd."
+
+#. Default: "Show Actions Section"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_actions_title"
+msgstr "Zobrazit sekci Akce"
+
+#. Default: "When enabled, the sidebar will display the root level navigation."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_root_nav_description"
+msgstr "Když povoleno, sidebar zobrazí navigaci od nejvyšší úrovně."
+
+#. Default: "Root Level Navigation"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_show_root_nav_title"
+msgstr "Kořen navigace"
+
+#. Default: "Display the sidebar on the left or right."
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_sidebar_position_description"
+msgstr "Zobrazit sidebar vlevo nebo vpravo."
+
+#. Default: "Sidebar Position"
+#: collective/sidebar/controlpanel/controlpanel.py
+msgid "controlpanel_sidebar_sidebar_position_title"
+msgstr "Pozice sidebaru"
+
+#. Default: "Add item to default page"
+#: collective/sidebar/browser/sidebar.py
+msgid "default_page_folder"
+msgstr "Přidat položku pro defaultní stránku"
+
+#. Default: "If the default page is also a folder, add items to it from here."
+#: collective/sidebar/browser/sidebar.py
+msgid "desc_default_page_folder"
+msgstr "Pokud je defaultní stránka také složka, tady je možné do ní přidat položky."
+
+#. Default: "Edit"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "edit"
+msgstr "Upravit"
+
+#. Default: "Restrictions"
+#: collective/sidebar/browser/sidebar.py
+msgid "folder_add_settings"
+msgstr "Omezení"
+
+#. Default: "Left (in LTR)"
+#: collective/sidebar/controlpanel/config.py
+msgid "left_in_ltr"
+msgstr "Vlevo (LTR)"
+
+#. Default: "Login"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "login"
+msgstr "Přihlášení"
+
+#. Default: "Logout"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "logout"
+msgstr "Odhlášení"
+
+#. Default: "Back"
+#: collective/sidebar/browser/templates/navigation.pt
+#: collective/sidebar/browser/templates/navigation_simple.pt
+msgid "navigation_back"
+msgstr "Zpět"
+
+#. Default: "Actions"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_actions"
+msgstr "Akce"
+
+#. Default: "Add"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_add"
+msgstr "Přidat"
+
+#. Default: "Display"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_display"
+msgstr "Zobrazit"
+
+#. Default: "Edit"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_edit"
+msgstr "Upravit"
+
+#. Default: "Links"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_links"
+msgstr "Odkazy"
+
+#. Default: "Navigation"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_navigation"
+msgstr "Navigace"
+
+#. Default: "Search"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_search"
+msgstr "Hledání"
+
+#. Default: "Site actions"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_site_actions"
+msgstr "Akce portálu"
+
+#. Default: "Workflow"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "navigation_heading_workflow"
+msgstr "Workflow"
+
+#. Default: "Profile"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "profile"
+msgstr "Profil"
+
+#. Default: "Right (in LTR)"
+#: collective/sidebar/controlpanel/config.py
+msgid "right_in_ltr"
+msgstr "Vpravo (LTR)"
+
+#. Default: "Search"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "search_button_submit"
+msgstr "Hledat"
+
+#. Default: "Type and hit enter"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "search_placeholder"
+msgstr "Hledaný text + enter"
+
+#. Default: "Default Page"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "select_default_page"
+msgstr "Defaultní stránka"
+
+#. Default: "Default View"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "select_default_view"
+msgstr "Defaultní pohled"
+
+#. Default: "Settings"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "settings"
+msgstr "Nastavení"
+
+#. Default: "Sharing"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "sharing"
+msgstr "Sdílení"
+
+#. Default: "Configure which content types can be added here"
+#: collective/sidebar/browser/sidebar.py
+msgid "title_configure_addable_content_types"
+msgstr "Nastavte jaké typy obsahu je tady možné přidávat"
+
+#. Default: "View"
+#: collective/sidebar/browser/templates/sidebar.pt
+msgid "view"
+msgstr "Zobrazit"
+
+#. Default: "Policy..."
+#: collective/sidebar/browser/sidebar.py
+msgid "workflow_policy"
+msgstr "Workflow pravidla…"
