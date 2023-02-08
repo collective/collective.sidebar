@@ -16,16 +16,24 @@ jobs:
             fail-fast: false
             matrix:
                 plone-version:
-                  - 'Plone 5.2'
-                python-version: [3.7, 3.8, 3.9]
+                  - 'Plone 6.0'
+                python-version: [3.9, 3.10]
+
         steps:
+            # git checkout
             - uses: actions/checkout@v2
+
+            # python setup
             - name: Set up Python
               uses: actions/setup-python@v2
               with:
                   python-version: ${{ matrix.python-version }}
+
+            # system
             - name: Install system libraries
               run: sudo apt-get install libxml2-dev libxslt1-dev libjpeg-dev xvfb
+
+            # buildout cache
             - uses: actions/cache@v2
               with:
                   path: |
@@ -33,6 +41,8 @@ jobs:
                     ~/extends
                     ~/.cache/pip
                   key: ${{ runner.os }}-${{ matrix.python-version }}-${{ matrix.plone-version }}-${{ hashFiles('**/*.cfg') }}
+
+            # setup buildout cache
             - name: Setup buildout cache
               run: |
                   mkdir -p ~/buildout-cache/{eggs,downloads}
@@ -40,16 +50,24 @@ jobs:
                   echo "[buildout]" > $HOME/.buildout/default.cfg
                   echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
                   echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
+
+            # bootstrap buildout
             - name: Bootstrap buildout
               run: |
                 ./bootstrap.sh
+
+            # test
             - name: Run tests
               run: |
                   bin/test
+
+            # create coverage
             - name: Create coverage
               run: |
                   bin/createcoverage
                   bin/coverage lcov -i
+
+            # coverage
             - name: Coveralls
               uses: coverallsapp/github-action@master
               with:
