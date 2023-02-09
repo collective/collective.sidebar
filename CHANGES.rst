@@ -47,7 +47,10 @@ Changed:
   
 - Remove dependency to structureupdater pattern.
   [santonelli]
-  
+
+- Fix link colors to add support for color modes.
+  [santonelli]
+
 Bugfixes:
 
 - Nothing fixed yet.

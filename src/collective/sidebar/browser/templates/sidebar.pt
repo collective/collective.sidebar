@@ -23,7 +23,7 @@
         <div class="collapse show" id="${id}-collapse">
           <ul class="nav nav-pills flex-column">
             <li tal:repeat="link links">
-              <a href="${link/url}" class="nav-link link-dark">
+              <a href="${link/url}" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag(link['icon'], tag_class='me-1')" />
                 ${link/title}
               </a>
@@ -47,7 +47,7 @@
         <div class="collapse show" id="${id}-collapse">
           <ul class="nav nav-pills flex-column">
             <li tal:repeat="link links">
-              <a href="${link/url}" class="nav-link link-dark">
+              <a href="${link/url}" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag(link['icon'], tag_class='me-1')" />
                 ${link/title}
               </a>
@@ -91,35 +91,35 @@
           <ul class="nav nav-pills flex-column">
 
             <li>
-              <a href="${context/absolute_url}/view" class="nav-link link-dark">
+              <a href="${context/absolute_url}/view" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('plone-view', tag_class='me-1')" />
                 <span i18n:translate="view">View</span>
               </a>
             </li>
 
             <li>
-              <a href="${context/absolute_url}/edit" class="nav-link link-dark">
+              <a href="${context/absolute_url}/edit" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('plone-edit', tag_class='me-1')" />
                 <span i18n:translate="edit">Edit</span>
               </a>
             </li>
 
             <li>
-              <a href="${view/get_folder_contents_url}" class="nav-link link-dark">
+              <a href="${view/get_folder_contents_url}" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('folder', tag_class='me-1')" />
                 <span i18n:translate="contents">Contents</span>
               </a>
             </li>
 
             <li>
-              <a href="${context/absolute_url}/@@historyview" class="nav-link link-dark">
+              <a href="${context/absolute_url}/@@historyview" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('plone-clock', tag_class='me-1')" />
                 <span tal:content="python:toLocalizedTime(context.ModificationDate(), long_format=1)">Modified</span>
               </a>
             </li>
 
             <li>
-              <a href="${context/absolute_url}/@@sharing" class="nav-link link-dark">
+              <a href="${context/absolute_url}/@@sharing" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('shield-check', tag_class='me-1')" />
                 <span i18n:translate="sharing">Sharing</span>
               </a>
@@ -145,21 +145,21 @@
           <ul class="nav nav-pills flex-column" >
 
             <li>
-              <span class="nav-link link-dark state-${view/get_workflow_state}">
+              <span class="nav-link state-${view/get_workflow_state}">
                 <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-1')" />
                 <span i18n:translate="">${view/get_workflow_state_title}</span>
               </span>
             </li>
 
             <li tal:repeat="action actions">
-              <a href="${action/action}" class="nav-link link-dark">
+              <a href="${action/action}" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('arrow-left-right', tag_class='me-1')" />
                 <span i18n:translate="">${action/title}</span>
               </a>
             </li>
 
             <li tal:condition="actions">
-              <a href="${context/absolute_url}/content_status_history" class="nav-link link-dark">
+              <a href="${context/absolute_url}/content_status_history" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('three-dots', tag_class='me-1')" />
                 <span i18n:translate="">Advanced</span>
               </a>
@@ -185,7 +185,7 @@
           <ul class="nav nav-pills flex-column">
             <tal:links repeat="action actions">
             <li tal:condition="action/allowed">
-              <a href="${action/url}" class="nav-link link-dark ${python:'pat-plone-modal' if action.get('modal', None) else ''}">
+              <a href="${action/url}" class="nav-link ${python:'pat-plone-modal' if action.get('modal', None) else ''}">
                 <tal:icon tal:replace="structure python:icons.tag(action['icon'], tag_class='me-1')" />
                 <span i18n:translate="">${action/title}</span>
               </a>
@@ -210,7 +210,7 @@
         <div class="collapse show" id="${id}-collapse" i18n:domain="plone">
           <ul class="nav nav-pills flex-column">
             <li tal:repeat="item items">
-              <a href="${item/action}" class="nav-link link-dark">
+              <a href="${item/action}" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('plus', tag_class='me-1')" />
                 <span i18n:translate="">${item/title}</span>
               </a>
@@ -235,14 +235,14 @@
           <ul class="nav nav-pills flex-column">
 
             <li>
-              <a href="${view/get_default_view_link}" class="nav-link link-dark pat-plone-modal">
+              <a href="${view/get_default_view_link}" class="nav-link pat-plone-modal">
                 <tal:icon tal:replace="structure python:icons.tag('display', tag_class='me-1')" />
                 <span i18n:translate="select_default_view">Default View</span>
               </a>
             </li>
 
             <li>
-              <a href="${view/get_default_page_link}" class="nav-link link-dark pat-plone-modal">
+              <a href="${view/get_default_page_link}" class="nav-link pat-plone-modal">
                 <tal:icon tal:replace="structure python:icons.tag('file-earmark-text', tag_class='me-1')" />
                 <span i18n:translate="select_default_page">Default Page</span>
               </a>
@@ -283,7 +283,7 @@
 
       <div class="dropdown px-2 my-3" tal:condition="not:view/is_anonymous">
 
-        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="true">
+        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="true">
           <img src="${view/get_portrait_url}" alt="" width="32" height="32" class="rounded-circle me-2">
           <strong>${view/get_username}</strong>
         </a>

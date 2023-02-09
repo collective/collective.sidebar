@@ -3,7 +3,7 @@
   <!-- Navigational link back to the parent folder -->
 
   <li tal:condition="back">
-    <a href="${back}" class="nav-link link-dark link-back link-folder">
+    <a href="${back}" class="nav-link link-back link-folder">
       <tal:icon tal:replace="structure python:icons.tag('chevron-left', tag_class='me-1')" />
       <span i18n:translate="navigation_back">Back</span>
     </a>
@@ -12,7 +12,7 @@
   <!-- Link to show current item if it's folderish -->
 
   <li tal:condition="show">
-    <a href="${show/url}" class="nav-link link-dark link-show link-item">
+    <a href="${show/url}" class="nav-link link-show link-item">
       <tal:icon tal:replace="structure python:icons.tag('link', tag_class='me-1')" />
       ${show/title_cropped}
     </a>
@@ -21,7 +21,7 @@
   <!-- Actual links to items in folder -->
 
   <li tal:repeat="item items">
-    <a href="${item/url}" class="nav-link link-dark ${item/type}">
+    <a href="${item/url}" class="nav-link ${item/type}">
       <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='me-1')" />
       ${item/title}
     </a>

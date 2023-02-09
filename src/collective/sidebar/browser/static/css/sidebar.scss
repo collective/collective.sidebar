@@ -23,4 +23,14 @@
     overflow-y: auto;
   }
 
+  a {
+    color: var(--bs-dark);
+  }
+
+}
+
+[data-bs-theme=dark] #portal-sidebar {
+  a {
+    color: var(--bs-light);
+  }
 }
