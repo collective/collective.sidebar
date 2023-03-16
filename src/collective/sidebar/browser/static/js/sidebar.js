@@ -7,6 +7,10 @@
 
     var burger = '#burger-menu, #navigation-menu, #sidebar-menu, #sidebar-handle'
     var sidebar_element = document.getElementById('portal-sidebar');
+
+    if (!sidebar_element) {
+        return;
+    }
     var sidebar = new bootstrap.Offcanvas(sidebar_element);
 
     var showSidebarEvent = function (event) {
