@@ -24,11 +24,11 @@
 
     // Save collapsed state in localstorage
 
-    $(".collapse").on("shown.bs.collapse", function () {
+    $("#portal-sidebar .collapse").on("shown.bs.collapse", function () {
       localStorage.setItem("coll_" + this.id, true);
     });
   
-    $(".collapse").on("hidden.bs.collapse", function () {
+    $("#portal-sidebar .collapse").on("hidden.bs.collapse", function () {
       localStorage.removeItem("coll_" + this.id);
     });
   
