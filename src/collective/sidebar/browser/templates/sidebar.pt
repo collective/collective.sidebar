@@ -268,10 +268,10 @@
 
           <form action="${context/portal_url}/@@search">
             <div class="mb-3">
-              <label for="search" class="form-label sr-only">Search</label>
+              <label for="search" class="form-label visually-hidden">Search</label>
               <input type="text" class="form-control" id="search" name="SearchableText" placeholder="Type and hit enter" i18n:attributes="placeholder search_placeholder">
             </div>
-            <button class="btn btn-primary " type="submit" i18n:translate="search_button_submit">Search</button>
+            <button class="btn btn-primary visually-hidden" type="submit" i18n:translate="search_button_submit">Search</button>
           </form>
 
         </div>
