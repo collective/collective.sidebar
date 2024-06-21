@@ -4,7 +4,8 @@
                         context_url context/absolute_url;
                         anonymous view/is_anonymous;
                         collapsible view/collapse_enabled;
-                        can_collapse python:collapsible;
+                        collapse python:collapsible and 'collapse' or '';
+                        role python:collapsible and 'button' or '';
                         icons python:context.restrictedTraverse('@@iconresolver');" i18n:domain="collective.sidebar">
 
   <div class="offcanvas offcanvas-${view/get_sidebar_position}" tabindex="-1" id="portal-sidebar" aria-labelledby="offcanvasExampleLabel" tal:define="items view/get_items; back view/get_back;" data-sidebar-mouse="${view/get_mouse_activated}" data-sidebar-mouse-area="${view/get_mouse_area}">
@@ -15,9 +16,9 @@
 
       <div class="pb-3" tal:define="id python:'site_actions'; links view/get_site_actions" tal:condition="links">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" role="button" aria-expanded="true">
+        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_site_actions">Site actions</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" />
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
         <div class="collapse show" id="${id}-collapse">
@@ -39,9 +40,9 @@
 
       <div class="pb-3" tal:define="id python:'links'; links view/get_static_links" tal:condition="links">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" role="button" aria-expanded="true">
+        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_links">Links</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" />
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
         <div class="collapse show" id="${id}-collapse">
@@ -63,9 +64,9 @@
 
       <div class="pb-3" tal:define="id python:'navigation'; links view/get_static_links" tal:condition="links">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" role="button" aria-expanded="true">
+        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_navigation">Navigation</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" />
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
         <div class="collapse show" id="${id}-collapse">
@@ -82,9 +83,9 @@
 
       <div class="pb-3" tal:define="id python:'edit'" tal:condition="view/can_edit">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" role="button" aria-expanded="true">
+        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_edit">Edit</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" />
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
         <div class="collapse show" id="${id}-collapse">
@@ -136,9 +137,9 @@
 
       <div class="pb-3" tal:define="id python:'workflow'; actions view/get_workflow_actions;" tal:condition="python:view.can_edit() and view.has_workflow()">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" role="button" aria-expanded="true">
+        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_workflow">Workflow</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" />
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
         <div class="collapse show" id="${id}-collapse" i18n:domain="plone">
@@ -176,9 +177,9 @@
 
       <div class="pb-3" tal:define="id python:'actions'; actions view/get_actions" tal:condition="python:view.is_actions_enabled() and view.can_edit() and actions">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" role="button" aria-expanded="true">
+        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_actions">Actions</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" />
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
         <div class="collapse show" id="${id}-collapse" i18n:domain="plone">
@@ -202,9 +203,9 @@
 
       <div class="pb-3" tal:define="id python:'add'; items view/get_addable_items;" tal:condition="items">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" role="button" aria-expanded="true">
+        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_add">Add</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" />
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
         <div class="collapse show" id="${id}-collapse" i18n:domain="plone">
@@ -226,9 +227,9 @@
 
       <div class="pb-3" tal:define="id python:'display'" tal:condition="view/can_edit">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" role="button" aria-expanded="true">
+        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_display">Display</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" />
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
         <div class="collapse show" id="${id}-collapse">
@@ -259,9 +260,9 @@
 
       <div class="pb-3" tal:define="id python:'search'" tal:condition="view/can_edit">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="collapse" data-bs-target="#${id}-collapse" role="button" aria-expanded="true">
+        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_search">Search</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" />
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
         <div class="collapse px-3" id="${id}-collapse">
