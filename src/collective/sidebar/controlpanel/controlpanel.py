@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from collective.sidebar import _
-from collective.sidebar.controlpanel.config import IconFontVocabulary
 from collective.sidebar.controlpanel.config import PositionVocabulary
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
@@ -71,22 +70,6 @@ class IControlPanel(Interface):
         ),
         required=False,
         default=True,
-    )
-
-    icon_font = schema.Choice(
-        title=_(u'controlpanel_sidebar_choose_icon_font_title',
-                default=u'Choose Icon Font'),
-        description=_(
-            u'controlpanel_sidebar_choose_icon_font_description',
-            default=(
-                u'When a different icon font is installed, you can tell the '
-                u'sidebar to use it. For Fontello we assume you have set '
-                u'\"icon\" as the font prefix. '
-                u'Note: This does not install the icon font!'),
-        ),
-        vocabulary=IconFontVocabulary,
-        default='Glyphicons',
-        required=True,
     )
 
     sidebar_position = schema.Choice(

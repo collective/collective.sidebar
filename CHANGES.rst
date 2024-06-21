@@ -51,6 +51,9 @@ Changed:
 - Fix link colors to add support for color modes.
   [santonelli]
 
+- Remove icon selection in settings.
+  [santonelli]
+
 Bugfixes:
 
 - Nothing fixed yet.
