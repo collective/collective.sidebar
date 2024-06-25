@@ -588,7 +588,10 @@ class SidebarViewlet(ViewletBase):
         constraints = IConstrainTypes(addContext, None)
         if constraints is not None:
             include = constraints.getImmediatelyAddableTypes()
-        results = factories_view.addable_types(include=include)
+        try:
+            results = factories_view.addable_types(include=include)
+        except:
+            return
         results_with_icons = []
         for result in results:
             result['icon'] = 'menu-item-icon {0}'.format(self.get_icon('plus'))
