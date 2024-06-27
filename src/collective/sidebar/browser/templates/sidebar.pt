@@ -14,14 +14,14 @@
 
       <!-- Site Actions -->
 
-      <div class="pb-3" tal:define="id python:'site_actions'; links view/get_site_actions" tal:condition="links">
+      <div class="sidebar-section pb-3" tal:define="id python:'site_actions'; links view/get_site_actions" tal:condition="links" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_site_actions">Site actions</span>
           <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
-        <div class="collapse show" id="${id}-collapse">
+        <div class="${collapse}" id="${id}-collapse">
           <ul class="nav nav-pills flex-column">
             <li tal:repeat="link links">
               <a href="${link/url}" class="nav-link">
@@ -38,14 +38,14 @@
 
       <!-- Static Links -->
 
-      <div class="pb-3" tal:define="id python:'links'; links view/get_static_links" tal:condition="links">
+      <div class="sidebar-section pb-3" tal:define="id python:'links'; links view/get_static_links" tal:condition="links" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_links">Links</span>
           <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
-        <div class="collapse show" id="${id}-collapse">
+        <div class="${collapse}" id="${id}-collapse">
           <ul class="nav nav-pills flex-column">
             <li tal:repeat="link links">
               <a href="${link/url}" class="nav-link">
@@ -62,14 +62,14 @@
 
       <!-- Navigation -->
 
-      <div class="pb-3" tal:define="id python:'navigation'; links view/get_static_links" tal:condition="links">
+      <div class="sidebar-section pb-3" tal:define="id python:'navigation'" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_navigation">Navigation</span>
           <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
-        <div class="collapse show" id="${id}-collapse">
+        <div class="${collapse}" id="${id}-collapse">
           <div id="navigation-wrapper" class="navigation-static" tal:attributes="class view/get_navigation_class">
             <tal:navigation replace="structure context/@@navigation" />
           </div>
@@ -81,14 +81,14 @@
 
       <!-- Editing -->
 
-      <div class="pb-3" tal:define="id python:'edit'" tal:condition="view/can_edit">
+      <div class="sidebar-section pb-3" tal:define="id python:'edit'" tal:condition="view/can_edit" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_edit">Edit</span>
           <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
-        <div class="collapse show" id="${id}-collapse">
+        <div class="${collapse}" id="${id}-collapse">
           <ul class="nav nav-pills flex-column">
 
             <li>
@@ -135,14 +135,14 @@
 
       <!-- Workflow -->
 
-      <div class="pb-3" tal:define="id python:'workflow'; actions view/get_workflow_actions;" tal:condition="python:view.can_edit() and view.has_workflow()">
+      <div class="sidebar-section pb-3" tal:define="id python:'workflow'; actions view/get_workflow_actions;" tal:condition="python:view.can_edit() and view.has_workflow()" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_workflow">Workflow</span>
           <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
-        <div class="collapse show" id="${id}-collapse" i18n:domain="plone">
+        <div class="${collapse}" id="${id}-collapse" i18n:domain="plone">
           <ul class="nav nav-pills flex-column" >
 
             <li>
@@ -175,14 +175,14 @@
 
       <!-- Object Actions -->
 
-      <div class="pb-3" tal:define="id python:'actions'; actions view/get_actions" tal:condition="python:view.is_actions_enabled() and view.can_edit() and actions">
+      <div class="sidebar-section pb-3" tal:define="id python:'actions'; actions view/get_actions" tal:condition="python:view.is_actions_enabled() and view.can_edit() and actions" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_actions">Actions</span>
           <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
-        <div class="collapse show" id="${id}-collapse" i18n:domain="plone">
+        <div class="${collapse}" id="${id}-collapse" i18n:domain="plone">
           <ul class="nav nav-pills flex-column">
             <tal:links repeat="action actions">
             <li tal:condition="action/allowed">
@@ -201,14 +201,14 @@
 
       <!-- Document Management -->
 
-      <div class="pb-3" tal:define="id python:'add'; items view/get_addable_items;" tal:condition="items">
+      <div class="sidebar-section pb-3" tal:define="id python:'add'; items view/get_addable_items;" tal:condition="items" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_add">Add</span>
           <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
-        <div class="collapse show" id="${id}-collapse" i18n:domain="plone">
+        <div class="${collapse}" id="${id}-collapse" i18n:domain="plone">
           <ul class="nav nav-pills flex-column">
             <li tal:repeat="item items">
               <a href="${item/action}" class="nav-link">
@@ -225,14 +225,14 @@
 
       <!-- Display Management -->
 
-      <div class="pb-3" tal:define="id python:'display'" tal:condition="view/can_edit">
+      <div class="sidebar-section pb-3" tal:define="id python:'display'" tal:condition="view/can_edit" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_display">Display</span>
           <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
         </span>
 
-        <div class="collapse show" id="${id}-collapse">
+        <div class="${collapse}" id="${id}-collapse">
           <ul class="nav nav-pills flex-column">
 
             <li>
@@ -258,7 +258,7 @@
 
       <!-- Search -->
 
-      <div class="pb-3" tal:define="id python:'search'" tal:condition="view/can_edit">
+      <div class="sidebar-section pb-3" tal:define="id python:'search'" tal:condition="view/can_edit" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_search">Search</span>
@@ -282,7 +282,7 @@
 
       <!-- Profile -->
 
-      <div class="dropdown px-2 my-3" tal:condition="not:view/is_anonymous">
+      <div class="sidebar-section dropdown px-2 my-3" tal:define="id python:'profile'" tal:condition="not:view/is_anonymous" id="section-${id}">
 
         <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="true">
           <img src="${view/get_portrait_url}" alt="" width="32" height="32" class="rounded-circle me-2">
