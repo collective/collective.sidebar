@@ -260,9 +260,14 @@ class SidebarViewlet(ViewletBase):
     def get_username(self):
         """Return username oder user's fullname"""
         user = self.get_current_user()
-        member_tool = api.portal.get_tool('portal_membership')
         username = user.id
-        fullname = member_tool.getProperty('fullname')
+        return username
+
+    def get_fullname(self):
+        """Return username oder user's fullname"""
+        user = self.get_current_user()
+        username = user.id
+        fullname = user.getProperty('fullname')
         if fullname:
             username = fullname
         return username
@@ -308,19 +313,13 @@ class SidebarViewlet(ViewletBase):
         """
         Check if the user can modify content.
         """
-        permission = permissions.ModifyPortalContent
-        if api.user.has_permission(permission, obj=self.context):
-            return True
-        return False
+        return api.user.has_permission("Modify portal content")
 
     def can_manage_portal(self):
         """
         Check is user can manage the portal.
         """
-        permission = permissions.ManagePortal
-        if api.user.has_permission(permission, obj=self.context):
-            return True
-        return False
+        return api.user.has_permission("Manage portal")
 
     def check_displayed_types(self, item):
         """
