@@ -7,6 +7,9 @@ Changelog
 
 Added:
 
+- Add setting to enable or disable navigation section.
+  [santonelli]
+
 - Add site actions to top of sidebar.
   [santonelli]
 

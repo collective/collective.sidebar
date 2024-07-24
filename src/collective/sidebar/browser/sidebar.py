@@ -526,6 +526,16 @@ class SidebarViewlet(ViewletBase):
         return results
 
     @staticmethod
+    def is_navigation_enabled():
+        """
+        Should navigation be shown
+        """
+        return api.portal.get_registry_record(
+            name='collective.sidebar.enable_navigation',
+            default=True,
+        )
+
+    @staticmethod
     def is_actions_enabled():
         """
         Should actions be shown

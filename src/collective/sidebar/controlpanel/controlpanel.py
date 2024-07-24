@@ -11,6 +11,21 @@ from zope.interface import Interface
 
 class IControlPanel(Interface):
 
+    enable_navigation = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_navigation_title',
+            default='Show Navigation Section',
+        ),
+        description=_(
+            u'controlpanel_sidebar_show_navigation_description',
+            default=(
+                u'Show navigation section.'
+            ),
+        ),
+        required=False,
+        default=True,
+    )
+
     root_nav = schema.Bool(
         title=_(
             u'controlpanel_sidebar_show_root_nav_title',
