@@ -28,7 +28,11 @@ class NavigationView(BrowserView):
 
     def __call__(self):
         return self.template()
-
+    
+    def getFolderContents(self, item):
+        url = item.absolute_url
+        return self.context.portal_catalog(path={'query': url, 'depth': 1})
+        
     def check_displayed_types(self, item):
         """
         Check settings if content type should be displayed in navigation.
@@ -111,7 +115,7 @@ class NavigationView(BrowserView):
         """
         Check if navigation will return items for folder
         """
-        items = item.getObject().getFolderContents()
+        items = self.getFolderContents(item)
         for item in items:
             if self.check_item(item):
                 return True
@@ -147,7 +151,7 @@ class NavigationView(BrowserView):
 
         # Can not remember what edgecase we catch here.
         try:
-            contents = context.getFolderContents()
+            contents = self.getFolderContents(context)
         except Exception:  # noqa: 902
             pass
 
@@ -172,6 +176,10 @@ class NavigationView(BrowserView):
 
 class SidebarViewlet(ViewletBase):
     index = ViewPageTemplateFile('templates/sidebar.pt')
+
+    def getFolderContents(self, item):
+        url = item.absolute_url
+        return self.context.portal_catalog(path={'query': url, 'depth': 1})
 
     def get_mouse_activated(self):
         """Pass in values to be used in JavaScript
@@ -374,19 +382,19 @@ class SidebarViewlet(ViewletBase):
             context = api.portal.get_navigation_root(context)
         contents = []
         if IFolderish.providedBy(context):
-            contents = context.getFolderContents()
+            contents = self.getFolderContents(context)
         else:
             # Can not remember what edgecase we catch here.
             try:
                 parent = context.aq_parent
-                contents = parent.getFolderContents()
+                contents = self.getFolderContents(parent)
             except Exception:  # noqa: 902
                 pass
         items = []
         for item in contents:
             if self.check_item(item):
                 data = {
-                    'title': item.Title,
+                    'title': item.Title(),
                     'title_cropped': crop(item.Title, 100),
                     'url': item.getURL(),
                 }
