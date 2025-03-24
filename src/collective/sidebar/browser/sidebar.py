@@ -165,8 +165,8 @@ class NavigationView(BrowserView):
                 if item.is_folderish and self.contains_items(item):
                     item_type = 'link-folder'
                 data = {
-                    'title': item.Title,
-                    'title_cropped': crop(item.Title, 100),
+                    'title': item.Title(),
+                    'title_cropped': crop(item.Title(), 100),
                     'url': url,
                     'type': item_type,
                 }
@@ -383,11 +383,13 @@ class SidebarViewlet(ViewletBase):
         contents = []
         if IFolderish.providedBy(context):
             contents = self.getFolderContents(context)
+
         else:
             # Can not remember what edgecase we catch here.
             try:
                 parent = context.aq_parent
                 contents = self.getFolderContents(parent)
+
             except Exception:  # noqa: 902
                 pass
         items = []
