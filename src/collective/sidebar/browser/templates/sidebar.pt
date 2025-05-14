@@ -10,7 +10,7 @@
 
   <div class="offcanvas offcanvas-${view/get_sidebar_position}" tabindex="-1" id="portal-sidebar" aria-labelledby="offcanvasExampleLabel" 
     tal:define="items view/get_items; back view/get_back;" data-sidebar-mouse="${view/get_mouse_activated}" data-sidebar-mouse-area="${view/get_mouse_area}">
-xxxxx
+ 
     <div class="offcanvas-body pt-4">
 
       <!-- Site Actions -->
@@ -214,10 +214,9 @@ xxxxx
 
         <div class="${collapse}" id="${id}-collapse" i18n:domain="plone">
 
-
-        xxxx
+ 
           <ul class="nav nav-pills flex-column">
-          nacstuff
+ 
             <li tal:repeat="item items">
               <a href="${item/action}" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('plus', tag_class='me-1')" />
