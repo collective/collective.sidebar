@@ -8,9 +8,8 @@
                         role python:collapsible and 'button' or '';
                         icons python:context.restrictedTraverse('@@iconresolver');" i18n:domain="collective.sidebar">
 
-  <div class="offcanvas offcanvas-${view/get_sidebar_position}" tabindex="-1" id="portal-sidebar" aria-labelledby="offcanvasExampleLabel" 
-    tal:define="items view/get_items; back view/get_back;" data-sidebar-mouse="${view/get_mouse_activated}" data-sidebar-mouse-area="${view/get_mouse_area}">
- 
+  <div class="offcanvas offcanvas-${view/get_sidebar_position}" tabindex="-1" id="portal-sidebar" aria-labelledby="offcanvasExampleLabel" tal:define="items view/get_items|None; back view/get_back|None;" data-sidebar-mouse="${view/get_mouse_activated}" data-sidebar-mouse-area="${view/get_mouse_area}">
+
     <div class="offcanvas-body pt-4">
 
       <!-- Site Actions -->
@@ -147,7 +146,7 @@
         </span>
 
         <div class="${collapse}" id="${id}-collapse" i18n:domain="plone">
-          <ul class="nav nav-pills flex-column" >
+          <ul class="nav nav-pills flex-column">
 
             <li>
               <span class="nav-link state-${view/get_workflow_state}">
@@ -189,12 +188,12 @@
         <div class="${collapse}" id="${id}-collapse" i18n:domain="plone">
           <ul class="nav nav-pills flex-column">
             <tal:links repeat="action actions">
-            <li tal:condition="action/allowed">
-              <a href="${action/url}" class="nav-link ${python:'pat-plone-modal' if action.get('modal', None) else ''}">
-                <tal:icon tal:replace="structure python:icons.tag(action['icon'], tag_class='me-1')" />
-                <span i18n:translate="">${action/title}</span>
-              </a>
-            </li>
+              <li tal:condition="action/allowed">
+                <a href="${action/url}" class="nav-link ${python:'pat-plone-modal' if action.get('modal', None) else ''}">
+                  <tal:icon tal:replace="structure python:icons.tag(action['icon'], tag_class='me-1')" />
+                  <span i18n:translate="">${action/title}</span>
+                </a>
+              </li>
             </tal:links>
           </ul>
         </div>
@@ -214,9 +213,9 @@
 
         <div class="${collapse}" id="${id}-collapse" i18n:domain="plone">
 
- 
+
           <ul class="nav nav-pills flex-column">
- 
+
             <li tal:repeat="item items">
               <a href="${item/action}" class="nav-link">
                 <tal:icon tal:replace="structure python:icons.tag('plus', tag_class='me-1')" />
@@ -278,48 +277,42 @@
             <div class="mb-3">
               <label for="search" class="form-label visually-hidden">Search</label>
               <input type="text" class="form-control" id="search" name="SearchableText" placeholder="Type and hit enter" i18n:attributes="placeholder search_placeholder">
-            </div>
-            <button class="btn btn-primary visually-hidden" type="submit" i18n:translate="search_button_submit">Search</button>
-          </form>
+              </div>
+              <button class="btn btn-primary visually-hidden" type="submit" i18n:translate="search_button_submit">Search</button>
+            </form>
+
+          </div>
+
+        </div>
+        <!-- End: Search -->
+
+        <!-- Profile -->
+        <div class="sidebar-section pb-3" tal:define="id python:'user'; links view/get_user_actions" tal:condition="links" id="section-${id}">
+          <span class="h6 sidebar-heading d-flex justify-content-between xalign-items-center px-3 mt-3 mb-3 text-muted text-lowercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
+            <span i18n:translate="navigation_heading_user">
+               ${view/get_username} 
+            </span>
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
+          </span>
+
+          <div class="${collapse}" id="${id}-collapse">
+            <ul class="nav nav-pills flex-column">
+
+              <li tal:repeat="link links">
+                <a href="${link/url}" class="nav-link">
+                  <tal:icon tal:replace="structure python:icons.tag(link['icon'], tag_class='me-1')" />
+                ${link/title}
+                </a>
+              </li>
+            </ul>
+          </div>
 
         </div>
 
-      </div>
-      <!-- End: Search -->
-
-      <!-- Profile -->
-
-      <div class="sidebar-section dropdown px-2 my-3" tal:define="id python:'profile'" tal:condition="not:view/is_anonymous" id="section-${id}">
-
-        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="true">
-          <img src="${view/get_portrait_url}" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong>${view/get_username}</strong>
-        </a>
-
-        <ul class="dropdown-menu text-small shadow">
-          <li>
-            <a class="dropdown-item" href="${context/portal_url}/@@overview-controlpanel" tal:condition="view/can_manage_portal" i18n:translate="settings">Settings</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="${context/portal_url}/@@personal-information" i18n:translate="profile">Profile</a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li>
-            <a class="dropdown-item" href="${context/portal_url}/login" tal:condition="view/is_anonymous" i18n:translate="login">Login</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="${context/portal_url}/logout" tal:condition="not:view/is_anonymous" i18n:translate="logout">Logout</a>
-          </li>
-        </ul>
+        <!-- End: Profile -->
 
       </div>
-
-      <!-- End: Profile -->
 
     </div>
 
-  </div>
-
-</tal:variables>
+  </tal:variables>

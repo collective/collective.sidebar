@@ -30,9 +30,11 @@ class NavigationView(BrowserView):
         return self.template()
     
     def getFolderContents(self, item):
-        url = item.absolute_url
-        return self.context.portal_catalog(path={'query': url, 'depth': 1})
-        
+        contents =  api.content.find(context=item, depth=1)        
+        if contents:
+            return contents
+        return None
+    
     def check_displayed_types(self, item):
         """
         Check settings if content type should be displayed in navigation.
@@ -52,7 +54,7 @@ class NavigationView(BrowserView):
             name='plone.workflow_states_to_show',
         )
         if filter:
-            state = api.content.get_state(obj=item.getObject())
+            state = api.content.get_state(obj=item)
             if state not in states:
                 return True
 
@@ -115,10 +117,11 @@ class NavigationView(BrowserView):
         """
         Check if navigation will return items for folder
         """
-        items = self.getFolderContents(item)
-        for item in items:
-            if self.check_item(item):
-                return True
+        items = self.getFolderContents(item.getObject())
+        if items:
+            for item in items:  
+                if self.check_item(item):
+                    return True
         return False
 
     def get_items(self):
@@ -156,21 +159,24 @@ class NavigationView(BrowserView):
             pass
 
         items = list()
-        for item in contents:
-            if self.check_item(item):
-                item_type = 'link-item'
-                url = item.getURL()
-                if item.portal_type in view_types:
-                    url = url + '/view'
-                if item.is_folderish and self.contains_items(item):
-                    item_type = 'link-folder'
-                data = {
-                    'title': item.Title(),
-                    'title_cropped': crop(item.Title(), 100),
-                    'url': url,
-                    'type': item_type,
-                }
-                items.append(data)
+        
+        
+        if contents:
+            for item in contents:
+                if self.check_item(item):
+                    item_type = 'link-item'
+                    url = item.getURL()
+                    if item.portal_type in view_types:
+                        url = url + '/view'
+                    if item.is_folderish and self.contains_items(item):
+                        item_type = 'link-folder'
+                    data = {
+                        'title': item.Title,
+                        'title_cropped': crop(item.Title, 100),
+                        'url': url,
+                        'type': item_type,
+                    }
+                    items.append(data)
         return items
 
 
@@ -178,8 +184,10 @@ class SidebarViewlet(ViewletBase):
     index = ViewPageTemplateFile('templates/sidebar.pt')
 
     def getFolderContents(self, item):
-        url = item.absolute_url
-        return self.context.portal_catalog(path={'query': url, 'depth': 1})
+        contents =  api.content.find(context=item, depth= 1)
+        if contents:
+            return contents
+        return None
 
     def get_mouse_activated(self):
         """Pass in values to be used in JavaScript
@@ -239,6 +247,14 @@ class SidebarViewlet(ViewletBase):
         site_actions = links.get('site_actions', [])
         return site_actions
 
+    def get_user_actions(self):
+        """
+        Return user actions.
+        """
+        links = self.context.portal_actions.listFilteredActionsFor(self.context)  # noqa: 501
+        user = links.get('user', [])
+        return user
+    
     def get_static_links(self):
         """
         Return sidebar links from portal_actions.
@@ -380,23 +396,24 @@ class SidebarViewlet(ViewletBase):
         )
         if root_nav:
             context = api.portal.get_navigation_root(context)
+    
         contents = []
         if IFolderish.providedBy(context):
-            contents = self.getFolderContents(context)
-
+            contents =  api.content.find(context=context, depth= 1)
         else:
             # Can not remember what edgecase we catch here.
             try:
                 parent = context.aq_parent
-                contents = self.getFolderContents(parent)
+                contents =  api.content.find(context=parent, depth= 1)
 
             except Exception:  # noqa: 902
                 pass
+            
         items = []
         for item in contents:
             if self.check_item(item):
                 data = {
-                    'title': item.Title(),
+                    'title': item.Title,
                     'title_cropped': crop(item.Title, 100),
                     'url': item.getURL(),
                 }
