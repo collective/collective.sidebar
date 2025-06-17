@@ -571,6 +571,16 @@ class SidebarViewlet(ViewletBase):
             name='collective.sidebar.enable_actions',
             default=True,
         )
+        
+    @staticmethod
+    def is_portlets_enabled():
+        """
+        Should manage portlets be shown
+        """
+        return api.portal.get_registry_record(
+            name='collective.sidebar.enable_portlets',
+            default=True,
+        )
 
     def collapse_enabled(self):
         """

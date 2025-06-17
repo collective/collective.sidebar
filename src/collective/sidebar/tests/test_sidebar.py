@@ -327,6 +327,7 @@ class TestSidebarFunctional(unittest.TestCase):
         self.request.set('sections', 'sidebar-section-site')
         v = self.viewlet(context=self.portal, request=self.request)
         self.assertIn('<div id="sidebar-section-site" class="menu-section collapsed">', v)  # noqa
+        
 
     def test_actions(self):
         demo = api.content.create(

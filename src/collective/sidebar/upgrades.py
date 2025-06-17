@@ -38,3 +38,8 @@ def to_1400(context):
 def to_1500(context):
     context.runAllImportStepsFromProfile('profile-collective.sidebar:to_1500')
     logger.info('Added collective.sidebar registry records')
+
+def to_1500(context):
+    api.portal.set_registry_record(name='collective.sidebar.enable_portlets', value=True)  # noqa
+    # context.runAllImportStepsFromProfile('profile-collective.sidebar:to_1600')
+    logger.info('Added collective.sidebar registry records')

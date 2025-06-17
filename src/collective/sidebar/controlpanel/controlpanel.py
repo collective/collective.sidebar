@@ -70,6 +70,21 @@ class IControlPanel(Interface):
         required=False,
         default=True,
     )
+    
+    enable_portlets = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_portlets_title',
+            default='Show Manage Portlets Section',
+        ),
+        description=_(
+            u'controlpanel_sidebar_show_portlets_description',
+            default=(
+                u'Show manage portlets link' 
+            ),
+        ),
+        required=False,
+        default=True,
+    )
 
     enable_collapse = schema.Bool(
         title=_(
