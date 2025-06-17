@@ -36,6 +36,15 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+   <genericsetup:registerProfile
+    name="to_1600"
+    title="Upgrade profile for collective.sidebar 1500 to 1600"
+    directory="profiles/to_1600"
+    description=""
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+
 <!-- Upgrade Step for 1.0.0a10 -->
 
   <genericsetup:upgradeStep

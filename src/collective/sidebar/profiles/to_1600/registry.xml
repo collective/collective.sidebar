@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<registry>
+
+  <records interface="Products.CMFPlone.interfaces.IBundleRegistry" prefix="plone.bundles/sidebar">
+    <value key="last_compilation">2025-06-17 18:00:00</value>
+  </records>
+
+  <records interface="collective.sidebar.controlpanel.controlpanel.IControlPanel" prefix="collective.sidebar" />
+
+</registry>
