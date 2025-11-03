@@ -139,6 +139,7 @@
 
       <!-- Workflow -->
 
+      <tal:condition tal:condition="view/get_workflow_actions|None;"> 
       <div class="sidebar-section pb-3" 
         tal:define="id python:'workflow'; actions view/get_workflow_actions|None;" 
         tal:condition="python:view.can_edit() and view.has_workflow()" id="section-${id}">
@@ -174,6 +175,7 @@
 
           </ul>
         </div>
+        </tal:condition>
 
       </div>
 
