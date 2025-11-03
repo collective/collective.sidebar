@@ -175,9 +175,8 @@
 
           </ul>
         </div>
-        </tal:condition>
-
       </div>
+      </tal:condition>
 
       <!-- End: Workflow -->
 
