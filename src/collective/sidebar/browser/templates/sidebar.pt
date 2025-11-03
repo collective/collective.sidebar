@@ -139,7 +139,9 @@
 
       <!-- Workflow -->
 
-      <div class="sidebar-section pb-3" tal:define="id python:'workflow'; actions view/get_workflow_actions;" tal:condition="python:view.can_edit() and view.has_workflow()" id="section-${id}">
+      <div class="sidebar-section pb-3" 
+        tal:define="id python:'workflow'; actions view/get_workflow_actions|None;" 
+        tal:condition="python:view.can_edit() and view.has_workflow()" id="section-${id}">
 
         <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
           <span i18n:translate="navigation_heading_workflow">Workflow</span>
