@@ -14,53 +14,55 @@
     <div class="offcanvas-body pt-4">
 
       <!-- Site Actions -->
+      <tal:condition tal:condition="view/is_siteactions_enabled|None">
+        <div class="sidebar-section pb-3" tal:define="id python:'site_actions'; links view/get_site_actions" tal:condition="links" id="section-${id}">
 
-      <div class="sidebar-section pb-3" tal:define="id python:'site_actions'; links view/get_site_actions" tal:condition="links" id="section-${id}">
+          <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
+            <span i18n:translate="navigation_heading_site_actions">Site actions</span>
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
+          </span>
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
-          <span i18n:translate="navigation_heading_site_actions">Site actions</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
-        </span>
-
-        <div class="${collapse}" id="${id}-collapse">
-          <ul class="nav nav-pills flex-column">
+          <div class="${collapse}" id="${id}-collapse">
+            <ul class="nav nav-pills flex-column">
 
           links
-            <li tal:repeat="link links">
-              <a href="${link/url}" class="nav-link">
-                <tal:icon tal:replace="structure python:icons.tag(link['icon'], tag_class='me-1')" />
+              <li tal:repeat="link links">
+                <a href="${link/url}" class="nav-link">
+                  <tal:icon tal:replace="structure python:icons.tag(link['icon'], tag_class='me-1')" />
                 ${link/title}
-              </a>
-            </li>
-          </ul>
-        </div>
+                </a>
+              </li>
+            </ul>
+          </div>
 
-      </div>
+        </div>
+      </tal:condition>
 
       <!-- End: Site Actions -->
 
       <!-- Static Links -->
+      <tal:condition tal:condition="view/is_sitelinks_enabled|None">
+        <div class="sidebar-section pb-3" tal:define="id python:'links'; links view/get_static_links" tal:condition="links" id="section-${id}">
 
-      <div class="sidebar-section pb-3" tal:define="id python:'links'; links view/get_static_links" tal:condition="links" id="section-${id}">
+          <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
+            <span i18n:translate="navigation_heading_links">Links</span>
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
+          </span>
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
-          <span i18n:translate="navigation_heading_links">Links</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
-        </span>
-
-        <div class="${collapse}" id="${id}-collapse">
-          <ul class="nav nav-pills flex-column">
+          <div class="${collapse}" id="${id}-collapse">
+            <ul class="nav nav-pills flex-column">
           static links
-            <li tal:repeat="link links">
-              <a href="${link/url}" class="nav-link">
-                <tal:icon tal:replace="structure python:icons.tag(link['icon'], tag_class='me-1')" />
+              <li tal:repeat="link links">
+                <a href="${link/url}" class="nav-link">
+                  <tal:icon tal:replace="structure python:icons.tag(link['icon'], tag_class='me-1')" />
                 ${link/title}
-              </a>
-            </li>
-          </ul>
-        </div>
+                </a>
+              </li>
+            </ul>
+          </div>
 
-      </div>
+        </div>
+      </tal:condition>
 
       <!-- End: Static Links -->
 
@@ -139,43 +141,41 @@
 
       <!-- Workflow -->
 
-      <tal:condition tal:condition="view/get_workflow_actions|None;"> 
-      <div class="sidebar-section pb-3" 
-        tal:define="id python:'workflow'; actions view/get_workflow_actions|None;" 
-        tal:condition="python:view.can_edit() and view.has_workflow()" id="section-${id}">
+      <tal:condition tal:condition="view/get_workflow_actions|None">
+        <div class="sidebar-section pb-3" tal:define="id python:'workflow'; actions view/get_workflow_actions|None" tal:condition="python:view.can_edit() and view.has_workflow()" id="section-${id}">
 
-        <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
-          <span i18n:translate="navigation_heading_workflow">Workflow</span>
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
-        </span>
+          <span class="h6 sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-3 text-muted text-uppercase" data-bs-toggle="${collapse}" data-bs-target="#${id}-collapse" role="${role}" aria-expanded="true">
+            <span i18n:translate="navigation_heading_workflow">Workflow</span>
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_class='toggle-icon')" tal:condition="collapsible" />
+          </span>
 
-        <div class="${collapse}" id="${id}-collapse" i18n:domain="plone">
-          <ul class="nav nav-pills flex-column">
+          <div class="${collapse}" id="${id}-collapse" i18n:domain="plone">
+            <ul class="nav nav-pills flex-column">
 
-            <li>
-              <span class="nav-link state-${view/get_workflow_state}">
-                <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-1')" />
-                <span i18n:translate="">${view/get_workflow_state_title}</span>
-              </span>
-            </li>
+              <li>
+                <span class="nav-link state-${view/get_workflow_state}">
+                  <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-1')" />
+                  <span i18n:translate="">${view/get_workflow_state_title}</span>
+                </span>
+              </li>
 
-            <li tal:repeat="action actions">
-              <a href="${action/action}" class="nav-link">
-                <tal:icon tal:replace="structure python:icons.tag('arrow-left-right', tag_class='me-1')" />
-                <span i18n:translate="">${action/title}</span>
-              </a>
-            </li>
+              <li tal:repeat="action actions">
+                <a href="${action/action}" class="nav-link">
+                  <tal:icon tal:replace="structure python:icons.tag('arrow-left-right', tag_class='me-1')" />
+                  <span i18n:translate="">${action/title}</span>
+                </a>
+              </li>
 
-            <li tal:condition="actions">
-              <a href="${context/absolute_url}/content_status_history" class="nav-link">
-                <tal:icon tal:replace="structure python:icons.tag('three-dots', tag_class='me-1')" />
-                <span i18n:translate="">Advanced</span>
-              </a>
-            </li>
+              <li tal:condition="actions">
+                <a href="${context/absolute_url}/content_status_history" class="nav-link">
+                  <tal:icon tal:replace="structure python:icons.tag('three-dots', tag_class='me-1')" />
+                  <span i18n:translate="">Advanced</span>
+                </a>
+              </li>
 
-          </ul>
+            </ul>
+          </div>
         </div>
-      </div>
       </tal:condition>
 
       <!-- End: Workflow -->

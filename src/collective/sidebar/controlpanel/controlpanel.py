@@ -10,6 +10,37 @@ from zope.interface import Interface
 
 
 class IControlPanel(Interface):
+    
+    enable_siteactions = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_siteactions_title',
+            default='Show Site Actions Section',
+        ),
+        description=_(
+            u'controlpanel_sidebar_show_siteactions_description',
+            default=(
+                u'Show Siteactions section.'
+            ),
+        ),
+        required=False,
+        default=True,
+    )
+    
+    enable_sitelinks = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_sitelinks_title',
+            default='Show Site Links Section',
+        ),
+        description=_(
+            u'controlpanel_sidebar_show_sitelinks_description',
+            default=(
+                u'Show Sitelinks section.'
+            ),
+        ),
+        required=False,
+        default=True,
+    )
+
 
     enable_navigation = schema.Bool(
         title=_(

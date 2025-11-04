@@ -581,7 +581,28 @@ class SidebarViewlet(ViewletBase):
             name='collective.sidebar.enable_portlets',
             default=True,
         )
+        
+    @staticmethod
+    def is_siteactions_enabled():
+        """
+        sitelinks
+        Should manage portlets be shown
+        """
+        return api.portal.get_registry_record(
+            name='collective.sidebar.enable_siteactions',
+            default=True,
+        )
 
+    @staticmethod
+    def is_sitelinks_enabled():
+        """
+        Should manage portlets be shown
+        """
+        return api.portal.get_registry_record(
+            name='collective.sidebar.enable_sitelinks',
+            default=True,
+        )
+        
     def collapse_enabled(self):
         """
         Should collapsible sections be enabled
