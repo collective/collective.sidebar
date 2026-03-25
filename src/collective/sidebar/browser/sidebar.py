@@ -28,13 +28,13 @@ class NavigationView(BrowserView):
 
     def __call__(self):
         return self.template()
-    
+
     def getFolderContents(self, item):
-        contents =  api.content.find(context=item, depth=1)        
+        contents =  api.content.find(context=item, depth=1)
         if contents:
             return contents
         return None
-    
+
     def check_displayed_types(self, item):
         """
         Check settings if content type should be displayed in navigation.
@@ -119,7 +119,7 @@ class NavigationView(BrowserView):
         """
         items = self.getFolderContents(item.getObject())
         if items:
-            for item in items:  
+            for item in items:
                 if self.check_item(item):
                     return True
         return False
@@ -159,8 +159,8 @@ class NavigationView(BrowserView):
             pass
 
         items = list()
-        
-        
+
+
         if contents:
             for item in contents:
                 if self.check_item(item):
@@ -254,7 +254,7 @@ class SidebarViewlet(ViewletBase):
         links = self.context.portal_actions.listFilteredActionsFor(self.context)  # noqa: 501
         user = links.get('user', [])
         return user
-    
+
     def get_static_links(self):
         """
         Return sidebar links from portal_actions.
@@ -396,7 +396,7 @@ class SidebarViewlet(ViewletBase):
         )
         if root_nav:
             context = api.portal.get_navigation_root(context)
-    
+
         contents = []
         if IFolderish.providedBy(context):
             contents =  api.content.find(context=context, depth= 1)
@@ -408,7 +408,7 @@ class SidebarViewlet(ViewletBase):
 
             except Exception:  # noqa: 902
                 pass
-            
+
         items = []
         for item in contents:
             if self.check_item(item):
@@ -480,6 +480,8 @@ class SidebarViewlet(ViewletBase):
         """
         Return menu item entries in a TAL-friendly form.
         """
+        if api.user.is_anonymous():
+            return []
         from plone.app.contentmenu import PloneMessageFactory as _
         context = self.context
         request = context.REQUEST
@@ -571,7 +573,7 @@ class SidebarViewlet(ViewletBase):
             name='collective.sidebar.enable_actions',
             default=True,
         )
-        
+
     @staticmethod
     def is_portlets_enabled():
         """
@@ -581,7 +583,7 @@ class SidebarViewlet(ViewletBase):
             name='collective.sidebar.enable_portlets',
             default=True,
         )
-        
+
     @staticmethod
     def is_siteactions_enabled():
         """
@@ -602,7 +604,7 @@ class SidebarViewlet(ViewletBase):
             name='collective.sidebar.enable_sitelinks',
             default=True,
         )
-        
+
     def collapse_enabled(self):
         """
         Should collapsible sections be enabled
