@@ -337,7 +337,7 @@ class SidebarViewlet(ViewletBase):
         """
         Check if the user can modify content.
         """
-        return api.user.has_permission("Modify portal content")
+        return api.user.has_permission(permission="Modify portal content", obj=self.context)
 
     def can_manage_portal(self):
         """
