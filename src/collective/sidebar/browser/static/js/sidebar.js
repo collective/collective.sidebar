@@ -15,7 +15,7 @@
 
     var showSidebarEvent = function (event) {
       event.stopPropagation();
-      sidebar.show();      
+      sidebar.show();
     }
 
     document.querySelectorAll(burger).forEach((element) => {
@@ -27,12 +27,12 @@
     $("#portal-sidebar .collapse").on("shown.bs.collapse", function () {
       localStorage.setItem("coll_" + this.id, true);
     });
-  
+
     $("#portal-sidebar .collapse").on("hidden.bs.collapse", function () {
       localStorage.removeItem("coll_" + this.id);
     });
-  
-    $(".collapse").each(function () {
+
+    $("#portal-sidebar .collapse").each(function () {
       if (localStorage.getItem("coll_" + this.id) === "true") {
         $(this).collapse("show");
       } else {
@@ -50,13 +50,13 @@
         if (sidebar_element.classList.contains('offcanvas-start')) {
           if ( event.pageX <= offset ) {
             sidebar.show();
-          }        
+          }
         } else {
           if ( event.pageX >= window.innerWidth - offset ) {
             sidebar.show();
           }
         }
-        
+
       });
     }
 
@@ -68,10 +68,10 @@
         $('#navigation-wrapper').hide();
         $('#navigation-wrapper').load(target);
         $('#navigation-wrapper').fadeIn('500');
-      });  
-    
+      });
+
     }
-  
+
   });
 
 })(jQuery); // End of use strict

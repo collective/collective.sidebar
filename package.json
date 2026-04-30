@@ -19,7 +19,7 @@
   "scripts": {
     "css": "npm-run-all css-compile-main css-prefix-main css-minify-main",
     "css-lint": "stylelint \"src/collective/sidebar/browser/static/css/**/*.scss\" --cache --cache-location .cache/.stylelintcache",
-    "css-compile-main": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 src/collective/sidebar/browser/static/css/ -o src/collective/sidebar/browser/static/css/",
+    "css-compile-main": "sass --style=expanded --source-map src/collective/sidebar/browser/static/css/sidebar.scss:src/collective/sidebar/browser/static/css/sidebar.css",
     "css-minify-main": "cleancss --format breakWith=lf --source-map --source-map-inline-sources --output src/collective/sidebar/browser/static/css/sidebar.min.css src/collective/sidebar/browser/static/css/sidebar.css",
     "css-prefix-main": "postcss --config build/postcss.config.js --replace \"src/collective/sidebar/browser/static/css/*.css\" \"!src/collective/sidebar/browser/static/css/*.min.css\"",
     "js": "npm-run-all js-compile-main",
@@ -30,10 +30,11 @@
   },
   "devDependencies": {
     "clean-css-cli": "^5.6.2",
-    "node-sass": "^8.0.0",
+    "sass-embedded": "^1.98.0",
     "nodemon": "^2.0.20",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^10.1.0",
-    "stylelint": "^14.16.1"
+    "stylelint": "^14.16.1",
+    "uglify-js": "^3.19.3"
   }
 }
