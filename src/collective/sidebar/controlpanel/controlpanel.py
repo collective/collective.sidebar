@@ -29,7 +29,7 @@ class IControlPanel(Interface):
     enable_siteactions_for_manager = schema.Bool(
         title=_(
             u'controlpanel_sidebar_show_siteactions_title_for_manager',
-            default='Show Site Actions Section',
+            default='Show Site Actions Section for manager alway',
         ),
         required=False,
         default=True,
