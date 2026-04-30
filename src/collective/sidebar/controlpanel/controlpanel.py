@@ -26,6 +26,15 @@ class IControlPanel(Interface):
         default=True,
     )
     
+    enable_siteactions_for_manager = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_siteactions_title_for_manager',
+            default='Show Site Actions Section',
+        ),
+        required=False,
+        default=True,
+    )
+    
     enable_sitelinks = schema.Bool(
         title=_(
             u'controlpanel_sidebar_show_sitelinks_title',
@@ -36,6 +45,15 @@ class IControlPanel(Interface):
             default=(
                 u'Show Sitelinks section.'
             ),
+        ),
+        required=False,
+        default=True,
+    )
+    
+    enable_sitelinks_for_manager = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_sitelinks_title_for_manager',
+            default='Show Site Links Section for Manager always',
         ),
         required=False,
         default=True,
@@ -52,6 +70,15 @@ class IControlPanel(Interface):
             default=(
                 u'Show navigation section.'
             ),
+        ),
+        required=False,
+        default=True,
+    )
+    
+    enable_navigation_for_manager = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_navigation_title_for_manager',
+            default='Show Navigation Section for Manager always',
         ),
         required=False,
         default=True,
@@ -102,6 +129,24 @@ class IControlPanel(Interface):
         default=True,
     )
     
+    enable_actions_for_manager = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_actions_title_for_manager',
+            default='Show Actions Section for Manager always',
+        ),
+        required=False,
+        default=True,
+    )
+    
+    enable_actions_for_manager = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_actions_title_for_manager',
+            default='Show Actions Section for Manager always',
+        ),
+        required=False,
+        default=True,
+    )
+    
     enable_portlets = schema.Bool(
         title=_(
             u'controlpanel_sidebar_show_portlets_title',
@@ -116,6 +161,22 @@ class IControlPanel(Interface):
         required=False,
         default=True,
     )
+    
+    enable_portlets_for_manager = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_portlets_title_manager',
+            default='Show Manage Portlets Section always for manager',
+        ),
+        description=_(
+            u'controlpanel_sidebar_show_portlets_description_manager',
+            default=(
+                u'Show manage portlets links for manager always' 
+            ),
+        ),
+        required=False,
+        default=True,
+    )
+    
 
     enable_collapse = schema.Bool(
         title=_(

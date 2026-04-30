@@ -341,7 +341,7 @@ class SidebarViewlet(ViewletBase):
 
     def can_manage_portal(self):
         """
-        Check is user can manage the portal.
+        Check is user can manage the portal .
         """
         return api.user.has_permission("Manage portal")
 
@@ -551,12 +551,24 @@ class SidebarViewlet(ViewletBase):
                     'submenu': None,
                 })
         return results
-
+    
+    def can_manage_portal():
+         """
+         Check is user can manage the portal.
+         """
+         return api.user.has_permission("Manage portal")
+    
     @staticmethod
     def is_navigation_enabled():
         """
         Should navigation be shown
         """
+        if SidebarViewlet.can_manage_portal():
+            return api.portal.get_registry_record(
+            name='collective.sidebar.enable_navigation_for_manager',
+            default=True,
+        )
+            
         return api.portal.get_registry_record(
             name='collective.sidebar.enable_navigation',
             default=True,
@@ -567,6 +579,12 @@ class SidebarViewlet(ViewletBase):
         """
         Should actions be shown
         """
+        if SidebarViewlet.can_manage_portal():
+            return api.portal.get_registry_record(
+            name='collective.sidebar.enable_actions_for_manager',
+            default=True,
+        )
+            
         return api.portal.get_registry_record(
             name='collective.sidebar.enable_actions',
             default=True,
@@ -577,6 +595,12 @@ class SidebarViewlet(ViewletBase):
         """
         Should manage portlets be shown
         """
+        if SidebarViewlet.can_manage_portal():
+            return api.portal.get_registry_record(
+            name='collective.sidebar.enable_portlets_for_manager',
+            default=True,
+        )
+            
         return api.portal.get_registry_record(
             name='collective.sidebar.enable_portlets',
             default=True,
@@ -588,6 +612,12 @@ class SidebarViewlet(ViewletBase):
         sitelinks
         Should manage portlets be shown
         """
+        if SidebarViewlet.can_manage_portal():
+            return api.portal.get_registry_record(
+            name='collective.sidebar.enable_siteactions_for_manager',
+            default=True,
+        )
+            
         return api.portal.get_registry_record(
             name='collective.sidebar.enable_siteactions',
             default=True,
@@ -598,6 +628,12 @@ class SidebarViewlet(ViewletBase):
         """
         Should manage portlets be shown
         """
+        if SidebarViewlet.can_manage_portal():
+            return api.portal.get_registry_record(
+            name='ollective.sidebar.enable_sitelinks_for_manager',
+            default=True,
+        )
+            
         return api.portal.get_registry_record(
             name='collective.sidebar.enable_sitelinks',
             default=True,
