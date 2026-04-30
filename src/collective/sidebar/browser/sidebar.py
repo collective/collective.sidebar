@@ -581,6 +581,7 @@ class SidebarViewlet(ViewletBase):
         """
         Should actions be shown
         """
+        
         if SidebarViewlet.can_manage_portal():
             return api.portal.get_registry_record(
             name='collective.sidebar.enable_actions_for_manager',
@@ -622,6 +623,23 @@ class SidebarViewlet(ViewletBase):
             
         return api.portal.get_registry_record(
             name='collective.sidebar.enable_siteactions',
+            default=True,
+        )
+        
+    @staticmethod
+    def is_add_enabled():
+        """
+        sitelinks
+        Should manage portlets be shown
+        """
+        if SidebarViewlet.can_manage_portal():
+            return api.portal.get_registry_record(
+            name='collective.sidebar.enable_add_for_manager',
+            default=True,
+        )
+            
+        return api.portal.get_registry_record(
+            name='collective.sidebar.enable_add',
             default=True,
         )
 

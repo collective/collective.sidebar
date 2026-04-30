@@ -83,6 +83,31 @@ class IControlPanel(Interface):
         required=False,
         default=True,
     )
+    
+    enable_add = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_add_title',
+            default='Show Add Section',
+        ),
+        description=_(
+            u'controlpanel_sidebar_show_add_description',
+            default=(
+                u'Show Add section.'
+            ),
+        ),
+        required=False,
+        default=True,
+    )
+    
+    enable_add_for_manager = schema.Bool(
+        title=_(
+            u'controlpanel_sidebar_show_add_title_for_manager',
+            default='Show Add Section for Manager always',
+        ),
+        required=False,
+        default=True,
+    )    
+
 
     root_nav = schema.Bool(
         title=_(

@@ -35,7 +35,6 @@ test.plone_addon/
 var/
 share/
 .idea/
-.vscode/
 
 # Files
 
@@ -63,3 +62,5 @@ report.html
 Gruntfile.js
 node_modules/
 temp_resources
+temp_auto_push.bat
+temp_interactive_push.bat
